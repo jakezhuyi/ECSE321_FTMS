@@ -4,8 +4,8 @@ require_once (__DIR__.'/controller/Controller.php');
 session_start ();
 $c = new Controller ();
 try {
-	$c->createParticipant ( $_POST ['food_name'] );
-	$_SESSION ["errorFoodSupply"] = "";
+	$c->createFoodSupply( $_POST ['food_name'], $_POST['food_num']);
+	$_SESSION["errorFoodSupply"] = "";
 } catch ( Exception $e ) {
 	$_SESSION["errorFoodSupply"] = $e->getMessage();
 }
@@ -14,6 +14,6 @@ try {
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="refresh" content="0; url=/FoodTruckManagerPHP/" />
+		<meta http-equiv="refresh" content="10; url=/FoodTruckManagerPHP/" />
 	</head>
 </html>
