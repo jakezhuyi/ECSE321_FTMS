@@ -32,7 +32,7 @@ class MenuItem{
 
 class TransactionOrder{
 
-  1 ->* MenuItem;
+  * ->1 MenuItem;
 }
 
 class FoodTruckManager{
