@@ -4,7 +4,7 @@
   <foodSupplies id="4">
     <supply id="5">
       <name>Tomato</name>
-      <amount>1</amount>
+      <amount>10</amount>
     </supply>
   </foodSupplies>
   <transactionOrders id="6"/>
