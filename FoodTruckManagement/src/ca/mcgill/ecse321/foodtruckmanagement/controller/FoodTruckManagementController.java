@@ -24,7 +24,7 @@ public class FoodTruckManagementController {
 		}
 		if(amount <= 0)
 		{
-			error = error + "Supply amount must be greater than zero! ";
+			error = error + "Supply amount must be an integer greater than zero! ";
 			isError = true;
 		}
 		if(isError)
