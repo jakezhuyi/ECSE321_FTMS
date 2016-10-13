@@ -1,0 +1,85 @@
+class Employee{
+
+    name;
+    String role;
+    1 ->* Schedule;
+}
+
+class Schedule{
+
+  Day workDay;
+  Time startTime;
+  Time endTime;
+}
+
+class Equipment{
+    name;
+    int supply;
+  
+}
+
+class FoodSupply{
+    name;
+    int amount;
+}
+
+class MenuItem{
+  
+  name;
+  int amountSold;
+  
+}
+
+class TransactionOrder{
+
+  1 ->* MenuItem;
+}
+
+class FoodTruckManager{
+  
+  singleton;
+  1 ->* Employee;
+  1 ->* Equipment;
+  1 ->* FoodSupply;
+  1 ->* TransactionOrder;
+}//$?[End_of_model]$?
+
+class Employee
+{
+  position 50 30 109 45;
+  position.association Employee__Schedule 24,75 30,0;
+}
+
+class Schedule
+{
+  position 26 187 132 92;
+}
+
+class Equipment
+{
+  position 47 322 112 75;
+}
+
+class FoodSupply
+{
+  position 83 469 112 75;
+}
+
+class MenuItem
+{
+  position 567 398 131 75;
+}
+
+class TransactionOrder
+{
+  position 538 56 122 45;
+  position.association MenuItem__TransactionOrder 16,45 126,0;
+}
+
+class FoodTruckManager
+{
+  position 358 164 134 45;
+  position.association FoodSupply__FoodTruckManager 0,10 112,2;
+  position.association Employee__FoodTruckManager 0,10 112,12;
+  position.association Equipment__FoodTruckManager 0,10 112,8;
+}
