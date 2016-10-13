@@ -20,7 +20,9 @@ public class FoodTruckManagementController {
 		
 		FoodSupply f = new FoodSupply(name,amount);
 		FoodTruckManager fm = FoodTruckManager.getInstance();
+		
 		fm.addFoodSupply(f);
+		
 		PersistenceXStream.saveToXMLwithXStream(fm);
 	}
 	

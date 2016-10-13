@@ -1,0 +1,12 @@
+<manager id="1">
+  <employees id="2"/>
+  <equipment id="3"/>
+  <foodSupplies id="4">
+    <supply id="5">
+      <name>Tomato</name>
+      <amount>1</amount>
+    </supply>
+  </foodSupplies>
+  <transactionOrders id="6"/>
+  <menuItems id="7"/>
+</manager>
