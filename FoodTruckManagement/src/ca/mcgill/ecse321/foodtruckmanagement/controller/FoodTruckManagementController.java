@@ -15,10 +15,20 @@ public class FoodTruckManagementController {
 	
 	public void addFoodSupply(String name, int amount) throws InvalidInputException
 	{
+		String error = "";
+		boolean isError = false;
 		if(name == null || name.trim().length() == 0)
-			throw new InvalidInputException("Supply name cannot be empty!");
+		{
+			error = "Supply name cannot be empty! ";
+			isError = true;
+		}
 		if(amount <= 0)
-			throw new InvalidInputException("Supply amount must be greater than zero!");
+		{
+			error = error + "Supply amount must be greater than zero! ";
+			isError = true;
+		}
+		if(isError)
+			throw new InvalidInputException(error);
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
