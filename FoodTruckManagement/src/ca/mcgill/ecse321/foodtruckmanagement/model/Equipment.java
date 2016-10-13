@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.foodtruckmanagement.model;
 
 // line 17 "../../../../../FoodTruckManagement.ump"
-// line 60 "../../../../../FoodTruckManagement.ump"
+// line 61 "../../../../../FoodTruckManagement.ump"
 public class Equipment
 {
 

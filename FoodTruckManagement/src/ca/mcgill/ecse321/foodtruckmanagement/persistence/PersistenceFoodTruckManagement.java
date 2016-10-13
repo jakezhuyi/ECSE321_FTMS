@@ -53,6 +53,11 @@ public class PersistenceFoodTruckManagement {
 			while (tIt.hasNext())
 				ftm.addTransactionOrder(tIt.next());
 			
+			//Add saved menu items to the ftm
+			Iterator<MenuItem> mIt = ftm2.getMenuItems().iterator();
+			while (mIt.hasNext())
+				ftm.addMenuItem(mIt.next());
+			
 		}
 		
 	}

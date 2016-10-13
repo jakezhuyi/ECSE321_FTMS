@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.foodtruckmanagement.model;
 import java.util.*;
 
 // line 40 "../../../../../FoodTruckManagement.ump"
-// line 81 "../../../../../FoodTruckManagement.ump"
+// line 82 "../../../../../FoodTruckManagement.ump"
 public class FoodTruckManager
 {
 
@@ -24,6 +24,7 @@ public class FoodTruckManager
   private List<Equipment> equipment;
   private List<FoodSupply> foodSupplies;
   private List<TransactionOrder> transactionOrders;
+  private List<MenuItem> menuItems;
 
   //------------------------
   // CONSTRUCTOR
@@ -35,6 +36,7 @@ public class FoodTruckManager
     equipment = new ArrayList<Equipment>();
     foodSupplies = new ArrayList<FoodSupply>();
     transactionOrders = new ArrayList<TransactionOrder>();
+    menuItems = new ArrayList<MenuItem>();
   }
 
   public static FoodTruckManager getInstance()
@@ -167,6 +169,36 @@ public class FoodTruckManager
   public int indexOfTransactionOrder(TransactionOrder aTransactionOrder)
   {
     int index = transactionOrders.indexOf(aTransactionOrder);
+    return index;
+  }
+
+  public MenuItem getMenuItem(int index)
+  {
+    MenuItem aMenuItem = menuItems.get(index);
+    return aMenuItem;
+  }
+
+  public List<MenuItem> getMenuItems()
+  {
+    List<MenuItem> newMenuItems = Collections.unmodifiableList(menuItems);
+    return newMenuItems;
+  }
+
+  public int numberOfMenuItems()
+  {
+    int number = menuItems.size();
+    return number;
+  }
+
+  public boolean hasMenuItems()
+  {
+    boolean has = menuItems.size() > 0;
+    return has;
+  }
+
+  public int indexOfMenuItem(MenuItem aMenuItem)
+  {
+    int index = menuItems.indexOf(aMenuItem);
     return index;
   }
 
@@ -398,12 +430,70 @@ public class FoodTruckManager
     return wasAdded;
   }
 
+  public static int minimumNumberOfMenuItems()
+  {
+    return 0;
+  }
+
+  public boolean addMenuItem(MenuItem aMenuItem)
+  {
+    boolean wasAdded = false;
+    if (menuItems.contains(aMenuItem)) { return false; }
+    menuItems.add(aMenuItem);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeMenuItem(MenuItem aMenuItem)
+  {
+    boolean wasRemoved = false;
+    if (menuItems.contains(aMenuItem))
+    {
+      menuItems.remove(aMenuItem);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addMenuItemAt(MenuItem aMenuItem, int index)
+  {  
+    boolean wasAdded = false;
+    if(addMenuItem(aMenuItem))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfMenuItems()) { index = numberOfMenuItems() - 1; }
+      menuItems.remove(aMenuItem);
+      menuItems.add(index, aMenuItem);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveMenuItemAt(MenuItem aMenuItem, int index)
+  {
+    boolean wasAdded = false;
+    if(menuItems.contains(aMenuItem))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfMenuItems()) { index = numberOfMenuItems() - 1; }
+      menuItems.remove(aMenuItem);
+      menuItems.add(index, aMenuItem);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addMenuItemAt(aMenuItem, index);
+    }
+    return wasAdded;
+  }
+
   public void delete()
   {
     employees.clear();
     equipment.clear();
     foodSupplies.clear();
     transactionOrders.clear();
+    menuItems.clear();
   }
 
 }

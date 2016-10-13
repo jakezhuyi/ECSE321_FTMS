@@ -44,6 +44,7 @@ singleton;
 1 ->* Equipment;
 1 ->* FoodSupply;
 1 ->* TransactionOrder;
+1 ->* MenuItem;
 }//$?[End_of_model]$?
 
 class Employee

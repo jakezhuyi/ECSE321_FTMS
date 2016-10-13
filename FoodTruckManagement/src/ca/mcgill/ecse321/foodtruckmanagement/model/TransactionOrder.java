@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.foodtruckmanagement.model;
 
 // line 35 "../../../../../FoodTruckManagement.ump"
-// line 75 "../../../../../FoodTruckManagement.ump"
+// line 76 "../../../../../FoodTruckManagement.ump"
 public class TransactionOrder
 {
 
