@@ -19,7 +19,7 @@
 		$pm = new PersistenceFoodTruckManager();
 		$ftm = $pm->loadDataFromStore();
 		
-?>
+		?>
 		
 		<form action="addfoodsupply.php" method="post">
 			<p>Name? <input type="text" name="food_name" />

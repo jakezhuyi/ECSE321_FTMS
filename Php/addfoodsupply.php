@@ -14,6 +14,6 @@ try {
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="refresh" content="10; url=/FoodTruckManagerPHP/" />
+		<meta http-equiv="refresh" content="2; url=/FoodTruckManagerPHP/" />
 	</head>
 </html>
