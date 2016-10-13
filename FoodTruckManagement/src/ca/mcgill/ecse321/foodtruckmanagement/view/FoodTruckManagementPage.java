@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.foodtruckmanagement.view;
 
+import java.awt.Color;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,11 +19,15 @@ public class FoodTruckManagementPage extends JFrame {
 	private static final long serialVersionUID = 6324184905041245298L;
 	
 	//UI elements
+	private JLabel errorMessage;
 	private JTextField supplyNameTextField;
 	private JLabel supplyNameLabel;
 	private JTextField supplyAmountTextField;
 	private JLabel supplyAmountLabel;
 	private JButton addSupplyButton;
+	
+	//data elements
+	private String error = null;
 	
 	/* Creates new Page */
 	public FoodTruckManagementPage() {
@@ -31,6 +37,10 @@ public class FoodTruckManagementPage extends JFrame {
 	
 	/*Initialize the form*/
 	private void initComponents() {
+		
+		//elements for error message
+		errorMessage = new JLabel();
+		errorMessage.setForeground(Color.RED);
 		
 		//elements for supply
 		supplyNameTextField = new JTextField();
@@ -58,19 +68,23 @@ public class FoodTruckManagementPage extends JFrame {
 		getContentPane().setLayout(layout);
 		layout.setAutoCreateGaps(true);
 		layout.setHorizontalGroup(
+				layout.createParallelGroup()
+				.addComponent(errorMessage)
+				.addGroup(
 				layout.createSequentialGroup()
 				.addComponent(supplyNameLabel)
 				.addComponent(supplyNameTextField, 200, 200, 400)
 				.addComponent(supplyAmountLabel)
 				.addGroup(layout.createParallelGroup()
 					.addComponent(supplyAmountTextField, 20, 20, 400)
-					.addComponent(addSupplyButton))
+					.addComponent(addSupplyButton)))
 				);
 		
 		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {addSupplyButton, supplyNameTextField, supplyAmountTextField});
 		
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
+				.addComponent(errorMessage)
 				.addGroup(layout.createParallelGroup()
 						.addComponent(supplyNameLabel)
 						.addComponent(supplyNameTextField)
@@ -84,25 +98,40 @@ public class FoodTruckManagementPage extends JFrame {
 	}
 	
 	private void refreshData() {
+		//set error
+		errorMessage.setText(error);
+		
+		//refresh other text fields
 		supplyNameTextField.setText("");
 		supplyAmountTextField.setText("");
+		
+		pack();
 	}
 	
 	private void addSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		//call controller
 		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		error = null;
 		
 		String name = supplyNameTextField.getText();
-		int amount = Integer.parseInt(supplyAmountTextField.getText());
+		
+		int amount = 0;
 		
 		try {
-			ftmc.addFoodSupply(name, amount);
-		} catch (InvalidInputException e) {
-			e.printStackTrace();
+			amount = Integer.parseInt(supplyAmountTextField.getText());
+		} catch (Exception e) {
+			amount = 0;
+		
+		} finally {
+		
+			try {
+				ftmc.addFoodSupply(name, amount);
+			} catch (InvalidInputException e) {
+				error = e.getMessage();
+			} 
+			
+			refreshData();
 		}
-		
-		refreshData();
-		
 	}
 	
 	
