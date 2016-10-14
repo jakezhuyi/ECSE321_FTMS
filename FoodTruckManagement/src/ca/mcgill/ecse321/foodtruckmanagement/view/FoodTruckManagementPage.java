@@ -53,10 +53,10 @@ public class FoodTruckManagementPage extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Food Truck Management");
 		
-		supplyNameLabel.setText("Food Supply:");
+		supplyNameLabel.setText("Food Supply Name:");
 		supplyAmountLabel.setText("Amount:");
 		
-		addSupplyButton.setText("Add Supply");
+		addSupplyButton.setText("Add To Supply");
 		addSupplyButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addSupplyButtonActionPerformed(evt);
