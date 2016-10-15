@@ -13,9 +13,15 @@ import ca.mcgill.ecse321.foodtruckmanagement.model.TransactionOrder;
 
 public class PersistenceFoodTruckManagement {
 	
+private static String filename = "foodtruckmanagemnt.xml";
+	
+	public static void setFilename(String fn) {
+			filename = fn;
+	}
+	
 	private static void initializeXStream() {
 
-		PersistenceXStream.setFilename("foodtruckmanagement.xml");
+		PersistenceXStream.setFilename( /*filename +*/ "foodtruckmanagement.xml");
 		PersistenceXStream.setAlias("employee", Employee.class);
 		PersistenceXStream.setAlias("equipment", Equipment.class);
 		PersistenceXStream.setAlias("supply", FoodSupply.class);
