@@ -6,7 +6,11 @@
       <name>Tomato</name>
       <amount>10</amount>
     </supply>
+    <supply id="6">
+      <name>hot dog</name>
+      <amount>3</amount>
+    </supply>
   </foodSupplies>
-  <transactionOrders id="6"/>
-  <menuItems id="7"/>
+  <transactionOrders id="7"/>
+  <menuItems id="8"/>
 </manager>
