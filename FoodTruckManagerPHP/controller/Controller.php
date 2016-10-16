@@ -13,7 +13,6 @@ class Controller
 	
 	public function createFoodSupply($food_name, $food_num)
 	{
-// 		$matched = FALSE;
 		
 		// 1. Validate Input
 		$name = InputValidator::validate_input($food_name);
@@ -29,6 +28,8 @@ class Controller
 		
 		else
 		{
+			$matched = FALSE;
+			
 			// 2. Load all of the data
 			$pm = new PersistenceFoodTruckManager();
 			$ftm = $pm->loadDataFromStore();
@@ -40,19 +41,20 @@ class Controller
 			{
 				if (strcmp ( $food->getName(), $food_name ) == 0)
 				{
-// 					$num_plus_one = $food->getAmount();
-// 					$num_plus_one++;
-// 					$matched = TRUE;
-
+					$matched = TRUE;
+					$old_amount = $food->getAmount();
+					$food_num += $old_amount;
 					$food->setAmount($food_num);
 					break;
 				}
 			}
 			
-// 			if(!$matched) $num_plus_one = 1;
+			if(!$matched)
+			{
+				$new_food = new FoodSupply($food_name, $food_num);
+				$ftm->addFoodSupply($new_food);
+			}
 			
-			$new_food = new FoodSupply($food_name, $food_num);
-			$ftm->addFoodSupply($new_food);
 				
 			// 4. Write all of the data
 			$pm->writeDataToStore($ftm);	
