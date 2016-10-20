@@ -17,7 +17,9 @@ public class FoodTruckManagementController {
 	{
 		String error = "";
 		boolean isError = false;
-		if(name == null || name.trim().length() == 0)
+		name = name.trim();
+		
+		if(name == null || name.length() == 0)
 		{
 			error = "Supply name cannot be empty! ";
 			isError = true;
@@ -53,9 +55,10 @@ public class FoodTruckManagementController {
 	{
 		String error = "";
 		boolean isError = false;
+		name = name.trim();
 		
 		//Check whether the name field is empty
-		if(name == null || name.trim().length() == 0)
+		if(name == null || name.length() == 0)
 		{
 			error = "Supply name cannot be empty! ";
 			isError = true;
@@ -86,20 +89,20 @@ public class FoodTruckManagementController {
 				//If they request to remove more than the existing amount, throw an error
 				if (fm.getFoodSupply(i).getAmount() < amount)
 				{
-					error = "The existing supply of " + fm.getFoodSupply(i).getName() + "s is only " + fm.getFoodSupply(i).getAmount() + "! ";
+					error = "The existing supply of " + fm.getFoodSupply(i).getName() + " is only " + fm.getFoodSupply(i).getAmount() + "! ";
 					throw new InvalidInputException(error);
 				}
 				
 				//Remove the requested amount and update the model
 				amount = fm.getFoodSupply(i).getAmount() - amount;
-				fm.getFoodSupply(i).setAmount(i);
+				fm.getFoodSupply(i).setAmount(amount);
 				PersistenceXStream.saveToXMLwithXStream(fm);
 				return;
 			}
 		}
 		
 		//If the food supply is not in the supply, throw an error
-		throw new InvalidInputException("The supply does not contain any " + name + "s!");
+		throw new InvalidInputException("The supply does not contain any " + name + "!");
 	}
 }
 

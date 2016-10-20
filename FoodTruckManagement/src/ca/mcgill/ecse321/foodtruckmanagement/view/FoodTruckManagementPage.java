@@ -25,6 +25,7 @@ public class FoodTruckManagementPage extends JFrame {
 	private JTextField supplyAmountTextField;
 	private JLabel supplyAmountLabel;
 	private JButton addSupplyButton;
+	private JButton removeSupplyButton;
 	
 	//data elements
 	private String error = null;
@@ -48,6 +49,7 @@ public class FoodTruckManagementPage extends JFrame {
 		supplyAmountTextField = new JTextField();
 		supplyAmountLabel = new JLabel();
 		addSupplyButton = new JButton();
+		removeSupplyButton = new JButton();
 		
 		//global settings and listeners
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +65,13 @@ public class FoodTruckManagementPage extends JFrame {
 			}
 		});
 		
+		removeSupplyButton.setText("Remove From Supply");
+		removeSupplyButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				removeSupplyButtonActionPerformed(evt);
+			}
+		}); 
+		
 		//layout
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -70,17 +79,18 @@ public class FoodTruckManagementPage extends JFrame {
 		layout.setHorizontalGroup(
 				layout.createParallelGroup()
 				.addComponent(errorMessage)
-				.addGroup(
-				layout.createSequentialGroup()
-				.addComponent(supplyNameLabel)
-				.addComponent(supplyNameTextField, 200, 200, 400)
-				.addComponent(supplyAmountLabel)
-				.addGroup(layout.createParallelGroup()
-					.addComponent(supplyAmountTextField, 20, 20, 400)
-					.addComponent(addSupplyButton)))
+				.addGroup(layout.createSequentialGroup()
+					.addComponent(supplyNameLabel)
+					.addGroup(layout.createParallelGroup()
+						.addComponent(supplyNameTextField, 200, 200, 400)
+						.addComponent(addSupplyButton))
+					.addComponent(supplyAmountLabel)	
+					.addGroup(layout.createParallelGroup()
+						.addComponent(supplyAmountTextField, 20, 20, 400)
+					    .addComponent(removeSupplyButton)))
 				);
 		
-		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {addSupplyButton, supplyNameTextField, supplyAmountTextField});
+		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {addSupplyButton, removeSupplyButton, supplyNameTextField, supplyAmountTextField});
 		
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
@@ -90,8 +100,10 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(supplyNameTextField)
 						.addComponent(supplyAmountLabel)
 						.addComponent(supplyAmountTextField))
-				.addComponent(addSupplyButton)
-				);
+				.addGroup(layout.createParallelGroup()		
+						.addComponent(addSupplyButton)
+						.addComponent(removeSupplyButton)
+				));
 		
 		pack();
 									
@@ -132,6 +144,31 @@ public class FoodTruckManagementPage extends JFrame {
 			
 			refreshData();
 		}
+	
+	}
+	
+	private void removeSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		error = null;
+		
+		String name = supplyNameTextField.getText();
+		int amount = 0;
+		try {
+			amount = Integer.parseInt(supplyAmountTextField.getText());
+		} catch (Exception e) {
+			amount = 0;
+		
+		} finally {
+		
+			try {
+				ftmc.removeFoodSupply(name, amount);
+			} catch (InvalidInputException e) {
+				error = e.getMessage();
+			} 
+			
+			refreshData();
+		}
+		
 	}
 	
 	
