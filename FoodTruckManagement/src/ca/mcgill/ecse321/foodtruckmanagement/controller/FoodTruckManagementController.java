@@ -47,7 +47,60 @@ public class FoodTruckManagementController {
 		fm.addFoodSupply(f);
 		PersistenceXStream.saveToXMLwithXStream(fm);
 		
-		
 	}
 	
+	public void removeFoodSupply(String name, int amount) throws InvalidInputException
+	{
+		String error = "";
+		boolean isError = false;
+		
+		//Check whether the name field is empty
+		if(name == null || name.trim().length() == 0)
+		{
+			error = "Supply name cannot be empty! ";
+			isError = true;
+		}
+		
+		//Check whether the amount is valid
+		if(amount <= 0)
+		{
+			error = error + "Supply amount must be an integer greater than zero! ";
+			isError = true;
+		}
+		
+		//Throw an error if either field is invalid
+		if(isError)
+		{
+			throw new InvalidInputException(error);
+		}
+		
+		//Call the model
+		FoodTruckManager fm = FoodTruckManager.getInstance();
+		
+		
+		//Search whether the requested food supply is in the supply
+		for(int i=0; i<fm.numberOfFoodSupplies(); i++)
+		{
+			if(fm.getFoodSupply(i).getName().toUpperCase().equals(name.toUpperCase()))
+			{
+				//If they request to remove more than the existing amount, throw an error
+				if (fm.getFoodSupply(i).getAmount() < amount)
+				{
+					error = "The existing supply of " + fm.getFoodSupply(i).getName() + "s is only " + fm.getFoodSupply(i).getAmount() + "! ";
+					throw new InvalidInputException(error);
+				}
+				
+				//Remove the requested amount and update the model
+				amount = fm.getFoodSupply(i).getAmount() - amount;
+				fm.getFoodSupply(i).setAmount(i);
+				PersistenceXStream.saveToXMLwithXStream(fm);
+				return;
+			}
+		}
+		
+		//If the food supply is not in the supply, throw an error
+		throw new InvalidInputException("The supply does not contain any " + name + "s!");
+	}
 }
+
+	
