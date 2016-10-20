@@ -104,6 +104,21 @@ public class FoodTruckManagementController {
 		//If the food supply is not in the supply, throw an error
 		throw new InvalidInputException("The supply does not contain any " + name + "!");
 	}
+	
+	public String viewSupply() 
+	{
+		String supplyList = "<html>";
+		FoodTruckManager fm = FoodTruckManager.getInstance();
+		for (int i=0; i<fm.numberOfFoodSupplies(); i++)
+		{
+			supplyList = supplyList + fm.getFoodSupply(i).getName() + " ----- " + fm.getFoodSupply(i).getAmount() + "<br/>";
+			String.format(supplyList);
+		}
+		
+		supplyList = supplyList + "</html>";
+		return supplyList;
+	}
+	
 }
 
 	

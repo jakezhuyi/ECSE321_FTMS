@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.foodtruckmanagement.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -26,6 +27,7 @@ public class FoodTruckManagementPage extends JFrame {
 	private JLabel supplyAmountLabel;
 	private JButton addSupplyButton;
 	private JButton removeSupplyButton;
+	private JButton viewSupplyButton;
 	
 	//data elements
 	private String error = null;
@@ -50,6 +52,7 @@ public class FoodTruckManagementPage extends JFrame {
 		supplyAmountLabel = new JLabel();
 		addSupplyButton = new JButton();
 		removeSupplyButton = new JButton();
+		viewSupplyButton = new JButton();
 		
 		//global settings and listeners
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -72,6 +75,13 @@ public class FoodTruckManagementPage extends JFrame {
 			}
 		}); 
 		
+		viewSupplyButton.setText("View Supply");
+		viewSupplyButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				viewSupplyButtonActionPerformed(evt);
+			}
+		});
+		
 		//layout
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -80,14 +90,21 @@ public class FoodTruckManagementPage extends JFrame {
 				layout.createParallelGroup()
 				.addComponent(errorMessage)
 				.addGroup(layout.createSequentialGroup()
+						
 					.addComponent(supplyNameLabel)
+						
 					.addGroup(layout.createParallelGroup()
-						.addComponent(supplyNameTextField, 200, 200, 400)
-						.addComponent(addSupplyButton))
-					.addComponent(supplyAmountLabel)	
+					.addComponent(supplyNameTextField, 200, 200, 400)
+					.addComponent(addSupplyButton))
+					
+					
+					.addComponent(supplyAmountLabel)
+						
 					.addGroup(layout.createParallelGroup()
 						.addComponent(supplyAmountTextField, 20, 20, 400)
-					    .addComponent(removeSupplyButton)))
+					    .addComponent(removeSupplyButton))
+					    
+					.addComponent(viewSupplyButton))
 				);
 		
 		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {addSupplyButton, removeSupplyButton, supplyNameTextField, supplyAmountTextField});
@@ -99,7 +116,8 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(supplyNameLabel)
 						.addComponent(supplyNameTextField)
 						.addComponent(supplyAmountLabel)
-						.addComponent(supplyAmountTextField))
+						.addComponent(supplyAmountTextField)
+						.addComponent(viewSupplyButton))
 				.addGroup(layout.createParallelGroup()		
 						.addComponent(addSupplyButton)
 						.addComponent(removeSupplyButton)
@@ -169,6 +187,27 @@ public class FoodTruckManagementPage extends JFrame {
 			refreshData();
 		}
 		
+	}
+	
+	private void viewSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		
+		String label = ftmc.viewSupply();
+		JLabel supplyList = new JLabel();
+		supplyList.setText(label);
+		
+		JFrame frame = new JFrame("Supply List");
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.getContentPane().add(supplyList);
+		
+		Dimension d = new Dimension();
+		d.setSize(500, 200);
+		
+		frame.setSize(d);
+		
+		frame.setVisible(true);
 	}
 	
 	
