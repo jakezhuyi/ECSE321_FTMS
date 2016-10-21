@@ -200,21 +200,34 @@ public class FoodTruckManagementController {
 	
 	public String viewSupply() 
 	{
-		String supplyList = "<html>\n<body>\n<table>\n<tr>\n<th>Food Supply</th>\n<th>Equipment</th></tr>\n<tr>\n";
+		String supplyList = "<html><table><tr><th>Food Supply</th><th>Equipment</th></tr>";
+		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
+		
+		int maxValue = Math.max(fm.numberOfFoodSupplies(), fm.numberOfEquipment());
+		String [][] supplyListArray = new String [maxValue][2];
+		
 		for (int i=0; i<fm.numberOfFoodSupplies(); i++)
 		{
-			supplyList = supplyList + "<td>" + fm.getFoodSupply(i).getName() + " : " + fm.getFoodSupply(i).getAmount() + "</td>\n";
-			String.format(supplyList);
-		}
-		supplyList = supplyList + "</tr>\n<tr>\n";
-		for (int i=0; i<fm.numberOfEquipment(); i++)
-		{
-			supplyList = supplyList + "<td>" + fm.getEquipment(i).getName() + " : " + fm.getEquipment(i).getAmount() + "</td>\n";
-			String.format(supplyList);
+			String entry = "<td>" + fm.getFoodSupply(i).getName() + " : " + fm.getFoodSupply(i).getAmount() + "</td>";
+			supplyListArray[i][0] = entry;
 		}
 		
-		supplyList = supplyList + "</tr>\n</table>\n</body>\n</html>";
+		for (int i=0; i<fm.numberOfEquipment(); i++)
+		{
+			String entry = "<td>" + fm.getEquipment(i).getName() + " : " + fm.getEquipment(i).getAmount() + "</td>";
+			supplyListArray[i][1] = entry;
+		}
+		
+		for (int i=0; i<maxValue; i++)
+		{
+			if(supplyListArray[i][0] == null) supplyListArray[i][0] = "";
+			if(supplyListArray[i][1] == null) supplyListArray[i][1] = "";
+			supplyList = supplyList + "<tr>" + supplyListArray[i][0] + supplyListArray[i][1] + "</tr>";
+		}
+		
+		supplyList = supplyList + "</table></html>";
+		
 		return supplyList;
 	}
 	

@@ -301,7 +301,7 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		JFrame frame = new JFrame("Supply List");
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		frame.getContentPane().add(supplyList);
 		
