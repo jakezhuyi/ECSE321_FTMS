@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 
 import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementController;
 import ca.mcgill.ecse321.foodtruckmanagement.controller.InvalidInputException;
@@ -146,6 +147,8 @@ public class FoodTruckManagementPage extends JFrame {
 				}
 			});
 			
+		//Blank line to separate elements of the UI	
+		JLabel blankLine = new JLabel(" ");
 		
 		//layout
 		GroupLayout layout = new GroupLayout(getContentPane());
@@ -158,6 +161,7 @@ public class FoodTruckManagementPage extends JFrame {
 					
 					.addGroup(layout.createParallelGroup()	
 					.addComponent(supplyNameLabel)
+					.addComponent(blankLine)
 					.addComponent(employeeNameLabel))
 						
 					.addGroup(layout.createParallelGroup()
@@ -209,11 +213,15 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(equipmentAmountLabel)
 						.addComponent(equipmentAmountTextField)
 						.addComponent(viewSupplyButton))
+						
 				.addGroup(layout.createParallelGroup()		
 						.addComponent(addSupplyButton)
 						.addComponent(removeSupplyButton)
 						.addComponent(addEquipmentButton)
 						.addComponent(removeEquipmentButton))
+						
+						
+				.addComponent(blankLine)
 				.addGroup(layout.createParallelGroup()
 						.addComponent(employeeNameLabel)
 						.addComponent(employeeNameTextField)
@@ -395,7 +403,6 @@ public class FoodTruckManagementPage extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	
-	
+
 
 }
