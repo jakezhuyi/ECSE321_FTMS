@@ -67,14 +67,14 @@ public class FoodTruckManagementPage extends JFrame {
 		supplyNameLabel.setText("Food Supply Name:");
 		supplyAmountLabel.setText("Amount:");
 		
-		addSupplyButton.setText("Add To Supply");
+		addSupplyButton.setText("Add To Food Supply");
 		addSupplyButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addSupplyButtonActionPerformed(evt);
 			}
 		});
 		
-		removeSupplyButton.setText("Remove From Supply");
+		removeSupplyButton.setText("Remove From Food Supply");
 		removeSupplyButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				removeSupplyButtonActionPerformed(evt);
@@ -186,6 +186,8 @@ public class FoodTruckManagementPage extends JFrame {
 		//refresh other text fields
 		supplyNameTextField.setText("");
 		supplyAmountTextField.setText("");
+		equipmentNameTextField.setText("");
+		equipmentAmountTextField.setText("");
 		
 		pack();
 	}

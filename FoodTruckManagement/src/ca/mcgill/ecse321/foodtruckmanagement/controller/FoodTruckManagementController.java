@@ -200,7 +200,7 @@ public class FoodTruckManagementController {
 	
 	public String viewSupply() 
 	{
-		String supplyList = "<html><table><tr><th>Food Supply</th><th>Equipment</th></tr>";
+		String supplyList = "<html><table><tr><td><b><u>Food Supply</b></u></td><td><b><u>Equipment</b></u></td></tr>";
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
