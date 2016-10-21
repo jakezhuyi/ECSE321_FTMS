@@ -16,7 +16,7 @@ Time endTime;
 
 class Equipment{
 name;
-int supply;
+int amount;
 
 }
 

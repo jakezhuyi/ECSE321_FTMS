@@ -38,10 +38,10 @@ public class Equipment
     return wasSet;
   }
 
-  public boolean setSupply(int aSupply)
+  public boolean setAmount(int aAmount)
   {
     boolean wasSet = false;
-    supply = aSupply;
+    supply = aAmount;
     wasSet = true;
     return wasSet;
   }
@@ -51,7 +51,7 @@ public class Equipment
     return name;
   }
 
-  public int getSupply()
+  public int getAmount()
   {
     return supply;
   }
@@ -65,7 +65,7 @@ public class Equipment
 	  String outputString = "";
     return super.toString() + "["+
             "name" + ":" + getName()+ "," +
-            "supply" + ":" + getSupply()+ "]"
+            "supply" + ":" + getAmount()+ "]"
      + outputString;
   }
 }

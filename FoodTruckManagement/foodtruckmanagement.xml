@@ -1,16 +1,37 @@
 <manager id="1">
   <employees id="2"/>
-  <equipment id="3"/>
-  <foodSupplies id="4">
-    <supply id="5">
+  <equipment id="3">
+    <equipment id="4">
+      <name>Grill</name>
+      <supply>3</supply>
+    </equipment>
+    <equipment id="5">
+      <name>Frier</name>
+      <supply>2</supply>
+    </equipment>
+  </equipment>
+  <foodSupplies id="6">
+    <supply id="7">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="6">
+    <supply id="8">
       <name>hot dog</name>
       <amount>9</amount>
     </supply>
+    <supply id="9">
+      <name>jello</name>
+      <amount>2</amount>
+    </supply>
+    <supply id="10">
+      <name>wine</name>
+      <amount>43</amount>
+    </supply>
+    <supply id="11">
+      <name>Champagne</name>
+      <amount>20036</amount>
+    </supply>
   </foodSupplies>
-  <transactionOrders id="7"/>
-  <menuItems id="8"/>
+  <transactionOrders id="12"/>
+  <menuItems id="13"/>
 </manager>

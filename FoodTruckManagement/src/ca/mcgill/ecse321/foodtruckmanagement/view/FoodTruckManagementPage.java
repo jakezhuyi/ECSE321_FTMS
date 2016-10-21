@@ -27,6 +27,12 @@ public class FoodTruckManagementPage extends JFrame {
 	private JLabel supplyAmountLabel;
 	private JButton addSupplyButton;
 	private JButton removeSupplyButton;
+	private JTextField equipmentNameTextField;
+	private JLabel equipmentNameLabel;
+	private JTextField equipmentAmountTextField;
+	private JLabel equipmentAmountLabel;
+	private JButton addEquipmentButton;
+	private JButton removeEquipmentButton;
 	private JButton viewSupplyButton;
 	
 	//data elements
@@ -75,6 +81,32 @@ public class FoodTruckManagementPage extends JFrame {
 			}
 		}); 
 		
+		//elements for equipment
+				equipmentNameTextField = new JTextField();
+				equipmentNameLabel = new JLabel();
+				equipmentAmountTextField = new JTextField();
+				equipmentAmountLabel = new JLabel();
+				addEquipmentButton = new JButton();
+				removeEquipmentButton = new JButton();
+				
+				
+				equipmentNameLabel.setText("Equipment Name:");
+				equipmentAmountLabel.setText("Amount:");
+				
+				addEquipmentButton.setText("Add To Equipment");
+				addEquipmentButton.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						addEquipmentButtonActionPerformed(evt);
+					}
+				});
+				
+				removeEquipmentButton.setText("Remove From Equipment");
+				removeEquipmentButton.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						removeEquipmentButtonActionPerformed(evt);
+					}
+				});
+		
 		viewSupplyButton.setText("View Supply");
 		viewSupplyButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +136,19 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(supplyAmountTextField, 20, 20, 400)
 					    .addComponent(removeSupplyButton))
 					    
+					 .addComponent(equipmentNameLabel)
+						
+					.addGroup(layout.createParallelGroup()
+					.addComponent(equipmentNameTextField, 200, 200, 400)
+					.addComponent(addEquipmentButton))
+					
+					
+					.addComponent(equipmentAmountLabel)
+						
+					.addGroup(layout.createParallelGroup()
+						.addComponent(equipmentAmountTextField, 20, 20, 400)
+					    .addComponent(removeEquipmentButton))
+					
 					.addComponent(viewSupplyButton))
 				);
 		
@@ -117,10 +162,17 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(supplyNameTextField)
 						.addComponent(supplyAmountLabel)
 						.addComponent(supplyAmountTextField)
+						.addComponent(equipmentNameLabel)
+						.addComponent(equipmentNameTextField)
+						.addComponent(equipmentAmountLabel)
+						.addComponent(equipmentAmountTextField)
 						.addComponent(viewSupplyButton))
 				.addGroup(layout.createParallelGroup()		
 						.addComponent(addSupplyButton)
 						.addComponent(removeSupplyButton)
+						.addComponent(addEquipmentButton)
+						.addComponent(removeEquipmentButton)
+						
 				));
 		
 		pack();
@@ -180,6 +232,57 @@ public class FoodTruckManagementPage extends JFrame {
 		
 			try {
 				ftmc.removeFoodSupply(name, amount);
+			} catch (InvalidInputException e) {
+				error = e.getMessage();
+			} 
+			
+			refreshData();
+		}
+		
+	}
+	
+	private void addEquipmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		//call controller
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		error = null;
+		
+		String name = equipmentNameTextField.getText();
+		
+		int amount = 0;
+		
+		try {
+			amount = Integer.parseInt(equipmentAmountTextField.getText());
+		} catch (Exception e) {
+			amount = 0;
+		
+		} finally {
+		
+			try {
+				ftmc.addEquipment(name, amount);
+			} catch (InvalidInputException e) {
+				error = e.getMessage();
+			} 
+			
+			refreshData();
+		}
+	
+	}
+	
+	private void removeEquipmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		error = null;
+		
+		String name = equipmentNameTextField.getText();
+		int amount = 0;
+		try {
+			amount = Integer.parseInt(equipmentAmountTextField.getText());
+		} catch (Exception e) {
+			amount = 0;
+		
+		} finally {
+		
+			try {
+				ftmc.removeEquipment(name, amount);
 			} catch (InvalidInputException e) {
 				error = e.getMessage();
 			} 
