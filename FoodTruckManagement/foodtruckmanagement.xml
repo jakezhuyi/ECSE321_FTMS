@@ -36,37 +36,41 @@
       <name>Ice cream machine</name>
       <supply>1</supply>
     </equipment>
+    <equipment id="14">
+      <name>Toaster</name>
+      <supply>3</supply>
+    </equipment>
   </equipment>
-  <foodSupplies id="14">
-    <supply id="15">
+  <foodSupplies id="15">
+    <supply id="16">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="16">
+    <supply id="17">
       <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="17">
+    <supply id="18">
       <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="18">
+    <supply id="19">
       <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="19">
+    <supply id="20">
       <name>Champagne</name>
       <amount>36</amount>
     </supply>
-    <supply id="20">
+    <supply id="21">
       <name>Pepperoni</name>
       <amount>4</amount>
     </supply>
-    <supply id="21">
+    <supply id="22">
       <name>Pineapple</name>
       <amount>7</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="22"/>
-  <menuItems id="23"/>
+  <transactionOrders id="23"/>
+  <menuItems id="24"/>
 </manager>
