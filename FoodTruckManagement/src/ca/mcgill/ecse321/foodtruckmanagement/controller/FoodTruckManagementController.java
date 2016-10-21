@@ -19,7 +19,7 @@ public class FoodTruckManagementController {
 		String error = "";
 		boolean isError = false;
 		name = name.trim();
-		name = name.substring(0, 1).toUpperCase() + name.substring(1);
+		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 
 		if(name == null || name.length() == 0)
 		{
@@ -112,7 +112,7 @@ public class FoodTruckManagementController {
 		String error = "";
 		boolean isError = false;
 		name = name.trim();
-		name = name.substring(0, 1).toUpperCase() + name.substring(1);
+		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		
 		if(name == null || name.length() == 0)
 		{
