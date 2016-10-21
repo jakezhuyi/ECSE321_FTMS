@@ -35,6 +35,13 @@ public class FoodTruckManagementPage extends JFrame {
 	private JButton removeEquipmentButton;
 	private JButton viewSupplyButton;
 	
+	private JTextField employeeNameTextField;
+	private JLabel employeeNameLabel;
+	private JTextField employeeRoleTextField;
+	private JLabel employeeRoleLabel;
+	private JButton addEmployeeButton;
+	private JButton viewEmployeesButton;
+	
 	//data elements
 	private String error = null;
 	
@@ -114,6 +121,32 @@ public class FoodTruckManagementPage extends JFrame {
 			}
 		});
 		
+		//elements for employee
+			employeeNameTextField = new JTextField();
+			employeeNameLabel = new JLabel();
+			employeeRoleTextField = new JTextField();
+			employeeRoleLabel = new JLabel();
+			addEmployeeButton = new JButton();
+			viewEmployeesButton = new JButton();
+			
+			employeeNameLabel.setText("Employee Name:");
+			employeeRoleLabel.setText("Employee Role:");
+			
+			addEmployeeButton.setText("Hire An Employee");
+			addEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					addEmployeeButtonActionPerformed(evt);
+				}
+			});
+			
+			viewEmployeesButton.setText("View Employees");
+			viewEmployeesButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					viewEmployeesButtonActionPerformed(evt);
+				}
+			});
+			
+		
 		//layout
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -122,25 +155,33 @@ public class FoodTruckManagementPage extends JFrame {
 				layout.createParallelGroup()
 				.addComponent(errorMessage)
 				.addGroup(layout.createSequentialGroup()
-						
+					
+					.addGroup(layout.createParallelGroup()	
 					.addComponent(supplyNameLabel)
+					.addComponent(employeeNameLabel))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyNameTextField, 200, 200, 400)
-					.addComponent(addSupplyButton))
+					.addComponent(addSupplyButton)
+					.addComponent(employeeNameTextField, 200, 200, 400))
 					
-					
+					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyAmountLabel)
+					.addComponent(employeeRoleLabel))
 						
 					.addGroup(layout.createParallelGroup()
-						.addComponent(supplyAmountTextField, 20, 20, 400)
-					    .addComponent(removeSupplyButton))
-					    
+						.addComponent(supplyAmountTextField, 200, 200, 400)
+					    .addComponent(removeSupplyButton)
+					    .addComponent(employeeRoleTextField, 200, 200, 400))
+					 
+					 .addGroup(layout.createParallelGroup()   
 					 .addComponent(equipmentNameLabel)
+					 .addComponent(addEmployeeButton))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(equipmentNameTextField, 200, 200, 400)
-					.addComponent(addEquipmentButton))
+					.addComponent(addEquipmentButton)
+					.addComponent(viewEmployeesButton))
 					
 					
 					.addComponent(equipmentAmountLabel)
@@ -152,7 +193,8 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(viewSupplyButton))
 				);
 		
-		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {addSupplyButton, removeSupplyButton, supplyNameTextField, supplyAmountTextField});
+		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {
+				addSupplyButton, removeSupplyButton, supplyNameTextField, supplyAmountTextField});
 		
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
@@ -171,9 +213,16 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(addSupplyButton)
 						.addComponent(removeSupplyButton)
 						.addComponent(addEquipmentButton)
-						.addComponent(removeEquipmentButton)
+						.addComponent(removeEquipmentButton))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(employeeNameLabel)
+						.addComponent(employeeNameTextField)
+						.addComponent(employeeRoleLabel)
+						.addComponent(employeeRoleTextField)
+						.addComponent(addEmployeeButton)
+						.addComponent(viewEmployeesButton))
 						
-				));
+				);
 		
 		pack();
 									
@@ -188,6 +237,8 @@ public class FoodTruckManagementPage extends JFrame {
 		supplyAmountTextField.setText("");
 		equipmentNameTextField.setText("");
 		equipmentAmountTextField.setText("");
+		employeeNameTextField.setText("");
+		employeeRoleTextField.setText("");
 		
 		pack();
 	}
@@ -294,6 +345,22 @@ public class FoodTruckManagementPage extends JFrame {
 		
 	}
 	
+	private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		error = null;
+		String name = employeeNameTextField.getText();
+		String role = employeeRoleTextField.getText();
+		
+		try {
+			ftmc.addEmployee(name, role);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		refreshData();
+				
+	}
+	
 	private void viewSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		FoodTruckManagementController ftmc = new FoodTruckManagementController();
 		
@@ -310,6 +377,21 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		frame.pack();
 		
+		frame.setVisible(true);
+	}
+	
+	private void viewEmployeesButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		
+		String label = ftmc.viewEmployees();
+		JLabel employeeList = new JLabel();
+		employeeList.setText(label);
+		
+		JFrame frame = new JFrame("Employee List");
+		
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.getContentPane().add(employeeList);
+		frame.pack();
 		frame.setVisible(true);
 	}
 	

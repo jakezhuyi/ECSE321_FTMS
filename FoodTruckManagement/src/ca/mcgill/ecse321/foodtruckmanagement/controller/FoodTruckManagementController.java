@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.foodtruckmanagement.controller;
 
 import java.util.List;
 
+import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
 import ca.mcgill.ecse321.foodtruckmanagement.model.Equipment;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodSupply;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
@@ -202,6 +203,54 @@ public class FoodTruckManagementController {
 		
 		//If the food supply is not in the supply, throw an error
 		throw new InvalidInputException("The supply does not contain any " + name + "!");
+	}
+	
+	public void addEmployee(String name, String role) throws InvalidInputException
+	{
+		String error = "";
+		boolean isError = false;
+		name = name.trim();
+		
+		if (name == null || name.length() == 0)
+		{
+			error = "Employee name cannot be empty! ";
+			isError = true;
+		}
+		
+		if (role == null || role.length() == 0) 
+		{
+			error = error + "Employee role cannot be empty! ";
+			isError = true;
+		}
+		
+		if (isError)
+		{
+			throw new InvalidInputException(error);
+		}
+		
+		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+		role = role.substring(0, 1).toUpperCase() + role.substring(1).toLowerCase();
+		
+		FoodTruckManager fm = FoodTruckManager.getInstance();
+		Employee e = new Employee(name, role);
+		fm.addEmployee(e);
+		PersistenceXStream.saveToXMLwithXStream(fm);
+		return;
+	}
+	
+	public String viewEmployees()
+	{
+		String employeeList = "<html><table><tr><td><b><u>Name</b></u></td><td><b><u>Role</b></u></td></tr>";
+		
+		FoodTruckManager fm = FoodTruckManager.getInstance();
+		
+		for (int i=0; i<fm.numberOfEmployees(); i++)
+		{
+			employeeList = employeeList + "<tr><td>" + fm.getEmployee(i).getName() + "</td>" + "<td>" + fm.getEmployee(i).getRole() + "</td></tr>";
+		}
+		
+		employeeList = employeeList + "</table></html>";
+		return employeeList;
 	}
 	
 	public String viewSupply() 
