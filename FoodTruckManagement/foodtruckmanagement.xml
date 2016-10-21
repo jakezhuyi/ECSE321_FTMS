@@ -21,29 +21,41 @@
       <name>Plate</name>
       <supply>8</supply>
     </equipment>
+    <equipment id="9">
+      <name>Ice cream machine</name>
+      <supply>1</supply>
+    </equipment>
   </equipment>
-  <foodSupplies id="9">
-    <supply id="10">
+  <foodSupplies id="10">
+    <supply id="11">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="11">
-      <name>hot dog</name>
+    <supply id="12">
+      <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="12">
-      <name>jello</name>
+    <supply id="13">
+      <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="13">
-      <name>wine</name>
+    <supply id="14">
+      <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="14">
+    <supply id="15">
       <name>Champagne</name>
       <amount>1020036</amount>
     </supply>
+    <supply id="16">
+      <name>Pepperoni</name>
+      <amount>4</amount>
+    </supply>
+    <supply id="17">
+      <name>Pineapple</name>
+      <amount>7</amount>
+    </supply>
   </foodSupplies>
-  <transactionOrders id="15"/>
-  <menuItems id="16"/>
+  <transactionOrders id="18"/>
+  <menuItems id="19"/>
 </manager>

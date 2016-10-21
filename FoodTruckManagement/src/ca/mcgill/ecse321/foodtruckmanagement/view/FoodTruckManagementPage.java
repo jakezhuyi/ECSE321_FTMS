@@ -307,10 +307,8 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		frame.getContentPane().add(supplyList);
 		
-		Dimension d = new Dimension();
-		d.setSize(500, 200);
 		
-		frame.setSize(d);
+		frame.pack();
 		
 		frame.setVisible(true);
 	}

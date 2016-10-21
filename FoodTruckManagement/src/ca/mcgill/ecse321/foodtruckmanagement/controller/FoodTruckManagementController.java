@@ -19,7 +19,8 @@ public class FoodTruckManagementController {
 		String error = "";
 		boolean isError = false;
 		name = name.trim();
-		
+		name = name.substring(0, 1).toUpperCase() + name.substring(1);
+
 		if(name == null || name.length() == 0)
 		{
 			error = "Supply name cannot be empty! ";
@@ -111,6 +112,7 @@ public class FoodTruckManagementController {
 		String error = "";
 		boolean isError = false;
 		name = name.trim();
+		name = name.substring(0, 1).toUpperCase() + name.substring(1);
 		
 		if(name == null || name.length() == 0)
 		{
@@ -221,8 +223,8 @@ public class FoodTruckManagementController {
 		
 		for (int i=0; i<maxValue; i++)
 		{
-			if(supplyListArray[i][0] == null) supplyListArray[i][0] = "";
-			if(supplyListArray[i][1] == null) supplyListArray[i][1] = "";
+			if(supplyListArray[i][0] == null) supplyListArray[i][0] = "<td></td>";
+			if(supplyListArray[i][1] == null) supplyListArray[i][1] = "<td></td>";
 			supplyList = supplyList + "<tr>" + supplyListArray[i][0] + supplyListArray[i][1] + "</tr>";
 		}
 		
