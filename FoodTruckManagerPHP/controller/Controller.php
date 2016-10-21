@@ -3,6 +3,7 @@ require_once (__DIR__.'/InputValidator.php');
 
 require_once (__DIR__.'/../persistence/PersistenceFoodTruckManager.php');
 require_once (__DIR__.'/../model/FoodSupply.php');
+require_once (__DIR__.'/../model/Equipment.php');
 
 class Controller
 {
@@ -37,7 +38,7 @@ class Controller
 			// 3. check if the food item exists
 			// if it does change the amount
 			// if it does not, set the amount
-			foreach ( $ftm->getFoodSupplies () as $food )
+			foreach ( $ftm->getEquipment () as $food )
 			{
 				if (strcmp ( $food->getName(), $food_name ) == 0)
 				{
@@ -58,6 +59,161 @@ class Controller
 				
 			// 4. Write all of the data
 			$pm->writeDataToStore($ftm);	
+		}
+	}
+	
+	public function removeFoodSupply($food_name, $food_num)
+	{
+	
+		// 1. Validate Input
+		$name = InputValidator::validate_input($food_name);
+		if($name == null || strlen($name) == 0)
+		{
+			throw new Exception("Food Supply name cannot be empty!");
+		}
+	
+		else if($food_num <= 0)
+		{
+			throw new Exception("Food Supply cannot be less than or equal to zero!");
+		}
+	
+		else
+		{
+			$matched = FALSE;
+				
+			// 2. Load all of the data
+			$pm = new PersistenceFoodTruckManager();
+			$ftm = $pm->loadDataFromStore();
+	
+			// 3. check if the food item exists
+			// if it does change the amount
+			// if it does not, put an error
+			foreach ( $ftm->getFoodSupplies () as $food )
+			{
+				if (strcmp ( $food->getName(), $food_name ) == 0)
+				{
+					$matched = TRUE;
+					$old_amount = $food->getAmount();
+					$new_amount = $old_amount - $food_num;
+					if($new_amount < 0)
+					{
+						throw new Exception("Cannot remove more than you currently have!");
+					}
+					$food->setAmount($new_amount);
+					break;
+				}
+			}
+				
+			if(!$matched)
+			{
+				throw new Exception("Food Supply does not exist!");
+			}
+				
+	
+			// 4. Write all of the data
+			$pm->writeDataToStore($ftm);
+		}
+	}
+	public function addEquipment($equipment_name, $equipment_num)
+	{
+	
+		// 1. Validate Input
+		$name = InputValidator::validate_input($equipment_name);
+		if($name == null || strlen($name) == 0)
+		{
+			throw new Exception("Equipment name cannot be empty!");
+		}
+	
+		else if($equipment_num <= 0)
+		{
+			throw new Exception("Equipment cannot be less than or equal to zero!");
+		}
+	
+		else
+		{
+			$matched = FALSE;
+				
+			// 2. Load all of the data
+			$pm = new PersistenceFoodTruckManager();
+			$ftm = $pm->loadDataFromStore();
+	
+			// 3. check if the food item exists
+			// if it does change the amount
+			// if it does not, set the amount
+			foreach ( $ftm->getEquipment () as $equipment )
+			{
+				if (strcmp ( $equipment->getName(), $food_name ) == 0)
+				{
+					$matched = TRUE;
+					$old_amount = $equipment->getAmount();
+					$equipment_num += $old_amount;
+					$food->setAmount($equipment_num);
+					break;
+				}
+			}
+				
+			if(!$matched)
+			{
+				$new_equipment = new FoodSupply($equipment_name, $equipment_num);
+				$ftm->addFoodSupply($new_equipment);
+			}
+				
+	
+			// 4. Write all of the data
+			$pm->writeDataToStore($ftm);
+		}
+	}
+	
+	public function removeEquipment($equipment_name, $equipment_num)
+	{
+	
+		// 1. Validate Input
+		$name = InputValidator::validate_input($equipment_name);
+		if($name == null || strlen($name) == 0)
+		{
+			throw new Exception("Equipment name cannot be empty!");
+		}
+	
+		else if($equipment_num <= 0)
+		{
+			throw new Exception("Equipment cannot be less than or equal to zero!");
+		}
+	
+		else
+		{
+			$matched = FALSE;
+	
+			// 2. Load all of the data
+			$pm = new PersistenceFoodTruckManager();
+			$ftm = $pm->loadDataFromStore();
+	
+			// 3. check if the food item exists
+			// if it does change the amount
+			// if it does not, put an error
+			foreach ( $ftm->getSupply () as $equipment )
+			{
+				if (strcmp ( $equipment->getName(), $equipment_name ) == 0)
+				{
+					$matched = TRUE;
+					$old_amount = $equipment->getAmount();
+					$new_amount = $old_amount - $equipment_num;
+					if($new_amount < 0)
+					{
+						throw new Exception("Cannot remove more than you currently have!");
+					}
+					$equipment->setAmount($new_amount);
+					break;
+				}
+			}
+	
+			if(!$matched)
+			{
+				throw new Exception("Food Supply does not exist!");
+			}
+	
+	
+			// 4. Write all of the data
+			$pm->writeDataToStore($ftm);
 		}
 	}
 }
