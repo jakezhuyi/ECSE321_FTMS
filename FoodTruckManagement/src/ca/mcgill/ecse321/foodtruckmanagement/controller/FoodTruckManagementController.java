@@ -270,8 +270,11 @@ public class FoodTruckManagementController {
 			{				
 				for(int j=0; j<fm.getEmployee(i).numberOfSchedules(); j++)
 				{
+					//Check to see if the dates are the same
+					boolean sameDate = fm.getEmployee(i).getSchedule(j).getWorkDay().toString().equals(date.toString());
+					
 					//Check if the employee already has a schedule for this date, if so update the schedule
-					if (fm.getEmployee(i).getSchedule(j).getWorkDay().equals(date))
+					if (sameDate)
 					{
 						fm.getEmployee(i).getSchedule(j).setStartTime(startTime);
 						fm.getEmployee(i).getSchedule(j).setEndTime(endTime);
