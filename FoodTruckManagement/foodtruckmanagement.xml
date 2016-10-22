@@ -3,79 +3,102 @@
     <employee id="3">
       <name>Marty</name>
       <role>Chef</role>
-      <schedules id="4"/>
+      <schedules id="4">
+        <schedule id="5">
+          <workDay id="6">2016-10-11</workDay>
+          <startTime id="7">16:53:44</startTime>
+          <endTime id="8">18:53:00</endTime>
+        </schedule>
+        <schedule id="9">
+          <workDay id="10">2016-10-19</workDay>
+          <startTime id="11">16:53:53</startTime>
+          <endTime id="12">17:53:00</endTime>
+        </schedule>
+      </schedules>
     </employee>
-    <employee id="5">
+    <employee id="13">
       <name>Tom</name>
       <role>Cashier</role>
-      <schedules id="6"/>
+      <schedules id="14">
+        <schedule id="15">
+          <workDay id="16">2016-10-14</workDay>
+          <startTime id="17">17:48:00</startTime>
+          <endTime id="18">16:48:24</endTime>
+        </schedule>
+      </schedules>
     </employee>
-    <employee id="7">
+    <employee id="19">
       <name>Joe</name>
       <role>Driver</role>
-      <schedules id="8"/>
+      <schedules id="20">
+        <schedule id="21">
+          <workDay id="22">2016-10-26</workDay>
+          <startTime id="23">16:58:13</startTime>
+          <endTime id="24">21:58:00</endTime>
+        </schedule>
+      </schedules>
     </employee>
   </employees>
-  <equipment id="9">
-    <equipment id="10">
+  <equipment id="25">
+    <equipment id="26">
       <name>Grill</name>
       <supply>3</supply>
     </equipment>
-    <equipment id="11">
+    <equipment id="27">
       <name>Frier</name>
       <supply>2</supply>
     </equipment>
-    <equipment id="12">
+    <equipment id="28">
       <name>Pan</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="13">
+    <equipment id="29">
       <name>Dish</name>
       <supply>5</supply>
     </equipment>
-    <equipment id="14">
+    <equipment id="30">
       <name>Plate</name>
       <supply>8</supply>
     </equipment>
-    <equipment id="15">
+    <equipment id="31">
       <name>Ice cream machine</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="16">
+    <equipment id="32">
       <name>Toaster</name>
       <supply>3</supply>
     </equipment>
   </equipment>
-  <foodSupplies id="17">
-    <supply id="18">
+  <foodSupplies id="33">
+    <supply id="34">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="19">
+    <supply id="35">
       <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="20">
+    <supply id="36">
       <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="21">
+    <supply id="37">
       <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="22">
+    <supply id="38">
       <name>Champagne</name>
       <amount>36</amount>
     </supply>
-    <supply id="23">
+    <supply id="39">
       <name>Pepperoni</name>
       <amount>4</amount>
     </supply>
-    <supply id="24">
+    <supply id="40">
       <name>Pineapple</name>
       <amount>7</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="25"/>
-  <menuItems id="26"/>
+  <transactionOrders id="41"/>
+  <menuItems id="42"/>
 </manager>

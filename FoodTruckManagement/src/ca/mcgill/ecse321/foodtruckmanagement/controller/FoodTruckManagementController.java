@@ -257,7 +257,7 @@ public class FoodTruckManagementController {
 			error = error + "Shift start time cannot be empty! ";
 		if (endTime == null)
 			error = error + "Shift end time cannot be empty! ";
-		if (endTime != null && startTime != null && endTime.getTime() > startTime.getTime())
+		if (endTime != null && startTime != null && endTime.getTime() < startTime.getTime())
 			error = error + "Shift end time cannot be before shift start time! ";
 		if(error.length() > 0)
 			throw new InvalidInputException(error);
