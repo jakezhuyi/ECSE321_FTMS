@@ -1,11 +1,14 @@
 package ca.mcgill.ecse321.foodtruckmanagement.controller;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
 import ca.mcgill.ecse321.foodtruckmanagement.model.Equipment;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodSupply;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
+import ca.mcgill.ecse321.foodtruckmanagement.model.Schedule;
 import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceXStream;
 
 public class FoodTruckManagementController {
@@ -236,6 +239,54 @@ public class FoodTruckManagementController {
 		fm.addEmployee(e);
 		PersistenceXStream.saveToXMLwithXStream(fm);
 		return;
+	}
+	
+	public void assignSchedule(Employee e, Date date, Time startTime, Time endTime) throws InvalidInputException
+	{
+		FoodTruckManager fm = FoodTruckManager.getInstance();
+		
+		String error = "";
+		
+		if (e == null)
+			error = "Employee needs to be selected for assigning a schedule! ";
+		if (!fm.getEmployees().contains(e))
+			error = error + "Employee does not exist! ";
+		if (date == null)
+			error = error + "Work date cannot be empty! ";
+		if (startTime == null)
+			error = error + "Shift start time cannot be empty! ";
+		if (endTime == null)
+			error = error + "Shift end time cannot be empty! ";
+		if (endTime != null && startTime != null && endTime.getTime() > startTime.getTime())
+			error = error + "Shift end time cannot be before shift start time! ";
+		if(error.length() > 0)
+			throw new InvalidInputException(error);
+		
+		//Loop through all of the employees
+		for (int i=0; i<fm.numberOfEmployees(); i++)
+		{
+			//Check to see when the employee names match
+			if (e.getName().toUpperCase().equals(fm.getEmployee(i).getName().toUpperCase()))
+			{				
+				for(int j=0; j<fm.getEmployee(i).numberOfSchedules(); j++)
+				{
+					//Check if the employee already has a schedule for this date, if so update the schedule
+					if (fm.getEmployee(i).getSchedule(j).getWorkDay().equals(date))
+					{
+						fm.getEmployee(i).getSchedule(j).setStartTime(startTime);
+						fm.getEmployee(i).getSchedule(j).setEndTime(endTime);
+						PersistenceXStream.saveToXMLwithXStream(fm);
+						return;
+					}
+				}
+				
+				//If the employee doesn't have a schedule for that date, assign it to him
+				Schedule s = new Schedule(date, startTime, endTime);
+				fm.getEmployee(i).addSchedule(s);
+				PersistenceXStream.saveToXMLwithXStream(fm);
+				return;
+			}
+		}
 	}
 	
 	public String viewEmployees()

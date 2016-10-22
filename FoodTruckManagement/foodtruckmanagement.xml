@@ -10,67 +10,72 @@
       <role>Cashier</role>
       <schedules id="6"/>
     </employee>
+    <employee id="7">
+      <name>Joe</name>
+      <role>Driver</role>
+      <schedules id="8"/>
+    </employee>
   </employees>
-  <equipment id="7">
-    <equipment id="8">
+  <equipment id="9">
+    <equipment id="10">
       <name>Grill</name>
       <supply>3</supply>
     </equipment>
-    <equipment id="9">
+    <equipment id="11">
       <name>Frier</name>
       <supply>2</supply>
     </equipment>
-    <equipment id="10">
+    <equipment id="12">
       <name>Pan</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="11">
+    <equipment id="13">
       <name>Dish</name>
       <supply>5</supply>
     </equipment>
-    <equipment id="12">
+    <equipment id="14">
       <name>Plate</name>
       <supply>8</supply>
     </equipment>
-    <equipment id="13">
+    <equipment id="15">
       <name>Ice cream machine</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="14">
+    <equipment id="16">
       <name>Toaster</name>
       <supply>3</supply>
     </equipment>
   </equipment>
-  <foodSupplies id="15">
-    <supply id="16">
+  <foodSupplies id="17">
+    <supply id="18">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="17">
+    <supply id="19">
       <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="18">
+    <supply id="20">
       <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="19">
+    <supply id="21">
       <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="20">
+    <supply id="22">
       <name>Champagne</name>
       <amount>36</amount>
     </supply>
-    <supply id="21">
+    <supply id="23">
       <name>Pepperoni</name>
       <amount>4</amount>
     </supply>
-    <supply id="22">
+    <supply id="24">
       <name>Pineapple</name>
       <amount>7</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="23"/>
-  <menuItems id="24"/>
+  <transactionOrders id="25"/>
+  <menuItems id="26"/>
 </manager>
