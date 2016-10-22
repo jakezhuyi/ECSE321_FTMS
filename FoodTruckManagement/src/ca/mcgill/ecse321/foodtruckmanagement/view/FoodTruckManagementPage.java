@@ -69,6 +69,9 @@ public class FoodTruckManagementPage extends JFrame {
 	private JLabel endTimeLabel;
 	private JButton assignScheduleButton;
 	
+	private JLabel supplyMenuLabel;
+	private JLabel employeeMenuLabel;
+	
 	//data elements
 	private String error = null;
 	private Integer selectedEmployee = -1;
@@ -95,11 +98,13 @@ public class FoodTruckManagementPage extends JFrame {
 		addSupplyButton = new JButton();
 		removeSupplyButton = new JButton();
 		viewSupplyButton = new JButton();
+		supplyMenuLabel = new JLabel();
 		
 		//global settings and listeners
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Food Truck Management");
 		
+		supplyMenuLabel.setText("<html><b><u>Supply Menu:</u></b></html>");
 		supplyNameLabel.setText("Food Supply Name:");
 		supplyAmountLabel.setText("Amount:");
 		
@@ -157,7 +162,9 @@ public class FoodTruckManagementPage extends JFrame {
 			employeeRoleLabel = new JLabel();
 			addEmployeeButton = new JButton();
 			viewEmployeesButton = new JButton();
+			employeeMenuLabel = new JLabel();
 			
+			employeeMenuLabel.setText("<html><b><u>Employee Menu:</b></u></html>");
 			employeeNameLabel.setText("Employee Name:");
 			employeeRoleLabel.setText("Employee Role:");
 			
@@ -211,7 +218,7 @@ public class FoodTruckManagementPage extends JFrame {
 			
 			//Set label text/assign schedule button action
 			chooseEmployeeLabel.setText("Employee:");
-			assignScheduleLabel.setText("Assign Employee Schedule");
+			assignScheduleLabel.setText("<html><b><u>Assign Schedule:</u></b></html>");
 			scheduleDateLabel.setText("Date:");
 			startTimeLabel.setText("Start Time:");
 			endTimeLabel.setText("End Time:");
@@ -239,52 +246,52 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(blankLine)
 					.addComponent(employeeNameLabel)
 					.addComponent(assignScheduleLabel)
-					.addComponent(chooseEmployeeLabel))
+					.addComponent(chooseEmployeeLabel)
+					.addComponent(startTimeLabel))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyNameTextField, 200, 200, 400)
 					.addComponent(addSupplyButton)
 					.addComponent(employeeNameTextField, 200, 200, 400)
-					.addComponent(employeeList))
+					.addComponent(employeeList)
+					.addComponent(startTimeSpinner))
 					
 					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyAmountLabel)
 					.addComponent(employeeRoleLabel)
-					.addComponent(scheduleDateLabel))
+					.addComponent(scheduleDateLabel)
+					.addComponent(endTimeLabel))
 						
 					.addGroup(layout.createParallelGroup()
 						.addComponent(supplyAmountTextField, 200, 200, 400)
 					    .addComponent(removeSupplyButton)
 					    .addComponent(employeeRoleTextField, 200, 200, 400)
-					    .addComponent(scheduleDatePicker))
+					    .addComponent(scheduleDatePicker)
+					    .addComponent(endTimeSpinner))
 					 
 					 .addGroup(layout.createParallelGroup()   
 					 .addComponent(equipmentNameLabel)
 					 .addComponent(addEmployeeButton)
-					 .addComponent(startTimeLabel))
+					 .addComponent(assignScheduleButton))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(equipmentNameTextField, 200, 200, 400)
 					.addComponent(addEquipmentButton)
-					.addComponent(viewEmployeesButton)
-					.addComponent(startTimeSpinner))
+					.addComponent(viewEmployeesButton))
 					
 					.addGroup(layout.createParallelGroup()
-					.addComponent(equipmentAmountLabel)
-					.addComponent(endTimeLabel))
+					.addComponent(equipmentAmountLabel))
 						
 					.addGroup(layout.createParallelGroup()
 						.addComponent(equipmentAmountTextField, 20, 20, 400)
-					    .addComponent(removeEquipmentButton)
-					    .addComponent(endTimeSpinner))
+					    .addComponent(removeEquipmentButton))
 					
 					.addGroup(layout.createParallelGroup()    
-					.addComponent(viewSupplyButton)
-					.addComponent(assignScheduleButton)))
+					.addComponent(viewSupplyButton)))
 				);
 		
 		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {
-				addSupplyButton, removeSupplyButton, supplyNameTextField, supplyAmountTextField});
+				addSupplyButton, removeSupplyButton, supplyNameTextField});
 		
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
@@ -322,7 +329,9 @@ public class FoodTruckManagementPage extends JFrame {
 				.addComponent(chooseEmployeeLabel)
 				.addComponent(employeeList)
 				.addComponent(scheduleDateLabel)
-				.addComponent(scheduleDatePicker)
+				.addComponent(scheduleDatePicker))
+				
+				.addGroup(layout.createParallelGroup()
 				.addComponent(startTimeLabel)
 				.addComponent(startTimeSpinner)
 				.addComponent(endTimeLabel)
