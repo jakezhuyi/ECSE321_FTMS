@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.foodtruckmanagement.application;
 
+import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementController;
+import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
 import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckManagement;
 import ca.mcgill.ecse321.foodtruckmanagement.view.FoodTruckManagementPage;
 

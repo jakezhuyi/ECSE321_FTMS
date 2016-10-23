@@ -295,6 +295,53 @@ public class FoodTruckManagementController {
 		}
 	}
 	
+	public String viewSchedule (Employee e)
+	{
+		//Set the calendar to the Monday of the current week
+		Calendar c = Calendar.getInstance();		
+		c.setFirstDayOfWeek(Calendar.MONDAY);
+		c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek());
+		
+		int month = c.get(Calendar.MONTH);
+		String monthString = getMonth(month);
+		
+		int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+		String scheduleList = "<html><title><b>" + e.getName() + "'s Schedule for Week of " + monthString + " " + day + "</b></title>";
+		
+		scheduleList = scheduleList + "<table><tr><th><u>Monday</u></th><th><u>Tuesday</u></th><th><u>Wednesday</u></th><th><u>Thursday</u></th>"
+									+ "<th><u>Friday</u></th><th><u>Saturday</u></th><th><u>Sunday</u></th></tr>";
+		
+		scheduleList = scheduleList + "<tr>";
+		
+		//Loop through all the days of the week and check the employee's schedule
+		for (int i=0; i<7; i++)
+		{
+			Date date = new Date(c.getTimeInMillis());
+			scheduleList = scheduleList + "<td>";
+			
+			for (int j=0; j<e.numberOfSchedules(); j++)
+			{				
+				Schedule employeeSchedule = e.getSchedule(j);
+				
+				if(employeeSchedule.getWorkDay().toString().equals(date.toString()))
+				{
+					scheduleList = scheduleList + employeeSchedule.getStartTime().toString().substring(0,4) + " - " + 
+									employeeSchedule.getEndTime().toString().substring(0, 4);
+					break;
+				}
+			}
+			scheduleList = scheduleList + "</td>";
+			c.add(Calendar.DAY_OF_WEEK, 1);
+		}
+		
+		scheduleList = scheduleList + "</tr></table></html>";
+		
+		return scheduleList;
+		
+	}
+	
 	public String viewEmployees()
 	{
 		String employeeList = "<html><table><tr><td><b><u>Name</b></u></td><td><b><u>Role</b></u></td></tr>";
@@ -342,6 +389,12 @@ public class FoodTruckManagementController {
 		
 		return supplyList;
 	}
+	
+	private static String getMonth(int month){
+	    String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+	    return monthNames[month];
+	}
+	
 	
 }
 
