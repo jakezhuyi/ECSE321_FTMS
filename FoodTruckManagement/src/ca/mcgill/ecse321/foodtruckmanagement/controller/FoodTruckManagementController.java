@@ -249,7 +249,7 @@ public class FoodTruckManagementController {
 		
 		if (e == null)
 			error = "Employee needs to be selected for assigning a schedule! ";
-		if (!fm.getEmployees().contains(e))
+		else if (!fm.getEmployees().contains(e))
 			error = error + "Employee does not exist! ";
 		if (date == null)
 			error = error + "Work date cannot be empty! ";

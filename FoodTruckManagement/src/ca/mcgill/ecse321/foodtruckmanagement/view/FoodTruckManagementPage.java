@@ -242,17 +242,22 @@ public class FoodTruckManagementPage extends JFrame {
 				.addGroup(layout.createSequentialGroup()
 					
 					.addGroup(layout.createParallelGroup()	
+					.addComponent(supplyMenuLabel)		
 					.addComponent(supplyNameLabel)
 					.addComponent(blankLine)
+					.addComponent(employeeMenuLabel)
 					.addComponent(employeeNameLabel)
 					.addComponent(assignScheduleLabel)
 					.addComponent(chooseEmployeeLabel)
 					.addComponent(startTimeLabel))
 						
 					.addGroup(layout.createParallelGroup()
+					.addComponent(viewSupplyButton)
 					.addComponent(supplyNameTextField, 200, 200, 400)
 					.addComponent(addSupplyButton)
+					.addComponent(viewEmployeesButton)
 					.addComponent(employeeNameTextField, 200, 200, 400)
+					.addComponent(assignScheduleButton)
 					.addComponent(employeeList)
 					.addComponent(startTimeSpinner))
 					
@@ -271,23 +276,18 @@ public class FoodTruckManagementPage extends JFrame {
 					 
 					 .addGroup(layout.createParallelGroup()   
 					 .addComponent(equipmentNameLabel)
-					 .addComponent(addEmployeeButton)
-					 .addComponent(assignScheduleButton))
+					 .addComponent(addEmployeeButton))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(equipmentNameTextField, 200, 200, 400)
-					.addComponent(addEquipmentButton)
-					.addComponent(viewEmployeesButton))
+					.addComponent(addEquipmentButton))
 					
 					.addGroup(layout.createParallelGroup()
 					.addComponent(equipmentAmountLabel))
 						
 					.addGroup(layout.createParallelGroup()
 						.addComponent(equipmentAmountTextField, 20, 20, 400)
-					    .addComponent(removeEquipmentButton))
-					
-					.addGroup(layout.createParallelGroup()    
-					.addComponent(viewSupplyButton)))
+					    .addComponent(removeEquipmentButton)))
 				);
 		
 		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {
@@ -296,6 +296,11 @@ public class FoodTruckManagementPage extends JFrame {
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
 				.addComponent(errorMessage)
+				
+				.addGroup(layout.createParallelGroup()
+						.addComponent(supplyMenuLabel)
+						.addComponent(viewSupplyButton))
+				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(supplyNameLabel)
 						.addComponent(supplyNameTextField)
@@ -315,6 +320,11 @@ public class FoodTruckManagementPage extends JFrame {
 						
 						
 				.addComponent(blankLine)
+				
+				.addGroup(layout.createParallelGroup()
+						.addComponent(employeeMenuLabel)
+						.addComponent(viewEmployeesButton))
+				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(employeeNameLabel)
 						.addComponent(employeeNameTextField)
@@ -324,7 +334,11 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(viewEmployeesButton))
 				
 				.addComponent(blankLine)
+				
+				.addGroup(layout.createParallelGroup()
 				.addComponent(assignScheduleLabel)
+				.addComponent(assignScheduleButton))
+				
 				.addGroup(layout.createParallelGroup()
 				.addComponent(chooseEmployeeLabel)
 				.addComponent(employeeList)
