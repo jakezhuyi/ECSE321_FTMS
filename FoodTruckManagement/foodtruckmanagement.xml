@@ -41,74 +41,75 @@
     <employee id="25">
       <name>Tim</name>
       <role>Chef</role>
-      <schedules id="26"/>
+      <schedules id="26">
+      </schedules>
     </employee>
-    <employee id="27">
+    <employee id="31">
       <name>Emily</name>
       <role>Manager</role>
-      <schedules id="28"/>
+      <schedules id="32"/>
     </employee>
   </employees>
-  <equipment id="29">
-    <equipment id="30">
+  <equipment id="33">
+    <equipment id="34">
       <name>Grill</name>
       <supply>3</supply>
     </equipment>
-    <equipment id="31">
+    <equipment id="35">
       <name>Frier</name>
       <supply>2</supply>
     </equipment>
-    <equipment id="32">
+    <equipment id="36">
       <name>Pan</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="33">
+    <equipment id="37">
       <name>Dish</name>
       <supply>5</supply>
     </equipment>
-    <equipment id="34">
+    <equipment id="38">
       <name>Plate</name>
       <supply>8</supply>
     </equipment>
-    <equipment id="35">
+    <equipment id="39">
       <name>Ice cream machine</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="36">
+    <equipment id="40">
       <name>Toaster</name>
       <supply>3</supply>
     </equipment>
   </equipment>
-  <foodSupplies id="37">
-    <supply id="38">
+  <foodSupplies id="41">
+    <supply id="42">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="39">
+    <supply id="43">
       <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="40">
+    <supply id="44">
       <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="41">
+    <supply id="45">
       <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="42">
+    <supply id="46">
       <name>Champagne</name>
       <amount>36</amount>
     </supply>
-    <supply id="43">
+    <supply id="47">
       <name>Pepperoni</name>
       <amount>4</amount>
     </supply>
-    <supply id="44">
+    <supply id="48">
       <name>Pineapple</name>
       <amount>7</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="45"/>
-  <menuItems id="46"/>
+  <transactionOrders id="49"/>
+  <menuItems id="50"/>
 </manager>

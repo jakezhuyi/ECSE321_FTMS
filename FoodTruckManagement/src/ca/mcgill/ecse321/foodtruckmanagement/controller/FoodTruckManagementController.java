@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.foodtruckmanagement.controller;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.List;
 
 import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
@@ -253,6 +254,8 @@ public class FoodTruckManagementController {
 			error = error + "Employee does not exist! ";
 		if (date == null)
 			error = error + "Work date cannot be empty! ";
+		else if (Calendar.getInstance().getTime().compareTo(date) > 0)
+			error = error + "Work date cannot be before today's date!";
 		if (startTime == null)
 			error = error + "Shift start time cannot be empty! ";
 		if (endTime == null)
