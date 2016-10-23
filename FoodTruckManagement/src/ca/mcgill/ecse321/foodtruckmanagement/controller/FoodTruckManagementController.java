@@ -254,8 +254,15 @@ public class FoodTruckManagementController {
 			error = error + "Employee does not exist! ";
 		if (date == null)
 			error = error + "Work date cannot be empty! ";
-		else if (Calendar.getInstance().getTime().compareTo(date) > 0)
-			error = error + "Work date cannot be before today's date!";
+		else if (Calendar.getInstance().getTime().compareTo(date) > 0) 
+		{
+			//Make sure the date is before today's date and not today's date
+			Calendar c = Calendar.getInstance();
+			Date currentDate = new Date(c.getTimeInMillis());
+			
+				if(!currentDate.toString().equals(date.toString()))
+					error = error + "Work date cannot be before today's date!"; 
+		}
 		if (startTime == null)
 			error = error + "Shift start time cannot be empty! ";
 		if (endTime == null)
@@ -295,8 +302,21 @@ public class FoodTruckManagementController {
 		}
 	}
 	
-	public String viewSchedule (Employee e)
+	public String viewSchedule (Employee e) throws InvalidInputException
 	{
+		FoodTruckManager fm = FoodTruckManager.getInstance();
+		
+		String error = "";
+		
+		if (e == null)
+			error = "Employee needs to be selected for viewing a schedule! ";
+		else if (!fm.getEmployees().contains(e))
+			error = error + "Employee does not exist! ";
+		
+		if (error.length() != 0)
+			throw new InvalidInputException(error);
+		
+		
 		//Set the calendar to the Monday of the current week
 		Calendar c = Calendar.getInstance();		
 		c.setFirstDayOfWeek(Calendar.MONDAY);
@@ -308,7 +328,7 @@ public class FoodTruckManagementController {
 		int day = c.get(Calendar.DAY_OF_MONTH);
 
 
-		String scheduleList = "<html><title><b>" + e.getName() + "'s Schedule for Week of " + monthString + " " + day + "</b></title>";
+		String scheduleList = "<html><h3 style=\"text-align:center;\">" + e.getName() + "'s Schedule for Week of " + monthString + " " + day + "</h3></title>";
 		
 		scheduleList = scheduleList + "<table><tr><th><u>Monday</u></th><th><u>Tuesday</u></th><th><u>Wednesday</u></th><th><u>Thursday</u></th>"
 									+ "<th><u>Friday</u></th><th><u>Saturday</u></th><th><u>Sunday</u></th></tr>";
@@ -327,10 +347,12 @@ public class FoodTruckManagementController {
 				
 				if(employeeSchedule.getWorkDay().toString().equals(date.toString()))
 				{
-					scheduleList = scheduleList + employeeSchedule.getStartTime().toString().substring(0,4) + " - " + 
-									employeeSchedule.getEndTime().toString().substring(0, 4);
+					scheduleList = scheduleList + employeeSchedule.getStartTime().toString().substring(0,5) + " - " + 
+									employeeSchedule.getEndTime().toString().substring(0, 5);
 					break;
 				}
+				if (j==e.numberOfSchedules()-1)
+					scheduleList = scheduleList + "<i>Not Scheduled</i>";
 			}
 			scheduleList = scheduleList + "</td>";
 			c.add(Calendar.DAY_OF_WEEK, 1);

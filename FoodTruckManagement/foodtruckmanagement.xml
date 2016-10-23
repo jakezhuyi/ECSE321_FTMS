@@ -14,102 +14,127 @@
           <startTime id="11">17:13:42</startTime>
           <endTime id="12">18:13:00</endTime>
         </schedule>
+        <schedule id="13">
+          <workDay id="14">2016-10-29</workDay>
+          <startTime id="15">15:04:59</startTime>
+          <endTime id="16">17:04:00</endTime>
+        </schedule>
       </schedules>
     </employee>
-    <employee id="13">
+    <employee id="17">
       <name>Tom</name>
       <role>Cashier</role>
-      <schedules id="14">
-        <schedule id="15">
-          <workDay id="16">2016-10-14</workDay>
-          <startTime id="17">17:48:00</startTime>
-          <endTime id="18">16:48:24</endTime>
+      <schedules id="18">
+        <schedule id="19">
+          <workDay id="20">2016-10-14</workDay>
+          <startTime id="21">17:48:00</startTime>
+          <endTime id="22">16:48:24</endTime>
+        </schedule>
+        <schedule id="23">
+          <workDay id="24">2016-10-23</workDay>
+          <startTime id="25">15:18:51</startTime>
+          <endTime id="26">16:18:00</endTime>
         </schedule>
       </schedules>
     </employee>
-    <employee id="19">
+    <employee id="27">
       <name>Joe</name>
       <role>Driver</role>
-      <schedules id="20">
-        <schedule id="21">
-          <workDay id="22">2016-10-26</workDay>
-          <startTime id="23">16:58:13</startTime>
-          <endTime id="24">21:58:00</endTime>
+      <schedules id="28">
+        <schedule id="29">
+          <workDay id="30">2016-10-26</workDay>
+          <startTime id="31">16:58:13</startTime>
+          <endTime id="32">21:58:00</endTime>
+        </schedule>
+        <schedule id="33">
+          <workDay id="34">2016-10-25</workDay>
+          <startTime id="35">15:11:52</startTime>
+          <endTime id="36">16:11:00</endTime>
         </schedule>
       </schedules>
     </employee>
-    <employee id="25">
+    <employee id="37">
       <name>Tim</name>
       <role>Chef</role>
-      <schedules id="26">
-      </schedules>
+      <schedules id="38"/>
     </employee>
-    <employee id="31">
+    <employee id="39">
       <name>Emily</name>
       <role>Manager</role>
-      <schedules id="32"/>
+      <schedules id="40"/>
+    </employee>
+    <employee id="41">
+      <name>Jonah</name>
+      <role>Ceo</role>
+      <schedules id="42">
+        <schedule id="43">
+          <workDay id="44">2016-10-23</workDay>
+          <startTime id="45">16:19:00</startTime>
+          <endTime id="46">20:19:00</endTime>
+        </schedule>
+      </schedules>
     </employee>
   </employees>
-  <equipment id="33">
-    <equipment id="34">
+  <equipment id="47">
+    <equipment id="48">
       <name>Grill</name>
       <supply>3</supply>
     </equipment>
-    <equipment id="35">
+    <equipment id="49">
       <name>Frier</name>
       <supply>2</supply>
     </equipment>
-    <equipment id="36">
+    <equipment id="50">
       <name>Pan</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="37">
+    <equipment id="51">
       <name>Dish</name>
       <supply>5</supply>
     </equipment>
-    <equipment id="38">
+    <equipment id="52">
       <name>Plate</name>
       <supply>8</supply>
     </equipment>
-    <equipment id="39">
+    <equipment id="53">
       <name>Ice cream machine</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="40">
+    <equipment id="54">
       <name>Toaster</name>
       <supply>3</supply>
     </equipment>
   </equipment>
-  <foodSupplies id="41">
-    <supply id="42">
+  <foodSupplies id="55">
+    <supply id="56">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="43">
+    <supply id="57">
       <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="44">
+    <supply id="58">
       <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="45">
+    <supply id="59">
       <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="46">
+    <supply id="60">
       <name>Champagne</name>
       <amount>36</amount>
     </supply>
-    <supply id="47">
+    <supply id="61">
       <name>Pepperoni</name>
       <amount>4</amount>
     </supply>
-    <supply id="48">
+    <supply id="62">
       <name>Pineapple</name>
       <amount>7</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="49"/>
-  <menuItems id="50"/>
+  <transactionOrders id="63"/>
+  <menuItems id="64"/>
 </manager>

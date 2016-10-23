@@ -35,7 +35,7 @@ public class FoodTruckManagementPage extends JFrame {
 
 	private static final long serialVersionUID = 6324184905041245298L;
 	
-	//UI elements
+	//Add/viewing supply
 	private JLabel errorMessage;
 	private JTextField supplyNameTextField;
 	private JLabel supplyNameLabel;
@@ -51,6 +51,7 @@ public class FoodTruckManagementPage extends JFrame {
 	private JButton removeEquipmentButton;
 	private JButton viewSupplyButton;
 	
+	//Add/View Employees
 	private JTextField employeeNameTextField;
 	private JLabel employeeNameLabel;
 	private JTextField employeeRoleTextField;
@@ -58,7 +59,7 @@ public class FoodTruckManagementPage extends JFrame {
 	private JButton addEmployeeButton;
 	private JButton viewEmployeesButton;
 	
-	private JLabel assignScheduleLabel;
+	//Assign Schedule
 	private JComboBox<String> employeeList;
 	private JLabel chooseEmployeeLabel;
 	private JDatePickerImpl scheduleDatePicker;
@@ -69,13 +70,24 @@ public class FoodTruckManagementPage extends JFrame {
 	private JLabel endTimeLabel;
 	private JButton assignScheduleButton;
 	
+	//View Employee
+	private JComboBox<String> employeeList2;
+	private JLabel chooseEmployeeLabel2;
+	private JButton viewScheduleButton;
+	
+	//Labels
 	private JLabel supplyMenuLabel;
 	private JLabel employeeMenuLabel;
+	private JLabel scheduleMenuLabel;
 	
 	//data elements
 	private String error = null;
 	private Integer selectedEmployee = -1;
 	private HashMap<Integer, Employee> employees;
+	
+	//Used for viewing employee
+	private Integer selectedEmployee2 = -1;
+	private HashMap<Integer, Employee> employees2;
 	
 	/* Creates new Page */
 	public FoodTruckManagementPage() {
@@ -210,7 +222,7 @@ public class FoodTruckManagementPage extends JFrame {
 			
 			//Instantiate labels and buttons
 			chooseEmployeeLabel = new JLabel();
-			assignScheduleLabel = new JLabel();
+			scheduleMenuLabel = new JLabel();
 			assignScheduleButton = new JButton();
 			scheduleDateLabel = new JLabel();
 			startTimeLabel = new JLabel();
@@ -218,7 +230,7 @@ public class FoodTruckManagementPage extends JFrame {
 			
 			//Set label text/assign schedule button action
 			chooseEmployeeLabel.setText("Employee:");
-			assignScheduleLabel.setText("<html><b><u>Assign Schedule:</u></b></html>");
+			scheduleMenuLabel.setText("<html><b><u>Schedule Menu:</u></b></html>");
 			scheduleDateLabel.setText("Date:");
 			startTimeLabel.setText("Start Time:");
 			endTimeLabel.setText("End Time:");
@@ -226,6 +238,30 @@ public class FoodTruckManagementPage extends JFrame {
 			assignScheduleButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
 					assignScheduleButtonActionPerformed(evt);
+				}
+			});
+			
+			
+			//Elements for viewing a schedule
+				//Create combo box for list of all employees
+			employeeList2 = new JComboBox<String>(new String[0]);
+			employeeList2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					JComboBox<String> cb = (JComboBox<String>) evt.getSource();
+					selectedEmployee2 = cb.getSelectedIndex();
+				}
+			});
+			
+			//Instantiate Labels/Buttons
+			chooseEmployeeLabel2 = new JLabel();
+			viewScheduleButton = new JButton();
+			
+			//Set Label Text/assign schedule button
+			chooseEmployeeLabel2.setText("Employee:");
+			viewScheduleButton.setText("View Schedule");
+			viewScheduleButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					viewScheduleButtonActionPerformed(evt);
 				}
 			});
 			
@@ -247,9 +283,12 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(blankLine)
 					.addComponent(employeeMenuLabel)
 					.addComponent(employeeNameLabel)
-					.addComponent(assignScheduleLabel)
+					.addComponent(blankLine)
+					.addComponent(scheduleMenuLabel)
 					.addComponent(chooseEmployeeLabel)
-					.addComponent(startTimeLabel))
+					.addComponent(startTimeLabel)
+					.addComponent(blankLine)
+					.addComponent(chooseEmployeeLabel2))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(viewSupplyButton)
@@ -259,13 +298,15 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(employeeNameTextField, 200, 200, 400)
 					.addComponent(assignScheduleButton)
 					.addComponent(employeeList)
-					.addComponent(startTimeSpinner))
+					.addComponent(startTimeSpinner)
+					.addComponent(employeeList2))
 					
 					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyAmountLabel)
 					.addComponent(employeeRoleLabel)
 					.addComponent(scheduleDateLabel)
-					.addComponent(endTimeLabel))
+					.addComponent(endTimeLabel)
+					.addComponent(viewScheduleButton))
 						
 					.addGroup(layout.createParallelGroup()
 						.addComponent(supplyAmountTextField, 200, 200, 400)
@@ -336,7 +377,7 @@ public class FoodTruckManagementPage extends JFrame {
 				.addComponent(blankLine)
 				
 				.addGroup(layout.createParallelGroup()
-				.addComponent(assignScheduleLabel)
+				.addComponent(scheduleMenuLabel)
 				.addComponent(assignScheduleButton))
 				
 				.addGroup(layout.createParallelGroup()
@@ -351,6 +392,13 @@ public class FoodTruckManagementPage extends JFrame {
 				.addComponent(endTimeLabel)
 				.addComponent(endTimeSpinner)
 				.addComponent(assignScheduleButton))
+				
+				.addComponent(blankLine)
+				
+				.addGroup(layout.createParallelGroup()
+						.addComponent(chooseEmployeeLabel2)
+						.addComponent(employeeList2)
+						.addComponent(viewScheduleButton))
 						
 				);
 		
@@ -378,6 +426,21 @@ public class FoodTruckManagementPage extends JFrame {
 		}
 		selectedEmployee = -1;
 		employeeList.setSelectedIndex(selectedEmployee);
+		
+		//set employee list 2 for view employee schedule field
+		employees2 = new HashMap<Integer, Employee>();
+		employeeList2.removeAllItems();
+		Iterator<Employee> eIt2 = fm.getEmployees().iterator();
+		Integer index2 = 0;
+		while (eIt2.hasNext()) {
+			Employee e = eIt2.next();
+			employees2.put(index2, e);
+			employeeList2.addItem(e.getName());
+			index2++;
+		}
+		selectedEmployee2 = -1;
+		employeeList2.setSelectedIndex(selectedEmployee2);
+		
 		
 		//refresh other text fields
 		supplyNameTextField.setText("");
@@ -569,6 +632,27 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		
 		//update visuals
+		refreshData();
+	}
+	
+	private void viewScheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = null;
+		
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		try {
+			String label = ftmc.viewSchedule(employees2.get(selectedEmployee2));
+			JLabel weeklySchedule = new JLabel();
+			weeklySchedule.setText(label);
+			JFrame frame = new JFrame(employees2.get(selectedEmployee2).getName() + "'s Schedule");
+			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			frame.getContentPane().add(weeklySchedule);
+			frame.pack();
+			frame.setVisible(true);
+			
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
 		refreshData();
 	}
 
