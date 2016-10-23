@@ -326,9 +326,10 @@ public class FoodTruckManagementController {
 		String monthString = getMonth(month);
 		
 		int day = c.get(Calendar.DAY_OF_MONTH);
+		int year = c.get(Calendar.YEAR);
 
 
-		String scheduleList = "<html><h3 style=\"text-align:center;\">" + e.getName() + "'s Schedule for Week of " + monthString + " " + day + "</h3></title>";
+		String scheduleList = "<html><h3 style=\"text-align:center;\">" + e.getName() + "'s Schedule for Week of " + monthString + " " + day + ", " + year + "</h3></title>";
 		
 		scheduleList = scheduleList + "<table><tr><th><u>Monday</u></th><th><u>Tuesday</u></th><th><u>Wednesday</u></th><th><u>Thursday</u></th>"
 									+ "<th><u>Friday</u></th><th><u>Saturday</u></th><th><u>Sunday</u></th></tr>";

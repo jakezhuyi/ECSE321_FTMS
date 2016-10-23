@@ -61,80 +61,86 @@
     <employee id="39">
       <name>Emily</name>
       <role>Manager</role>
-      <schedules id="40"/>
+      <schedules id="40">
+        <schedule id="41">
+          <workDay id="42">2016-10-23</workDay>
+          <startTime id="43">15:27:46</startTime>
+          <endTime id="44">17:27:00</endTime>
+        </schedule>
+      </schedules>
     </employee>
-    <employee id="41">
+    <employee id="45">
       <name>Jonah</name>
       <role>Ceo</role>
-      <schedules id="42">
-        <schedule id="43">
-          <workDay id="44">2016-10-23</workDay>
-          <startTime id="45">16:19:00</startTime>
-          <endTime id="46">20:19:00</endTime>
+      <schedules id="46">
+        <schedule id="47">
+          <workDay id="48">2016-10-23</workDay>
+          <startTime id="49">16:19:00</startTime>
+          <endTime id="50">20:19:00</endTime>
         </schedule>
       </schedules>
     </employee>
   </employees>
-  <equipment id="47">
-    <equipment id="48">
+  <equipment id="51">
+    <equipment id="52">
       <name>Grill</name>
       <supply>3</supply>
     </equipment>
-    <equipment id="49">
+    <equipment id="53">
       <name>Frier</name>
       <supply>2</supply>
     </equipment>
-    <equipment id="50">
+    <equipment id="54">
       <name>Pan</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="51">
+    <equipment id="55">
       <name>Dish</name>
       <supply>5</supply>
     </equipment>
-    <equipment id="52">
+    <equipment id="56">
       <name>Plate</name>
       <supply>8</supply>
     </equipment>
-    <equipment id="53">
+    <equipment id="57">
       <name>Ice cream machine</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="54">
+    <equipment id="58">
       <name>Toaster</name>
       <supply>3</supply>
     </equipment>
   </equipment>
-  <foodSupplies id="55">
-    <supply id="56">
+  <foodSupplies id="59">
+    <supply id="60">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="57">
+    <supply id="61">
       <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="58">
+    <supply id="62">
       <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="59">
+    <supply id="63">
       <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="60">
+    <supply id="64">
       <name>Champagne</name>
       <amount>36</amount>
     </supply>
-    <supply id="61">
+    <supply id="65">
       <name>Pepperoni</name>
       <amount>4</amount>
     </supply>
-    <supply id="62">
+    <supply id="66">
       <name>Pineapple</name>
       <amount>7</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="63"/>
-  <menuItems id="64"/>
+  <transactionOrders id="67"/>
+  <menuItems id="68"/>
 </manager>
