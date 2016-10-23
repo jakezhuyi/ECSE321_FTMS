@@ -341,6 +341,9 @@ public class FoodTruckManagementController {
 			Date date = new Date(c.getTimeInMillis());
 			scheduleList = scheduleList + "<td>";
 			
+			if (e.numberOfSchedules() == 0)
+				scheduleList = scheduleList + "<i>Not Scheduled</i>";
+
 			for (int j=0; j<e.numberOfSchedules(); j++)
 			{				
 				Schedule employeeSchedule = e.getSchedule(j);
