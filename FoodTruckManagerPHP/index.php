@@ -62,7 +62,7 @@
 		</form>	
 			<form action="removeequipment.php" method="post">
 			<p>Equipment to remove? <input type="text" name="equipment_name" />
-			<p>Number? <input type="text" name="food_num" />
+			<p>Number? <input type="text" name="equipment_num" />
 			<span class="error">
 			<?php
 			if (isset($_SESSION['errorRemoveEquipment']) && !empty($_SESSION['errorRemoveEquipment'])) {

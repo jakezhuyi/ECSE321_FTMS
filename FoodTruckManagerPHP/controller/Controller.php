@@ -118,8 +118,8 @@ class Controller
 	{
 	
 		// 1. Validate Input
-		$name = InputValidator::validate_input($equipment_name);
-		if($name == null || strlen($name) == 0)
+		$ename = InputValidator::validate_input($equipment_name);
+		if($ename == null || strlen($ename) == 0)
 		{
 			throw new Exception("Equipment name cannot be empty!");
 		}
@@ -142,10 +142,10 @@ class Controller
 			// if it does not, set the amount
 			foreach ( $ftm->getEquipment () as $equipment )
 			{
-				if (strcmp ( $equipment->getName(), $food_name ) == 0)
+				if (strcmp ( $equipment->getName(), $equipment_name ) == 0)
 				{
 					$matched = TRUE;
-					$old_amount = $equipment->getAmount();
+					$old_amount = $equipment->getSupply();
 					$equipment_num += $old_amount;
 					$food->setAmount($equipment_num);
 					break;
@@ -154,8 +154,8 @@ class Controller
 				
 			if(!$matched)
 			{
-				$new_equipment = new FoodSupply($equipment_name, $equipment_num);
-				$ftm->addFoodSupply($new_equipment);
+				$new_equipment = new Equipment($equipment_name, $equipment_num);
+				$ftm->addEquipment($new_equipment);
 			}
 				
 	
@@ -190,25 +190,25 @@ class Controller
 			// 3. check if the food item exists
 			// if it does change the amount
 			// if it does not, put an error
-			foreach ( $ftm->getSupply () as $equipment )
+			foreach ( $ftm->getEquipment () as $equipment )
 			{
 				if (strcmp ( $equipment->getName(), $equipment_name ) == 0)
 				{
 					$matched = TRUE;
-					$old_amount = $equipment->getAmount();
+					$old_amount = $equipment->getSupply();
 					$new_amount = $old_amount - $equipment_num;
 					if($new_amount < 0)
 					{
 						throw new Exception("Cannot remove more than you currently have!");
 					}
-					$equipment->setAmount($new_amount);
+					$equipment->setSupply($new_amount);
 					break;
 				}
 			}
 	
 			if(!$matched)
 			{
-				throw new Exception("Food Supply does not exist!");
+				throw new Exception("Equipment does not exist!");
 			}
 	
 	
