@@ -326,12 +326,13 @@ public class FoodTruckManagementController {
 		int day = c.get(Calendar.DAY_OF_MONTH);
 		int year = c.get(Calendar.YEAR);
 
-
+		//Add this weeks schedule
 		String scheduleList = calculateSched(c, e, day, month, year);
+		
+		//Add next weeks schedule
 		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
 		year = c.get(Calendar.YEAR);
-		
 		scheduleList = scheduleList + calculateSched(c, e, day, month, year);
 		
 		scheduleList = scheduleList + "</html>";
