@@ -363,13 +363,14 @@ public class FoodTruckManagementController {
 	
 	public String viewEmployees()
 	{
-		String employeeList = "<html><table><tr><td><b><u>Name</b></u></td><td><b><u>Role</b></u></td></tr>";
+		String employeeList = "<html><h3 style=\"text-align:center;\">Employee List</h3>";
+		employeeList = employeeList + "<table><tr><td><b><u>Name</b></u></td><td></td><td></td><td><b><u>Role</b></u></td></tr>";
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
 		for (int i=0; i<fm.numberOfEmployees(); i++)
 		{
-			employeeList = employeeList + "<tr><td>" + fm.getEmployee(i).getName() + "</td>" + "<td>" + fm.getEmployee(i).getRole() + "</td></tr>";
+			employeeList = employeeList + "<tr><td>" + fm.getEmployee(i).getName() + "</td><td></td><td></td>" + "<td>" + fm.getEmployee(i).getRole() + "</td></tr>";
 		}
 		
 		employeeList = employeeList + "</table></html>";
@@ -378,7 +379,8 @@ public class FoodTruckManagementController {
 	
 	public String viewSupply() 
 	{
-		String supplyList = "<html><table><tr><td><b><u>Food Supply</b></u></td><td><b><u>Equipment</b></u></td></tr>";
+		String supplyList = "<html><h3 style=\"text-align:center;\">Supply List </h3>";
+		supplyList = supplyList +"<table><tr><td><b><u>Food Supply</b></u></td><td><b><u>Equipment</b></u></td></tr>";
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
