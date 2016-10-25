@@ -4,6 +4,7 @@ require_once (__DIR__.'/InputValidator.php');
 require_once (__DIR__.'/../persistence/PersistenceFoodTruckManager.php');
 require_once (__DIR__.'/../model/FoodSupply.php');
 require_once (__DIR__.'/../model/Equipment.php');
+require_once (__DIR__.'/../model/Employee.php');
 
 class Controller
 {
@@ -215,6 +216,24 @@ class Controller
 			// 4. Write all of the data
 			$pm->writeDataToStore($ftm);
 		}
+	}
+	public function createEmployee($em_name, $em_role)
+	{
+		$pm = new PersistenceFoodTruckManager();
+		$ftm = $pm->loadDataFromStore();
+		
+		$name = InputValidator::validate_input($em_name);
+		$role = InputValidator::validate_input($em_role);
+		
+		if($name == null || strlen($name) == 0 || $role == null || strlen($role) == 0)
+		{
+			throw new Exception("Name/Role cannot be empty!");
+		}
+		
+		$new_employee = new Employee($em_name, $em_role);
+		$ftm->addEmployee($new_employee);
+		$pm->writeDataToStore($ftm);
+		
 	}
 }
 ?>

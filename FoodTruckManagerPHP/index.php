@@ -34,7 +34,8 @@
 			</span></p>
 			<p><input type="submit" value="Add Food Supply"/></p>
 		</form>	
-			<form action="removefoodsupply.php" method="post">
+		
+		<form action="removefoodsupply.php" method="post">
 			<p>Food supply to remove? <input type="text" name="food_name" />
 			<p>Number? <input type="text" name="food_num" />
 			<span class="error">
@@ -57,10 +58,10 @@
 			}
 			?>
 			</span></p>
-			<p><input type="submit" value="Add Equipment"/></p>
-			
+			<p><input type="submit" value="Add Equipment"/></p>	
 		</form>	
-			<form action="removeequipment.php" method="post">
+		
+		<form action="removeequipment.php" method="post">
 			<p>Equipment to remove? <input type="text" name="equipment_name" />
 			<p>Number? <input type="text" name="equipment_num" />
 			<span class="error">
@@ -71,6 +72,19 @@
 			?>
 			</span></p>
 			<p><input type="submit" value="Remove Equipment"/></p>
+		</form>
+		
+		<form action="addemployee.php" method="post">
+			<p>Name <input type="text" name="employee" />
+			<p>Role <input type="text" name="role" />
+			<span class="error">
+			<?php
+			if (isset($_SESSION['errorEmployee']) && !empty($_SESSION['errorEmployee'])) {
+				echo " * " . $_SESSION["errorEmployee"];
+			}
+			?>
+			</span></p>
+			<p><input type="submit" value="Add Employee"/></p>
 		</form>
 	</body>
 </html>
