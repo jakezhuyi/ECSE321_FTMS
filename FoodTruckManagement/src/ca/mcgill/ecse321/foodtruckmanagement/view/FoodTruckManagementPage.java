@@ -59,6 +59,23 @@ public class FoodTruckManagementPage extends JFrame {
 	private JButton addEmployeeButton;
 	private JButton viewEmployeesButton;
 	
+	//Add/View Menu Items
+	private JTextField menuItemTextField;
+	private JLabel menuItemNameLabel;
+	private JLabel menuItemLabel;
+	private JButton addMenuItemButton;
+	
+	//Claim Order Items
+	private JTextField claimedMenuItemTextField;
+	private JLabel claimedMenuItemLabel;
+	private JLabel claimOrderLabel;
+	private JTextField claimedMenuItemAmountTextField;
+	private JLabel claimedMenuItemAmountLabel;
+	private JButton claimOrderButton;
+	
+	//View Popularity Report
+	private JButton viewPopularityReportButton;
+	
 	//Assign Schedule
 	private JComboBox<String> employeeList;
 	private JLabel chooseEmployeeLabel;
@@ -194,6 +211,50 @@ public class FoodTruckManagementPage extends JFrame {
 				}
 			});
 			
+		//Elements for menu item
+			menuItemTextField = new JTextField();
+			menuItemLabel = new JLabel();
+			menuItemNameLabel = new JLabel();
+			addMenuItemButton = new JButton();
+			
+			menuItemLabel.setText("<html><b><u>Menu Items:</b></u></html>");
+			menuItemNameLabel.setText("Menu Item Name:");
+			addMenuItemButton.setText("Add Menu Item");
+			addMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					addMenuItemButtonActionPerformed(evt);
+				}
+			});
+			
+			
+		//Elements for claim order
+			claimedMenuItemLabel = new JLabel();
+			claimedMenuItemTextField = new JTextField();
+			claimOrderLabel = new JLabel();
+			claimedMenuItemAmountLabel = new JLabel();
+			claimedMenuItemAmountTextField = new JTextField();
+			claimOrderButton = new JButton();
+			
+			claimOrderLabel.setText("<html><b><u>Claim Order:</b></u></html>");
+			claimedMenuItemLabel.setText("Menu Item: ");
+			claimedMenuItemAmountLabel.setText("Amount: ");
+			claimOrderButton.setText("Claim Order");
+			claimOrderButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					claimOrderButtonActionPerformed(evt);
+				}
+			});
+			
+		//Elements for viewing popularity report
+			viewPopularityReportButton = new JButton();
+			
+			viewPopularityReportButton.setText("View Popularity Report");
+			viewPopularityReportButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					viewPopularityReportButtonActionPerformed(evt);
+				}
+			});
+		
 		//Elements for assigning schedule
 			
 			//Create combo box for list of all employees
@@ -281,6 +342,9 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(supplyMenuLabel)		
 					.addComponent(supplyNameLabel)
 					.addComponent(blankLine)
+					.addComponent(menuItemLabel)
+					.addComponent(menuItemNameLabel)
+					.addComponent(blankLine)
 					.addComponent(employeeMenuLabel)
 					.addComponent(employeeNameLabel)
 					.addComponent(blankLine)
@@ -288,36 +352,46 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(chooseEmployeeLabel)
 					.addComponent(startTimeLabel)
 					.addComponent(blankLine)
-					.addComponent(chooseEmployeeLabel2))
+					.addComponent(chooseEmployeeLabel2)
+					.addComponent(blankLine)
+					.addComponent(claimOrderLabel)
+					.addComponent(claimedMenuItemLabel))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(viewSupplyButton)
 					.addComponent(supplyNameTextField, 200, 200, 400)
 					.addComponent(addSupplyButton)
+					.addComponent(viewPopularityReportButton)
+					.addComponent(menuItemTextField, 200, 200, 400)
+					.addComponent(addMenuItemButton)
 					.addComponent(viewEmployeesButton)
 					.addComponent(employeeNameTextField, 200, 200, 400)
 					.addComponent(assignScheduleButton)
 					.addComponent(employeeList)
 					.addComponent(startTimeSpinner)
-					.addComponent(employeeList2))
+					.addComponent(employeeList2)
+					.addComponent(claimedMenuItemTextField, 200, 200, 400))
 					
 					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyAmountLabel)
 					.addComponent(employeeRoleLabel)
 					.addComponent(scheduleDateLabel)
 					.addComponent(endTimeLabel)
-					.addComponent(viewScheduleButton))
+					.addComponent(viewScheduleButton)
+					.addComponent(claimedMenuItemAmountLabel))
 						
 					.addGroup(layout.createParallelGroup()
 						.addComponent(supplyAmountTextField, 200, 200, 400)
 					    .addComponent(removeSupplyButton)
 					    .addComponent(employeeRoleTextField, 200, 200, 400)
 					    .addComponent(scheduleDatePicker)
-					    .addComponent(endTimeSpinner))
+					    .addComponent(endTimeSpinner)
+					    .addComponent(claimedMenuItemAmountTextField, 200, 200, 400))
 					 
 					 .addGroup(layout.createParallelGroup()   
 					 .addComponent(equipmentNameLabel)
-					 .addComponent(addEmployeeButton))
+					 .addComponent(addEmployeeButton)
+					 .addComponent(claimOrderButton))
 						
 					.addGroup(layout.createParallelGroup()
 					.addComponent(equipmentNameTextField, 200, 200, 400)
@@ -363,6 +437,16 @@ public class FoodTruckManagementPage extends JFrame {
 				.addComponent(blankLine)
 				
 				.addGroup(layout.createParallelGroup()
+				.addComponent(menuItemLabel)
+				.addComponent(viewPopularityReportButton))
+				.addGroup(layout.createParallelGroup()
+				.addComponent(menuItemNameLabel)
+				.addComponent(menuItemTextField))
+				.addComponent(addMenuItemButton)
+				
+				.addComponent(blankLine)
+				
+				.addGroup(layout.createParallelGroup()
 						.addComponent(employeeMenuLabel)
 						.addComponent(viewEmployeesButton))
 				
@@ -399,6 +483,17 @@ public class FoodTruckManagementPage extends JFrame {
 						.addComponent(chooseEmployeeLabel2)
 						.addComponent(employeeList2)
 						.addComponent(viewScheduleButton))
+				
+				.addComponent(blankLine)
+				
+				.addComponent(claimOrderLabel)
+				.addGroup(layout.createParallelGroup()
+				.addComponent(claimedMenuItemLabel)
+				.addComponent(claimedMenuItemTextField)
+				.addComponent(claimedMenuItemAmountLabel)
+				.addComponent(claimedMenuItemAmountTextField)
+				.addComponent(claimOrderButton))
+				
 						
 				);
 		
@@ -449,6 +544,9 @@ public class FoodTruckManagementPage extends JFrame {
 		equipmentAmountTextField.setText("");
 		employeeNameTextField.setText("");
 		employeeRoleTextField.setText("");
+		menuItemTextField.setText("");
+		claimedMenuItemTextField.setText("");
+		claimedMenuItemAmountTextField.setText("");
 		scheduleDatePicker.getModel().setValue(null);
 		startTimeSpinner.setValue(new Date());
 		endTimeSpinner.setValue(new Date());
@@ -574,6 +672,48 @@ public class FoodTruckManagementPage extends JFrame {
 				
 	}
 	
+	private void addMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		//call controller
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		error = null;
+		
+		String name = menuItemTextField.getText();
+		
+			try {
+				ftmc.addMenuItem(name);
+			} catch (InvalidInputException e) {
+				error = e.getMessage();
+			} 
+			refreshData();
+	}
+	
+	private void claimOrderButtonActionPerformed(java.awt.event.ActionEvent evt){
+		//call controller
+				FoodTruckManagementController ftmc = new FoodTruckManagementController();
+				error = null;
+				
+				String claimedMenuItem = claimedMenuItemTextField.getText();
+				int amount = 0;
+				
+				try {
+					amount = Integer.parseInt(claimedMenuItemAmountTextField.getText());
+				} catch (Exception e) {
+					amount = 0;
+				
+				} finally {
+				
+					try {
+						ftmc.claimOrder(claimedMenuItem,amount);
+					} catch (InvalidInputException e) {
+						error = e.getMessage();
+					} 
+					
+					refreshData();
+				}
+		
+		
+	}
+	
 	private void viewSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		FoodTruckManagementController ftmc = new FoodTruckManagementController();
 		
@@ -656,5 +796,22 @@ public class FoodTruckManagementPage extends JFrame {
 		refreshData();
 	}
 
+	private void viewPopularityReportButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		
+		String label = ftmc.viewPopularityReport();
+		JLabel popularityReportLabel = new JLabel();
+		popularityReportLabel.setText(label);
+		
+		JFrame frame = new JFrame("Popularity Report");
+		
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		frame.getContentPane().add(popularityReportLabel);
+		
+		frame.pack();
+		
+		frame.setVisible(true);
+	}
 
 }

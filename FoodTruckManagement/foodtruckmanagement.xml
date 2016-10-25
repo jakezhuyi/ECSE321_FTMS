@@ -163,5 +163,34 @@
     </supply>
   </foodSupplies>
   <transactionOrders id="81"/>
-  <menuItems id="82"/>
+  <menuItems id="82">
+    <item id="83">
+      <name>Burger</name>
+      <amountSold>6</amountSold>
+    </item>
+    <item id="84">
+      <name>Salad</name>
+      <amountSold>4</amountSold>
+    </item>
+    <item id="85">
+      <name>Pizza</name>
+      <amountSold>13</amountSold>
+    </item>
+    <item id="86">
+      <name>French fries</name>
+      <amountSold>10</amountSold>
+    </item>
+    <item id="87">
+      <name>Yams</name>
+      <amountSold>3</amountSold>
+    </item>
+    <item id="88">
+      <name>Oysters</name>
+      <amountSold>23</amountSold>
+    </item>
+    <item id="89">
+      <name>Crab</name>
+      <amountSold>46</amountSold>
+    </item>
+  </menuItems>
 </manager>
