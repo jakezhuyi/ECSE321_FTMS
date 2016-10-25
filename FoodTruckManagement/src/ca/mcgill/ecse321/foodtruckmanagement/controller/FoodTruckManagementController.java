@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
@@ -509,7 +510,7 @@ public class FoodTruckManagementController {
 	
 	public String viewPopularityReport() 
 	{
-		String popularityReport = "<html><b><u>Menu Item	:	# Sold</b></u><br/>";
+		String popularityReport = "<html><big><b><u>Popularity Report</b></u></big>";
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
@@ -518,7 +519,6 @@ public class FoodTruckManagementController {
 			int[] decreasingOrder = new int[numItems];
 			int nextMostSoldIndex = 0;
 			int transferIndex = 0;
-			int replaceIndex = 0;
 		
 			//Fill decreasingOrder array with numbers ranging from 0 to numItems-1 representing every index
 			for(int i = 0; i < numItems; i++)
@@ -542,15 +542,22 @@ public class FoodTruckManagementController {
 				decreasingOrder[nextMostSoldIndex] = transferIndex;
 			}
 			
-			//Print the items in sorted order
-			for(int i = 0; i < numItems; i++)
+			popularityReport = popularityReport + "<h4>The Most Popular Menu Item is: " + fm.getMenuItem(decreasingOrder[0]).getName() + 
+								"!</h4> It has sold " + fm.getMenuItem(decreasingOrder[0]).getAmountSold() + " times.<br/><br/>";
+			
+		
+			
+			//Display the top 10 most popular items (or less if there are less than 10 items)
+			int top10 = Math.min(numItems, 10);
+			for(int i = 1; i < top10; i++)
 			{
-				popularityReport = popularityReport + fm.getMenuItem(decreasingOrder[i]).getName() + "	:	" + fm.getMenuItem(decreasingOrder[i]).getAmountSold() + "<br/>"; 
+				popularityReport = popularityReport + (i+1) + ") " +fm.getMenuItem(decreasingOrder[i]).getName() + "	:	" + fm.getMenuItem(decreasingOrder[i]).getAmountSold() + " sales." +"<br/>"; 
 			}
 			
 			popularityReport = popularityReport + "</html>";
 		return popularityReport;
 	}
+	
 	
 }
 
