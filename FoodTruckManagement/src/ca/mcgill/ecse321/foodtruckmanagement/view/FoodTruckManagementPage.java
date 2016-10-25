@@ -59,6 +59,11 @@ public class FoodTruckManagementPage extends JFrame {
 	private JButton addEmployeeButton;
 	private JButton viewEmployeesButton;
 	
+	//Remove Employees
+	private JLabel chooseEmployeeLabel3;
+	private JComboBox<String> employeeList3;
+	private JButton removeEmployeeButton;
+	
 	//Add/View Menu Items
 	private JTextField menuItemTextField;
 	private JLabel menuItemNameLabel;
@@ -87,7 +92,7 @@ public class FoodTruckManagementPage extends JFrame {
 	private JLabel endTimeLabel;
 	private JButton assignScheduleButton;
 	
-	//View Employee
+	//View Schedule
 	private JComboBox<String> employeeList2;
 	private JLabel chooseEmployeeLabel2;
 	private JButton viewScheduleButton;
@@ -102,9 +107,13 @@ public class FoodTruckManagementPage extends JFrame {
 	private Integer selectedEmployee = -1;
 	private HashMap<Integer, Employee> employees;
 	
-	//Used for viewing employee
+	//Used for viewing employee schedule
 	private Integer selectedEmployee2 = -1;
 	private HashMap<Integer, Employee> employees2;
+	
+	//Used for removing employees
+	private Integer selectedEmployee3 = -1;
+	private HashMap<Integer, Employee> employees3;
 	
 	/* Creates new Page */
 	public FoodTruckManagementPage() {
@@ -210,6 +219,8 @@ public class FoodTruckManagementPage extends JFrame {
 					viewEmployeesButtonActionPerformed(evt);
 				}
 			});
+			
+			
 			
 		//Elements for menu item
 			menuItemTextField = new JTextField();
@@ -326,6 +337,26 @@ public class FoodTruckManagementPage extends JFrame {
 				}
 			});
 			
+			//Elements for removing an employee
+			employeeList3 = new JComboBox<String>(new String[0]);
+			employeeList3.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					JComboBox<String> cb = (JComboBox<String>) evt.getSource();
+					selectedEmployee3 = cb.getSelectedIndex();
+				}
+			});
+			
+			chooseEmployeeLabel3 = new JLabel();
+			removeEmployeeButton = new JButton();
+			
+			chooseEmployeeLabel3.setText("Employee:");
+			removeEmployeeButton.setText("Fire Employee");
+			removeEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					removeEmployeeButtonActionPerformed(evt);
+				}
+			});
+			
 		//Blank line to separate elements of the UI	
 		JLabel blankLine = new JLabel(" ");
 		
@@ -348,6 +379,8 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(employeeMenuLabel)
 					.addComponent(employeeNameLabel)
 					.addComponent(blankLine)
+					.addComponent(chooseEmployeeLabel3)
+					.addComponent(blankLine)
 					.addComponent(scheduleMenuLabel)
 					.addComponent(chooseEmployeeLabel)
 					.addComponent(startTimeLabel)
@@ -366,6 +399,7 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(addMenuItemButton)
 					.addComponent(viewEmployeesButton)
 					.addComponent(employeeNameTextField, 200, 200, 400)
+					.addComponent(employeeList3)
 					.addComponent(assignScheduleButton)
 					.addComponent(employeeList)
 					.addComponent(startTimeSpinner)
@@ -375,6 +409,7 @@ public class FoodTruckManagementPage extends JFrame {
 					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyAmountLabel)
 					.addComponent(employeeRoleLabel)
+					.addComponent(removeEmployeeButton)
 					.addComponent(scheduleDateLabel)
 					.addComponent(endTimeLabel)
 					.addComponent(viewScheduleButton)
@@ -461,6 +496,13 @@ public class FoodTruckManagementPage extends JFrame {
 				.addComponent(blankLine)
 				
 				.addGroup(layout.createParallelGroup()
+						.addComponent(chooseEmployeeLabel3)
+						.addComponent(employeeList3)
+						.addComponent(removeEmployeeButton))
+				
+				.addComponent(blankLine)
+				
+				.addGroup(layout.createParallelGroup()
 				.addComponent(scheduleMenuLabel)
 				.addComponent(assignScheduleButton))
 				
@@ -535,6 +577,20 @@ public class FoodTruckManagementPage extends JFrame {
 		}
 		selectedEmployee2 = -1;
 		employeeList2.setSelectedIndex(selectedEmployee2);
+		
+		//Set employee list 3 
+		employees3 = new HashMap<Integer, Employee>();
+		employeeList3.removeAllItems();
+		Iterator<Employee> eIt3 = fm.getEmployees().iterator();
+		Integer index3 = 0;
+		while (eIt3.hasNext()) {
+			Employee e = eIt3.next();
+			employees3.put(index3, e);
+			employeeList3.addItem(e.getName());
+			index3++;
+		}
+		selectedEmployee3 = -1;
+		employeeList3.setSelectedIndex(selectedEmployee3);
 		
 		
 		//refresh other text fields
@@ -813,5 +869,19 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		frame.setVisible(true);
 	}
+	
+	private void removeEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = null;
+		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		
+		try {
+			ftmc.removeEmployee(employees3.get(selectedEmployee3));
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		refreshData();
+	}
+	
 
 }

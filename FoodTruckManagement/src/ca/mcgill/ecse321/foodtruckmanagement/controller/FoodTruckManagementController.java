@@ -245,6 +245,23 @@ public class FoodTruckManagementController {
 		return;
 	}
 	
+	public void removeEmployee (Employee e) throws InvalidInputException {
+		
+		FoodTruckManager fm = FoodTruckManager.getInstance();
+		String error = "";
+		
+		if (e == null)
+			error = "Employee needs to be selected for firing! ";
+		else if (!fm.getEmployees().contains(e))
+			error = error + "Employee does not exist! ";
+		
+		if (error.length() != 0)
+			throw new InvalidInputException(error);
+		
+		fm.removeEmployee(e);
+		PersistenceXStream.saveToXMLwithXStream(fm);
+	}
+	
 	public void assignSchedule(Employee e, Date date, Time startTime, Time endTime) throws InvalidInputException
 	{
 		FoodTruckManager fm = FoodTruckManager.getInstance();
