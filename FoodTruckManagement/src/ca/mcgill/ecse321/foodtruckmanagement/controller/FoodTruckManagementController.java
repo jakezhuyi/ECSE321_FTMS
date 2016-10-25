@@ -485,11 +485,17 @@ public class FoodTruckManagementController {
 		
 	}
 	
-	public void claimOrder(String menuItem, int amount) throws InvalidInputException
+	public void claimOrder(MenuItem m, int amount) throws InvalidInputException
 	{
 		String error = "";
 		boolean isError = false;
-		menuItem = menuItem.trim();
+		String menuItem = "";
+		try{
+			menuItem = m.getName().trim();
+		} catch (Exception e)
+		{
+			menuItem = null;
+		}
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		

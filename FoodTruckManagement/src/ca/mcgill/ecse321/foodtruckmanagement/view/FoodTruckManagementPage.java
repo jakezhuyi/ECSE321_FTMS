@@ -29,6 +29,7 @@ import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementContr
 import ca.mcgill.ecse321.foodtruckmanagement.controller.InvalidInputException;
 import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
+import ca.mcgill.ecse321.foodtruckmanagement.model.MenuItem;
 
 public class FoodTruckManagementPage extends JFrame {
 
@@ -71,7 +72,7 @@ public class FoodTruckManagementPage extends JFrame {
 	private JButton addMenuItemButton;
 	
 	//Claim Order Items
-	private JTextField claimedMenuItemTextField;
+	private JComboBox<String> claimedMenuItemList;
 	private JLabel claimedMenuItemLabel;
 	private JLabel claimOrderLabel;
 	private JTextField claimedMenuItemAmountTextField;
@@ -104,16 +105,22 @@ public class FoodTruckManagementPage extends JFrame {
 	
 	//data elements
 	private String error = null;
-	private Integer selectedEmployee = -1;
-	private HashMap<Integer, Employee> employees;
+		
+		//Used for employee combo box for assign schedule
+		private Integer selectedEmployee = -1;
+		private HashMap<Integer, Employee> employees;
+		
+		//Used for menu item combo box for claim order
+		private Integer selectedMenuItem = -1;
+		private HashMap<Integer, MenuItem> menuItems;
 	
-	//Used for viewing employee schedule
-	private Integer selectedEmployee2 = -1;
-	private HashMap<Integer, Employee> employees2;
+		//Used for viewing employee schedule
+		private Integer selectedEmployee2 = -1;
+		private HashMap<Integer, Employee> employees2;
 	
-	//Used for removing employees
-	private Integer selectedEmployee3 = -1;
-	private HashMap<Integer, Employee> employees3;
+		//Used for removing employees
+		private Integer selectedEmployee3 = -1;
+		private HashMap<Integer, Employee> employees3;
 	
 	/* Creates new Page */
 	public FoodTruckManagementPage() {
@@ -240,7 +247,7 @@ public class FoodTruckManagementPage extends JFrame {
 			
 		//Elements for claim order
 			claimedMenuItemLabel = new JLabel();
-			claimedMenuItemTextField = new JTextField();
+			claimedMenuItemList = new JComboBox<String>();
 			claimOrderLabel = new JLabel();
 			claimedMenuItemAmountLabel = new JLabel();
 			claimedMenuItemAmountTextField = new JTextField();
@@ -253,6 +260,14 @@ public class FoodTruckManagementPage extends JFrame {
 			claimOrderButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
 					claimOrderButtonActionPerformed(evt);
+				}
+			});
+			//Create combo box for list of all menu items
+			claimedMenuItemList = new JComboBox<String>(new String[0]);
+			claimedMenuItemList.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					JComboBox<String> cb = (JComboBox<String>) evt.getSource();
+					selectedMenuItem = cb.getSelectedIndex();
 				}
 			});
 			
@@ -404,7 +419,7 @@ public class FoodTruckManagementPage extends JFrame {
 					.addComponent(employeeList)
 					.addComponent(startTimeSpinner)
 					.addComponent(employeeList2)
-					.addComponent(claimedMenuItemTextField, 200, 200, 400))
+					.addComponent(claimedMenuItemList))
 					
 					.addGroup(layout.createParallelGroup()
 					.addComponent(supplyAmountLabel)
@@ -531,7 +546,7 @@ public class FoodTruckManagementPage extends JFrame {
 				.addComponent(claimOrderLabel)
 				.addGroup(layout.createParallelGroup()
 				.addComponent(claimedMenuItemLabel)
-				.addComponent(claimedMenuItemTextField)
+				.addComponent(claimedMenuItemList)
 				.addComponent(claimedMenuItemAmountLabel)
 				.addComponent(claimedMenuItemAmountTextField)
 				.addComponent(claimOrderButton))
@@ -592,6 +607,19 @@ public class FoodTruckManagementPage extends JFrame {
 		selectedEmployee3 = -1;
 		employeeList3.setSelectedIndex(selectedEmployee3);
 		
+		//set menu item list for claim order field
+				menuItems = new HashMap<Integer, MenuItem>();
+				claimedMenuItemList.removeAllItems();
+				Iterator<MenuItem> mIt = fm.getMenuItems().iterator();
+				Integer index4 = 0;
+				while (mIt.hasNext()) {
+					MenuItem m = mIt.next();
+					menuItems.put(index4, m);
+					claimedMenuItemList.addItem(m.getName());
+					index4++;
+				}
+				selectedMenuItem = -1;
+				claimedMenuItemList.setSelectedIndex(selectedMenuItem);
 		
 		//refresh other text fields
 		supplyNameTextField.setText("");
@@ -601,7 +629,6 @@ public class FoodTruckManagementPage extends JFrame {
 		employeeNameTextField.setText("");
 		employeeRoleTextField.setText("");
 		menuItemTextField.setText("");
-		claimedMenuItemTextField.setText("");
 		claimedMenuItemAmountTextField.setText("");
 		scheduleDatePicker.getModel().setValue(null);
 		startTimeSpinner.setValue(new Date());
@@ -748,7 +775,7 @@ public class FoodTruckManagementPage extends JFrame {
 				FoodTruckManagementController ftmc = new FoodTruckManagementController();
 				error = null;
 				
-				String claimedMenuItem = claimedMenuItemTextField.getText();
+				MenuItem claimedMenuItem = menuItems.get(selectedMenuItem);
 				int amount = 0;
 				
 				try {
