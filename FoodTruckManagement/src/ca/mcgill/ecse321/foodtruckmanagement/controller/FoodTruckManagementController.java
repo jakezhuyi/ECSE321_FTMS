@@ -280,8 +280,13 @@ public class FoodTruckManagementController {
 			Calendar c = Calendar.getInstance();
 			Date currentDate = new Date(c.getTimeInMillis());
 			
+			//Check if the date is before today's date
 				if(!currentDate.toString().equals(date.toString()))
-					error = error + "Work date cannot be before today's date!"; 
+					error = error + "Work date cannot be before today's date!";
+				
+			//If it is today's date check that the start time is not before the current time	
+				else if (startTime != null && c.getTimeInMillis() > startTime.getTime())
+					error = error + "Shift start time cannot be before current time! ";
 		}
 		if (startTime == null)
 			error = error + "Shift start time cannot be empty! ";
