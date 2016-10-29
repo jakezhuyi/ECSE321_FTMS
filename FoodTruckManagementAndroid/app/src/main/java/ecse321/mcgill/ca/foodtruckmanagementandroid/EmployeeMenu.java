@@ -38,6 +38,7 @@ public class EmployeeMenu extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
+        System.out.println( getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
         PersistenceFoodTruckManagement.loadFoodTruckManagementModel();
 
         ftm = FoodTruckManager.getInstance();
@@ -51,6 +52,7 @@ public class EmployeeMenu extends AppCompatActivity{
             }
         });
         refreshData();
+        refreshSpinner();
     }
 
     private void refreshSpinner(){
@@ -77,7 +79,6 @@ public class EmployeeMenu extends AppCompatActivity{
         tv.setText("");
         tv = (TextView) findViewById(R.id.employee_role);
         displayError(tv);
-        refreshSpinner();
 
     }
 
@@ -102,6 +103,7 @@ public class EmployeeMenu extends AppCompatActivity{
             error = e.getMessage();
         }
         refreshData();
+        refreshSpinner();
     }
 
     public void assignSchedule(View v) throws ParseException {
