@@ -17,4 +17,12 @@
     <string name="EmployeeMenu_button">Employee Menu</string>
     <string name="title_activity_supply_menu">Supply Menu</string>
     <string name="supplyMenu_button">Supply Menu</string>
+    <string name="new_date_label">Date?</string>
+    <string name="newevent_date_first">01-10-2016</string>
+    <string name="newstartTime_date_label">Start Time?</string>
+    <string name="newstartTime_date_first">12:00</string>
+    <string name="newendTime_date_label">End Time?</string>
+    <string name="newendTime_date_first">12:00</string>
+    <string name="newevent_button">Assign Schedule</string>
+    <string name="employeespinner_label">Employee Name</string>
 </resources>

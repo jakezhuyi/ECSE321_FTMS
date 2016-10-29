@@ -64,7 +64,97 @@
                 android:text="@string/hireEmployee_button"
                 android:layout_gravity="end"
                 android:onClick="addEmployee"/>
+
         </LinearLayout>
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/employeespinner_label"/>
+
+            <Spinner
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:id="@+id/employeespinner"/>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/new_date_label"
+                android:id="@+id/textView" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/newevent_date_first"
+                android:layout_gravity="end"
+                android:id="@+id/newevent_date"
+                android:onClick="showDatePickerDialog"/>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/newstartTime_date_label"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/newstartTime_date_first"
+                android:layout_gravity="end"
+                android:id="@+id/newstartTime_date"
+                android:onClick="showTimePickerDialog"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/newendTime_date_label"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/newendTime_date_first"
+                android:layout_gravity="end"
+                android:id="@+id/newendTime_date"
+                android:onClick="showTimePickerDialog"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/newevent_button"
+            android:layout_gravity="end"
+            android:onClick="assignSchedule"/>
     </LinearLayout>
 
 </RelativeLayout>

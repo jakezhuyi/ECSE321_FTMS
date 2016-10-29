@@ -75,4 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void setTime(int id, int h, int m) {
+        TextView tv = (TextView) findViewById(id);
+        tv.setText(String.format("%02d:%02d", h, m));
+    }
+    public void setDate(int id, int d, int m, int y) {
+        TextView tv = (TextView) findViewById(id);
+        tv.setText(String.format("%02d-%02d-%04d", d, m + 1, y));
+    }
 }
