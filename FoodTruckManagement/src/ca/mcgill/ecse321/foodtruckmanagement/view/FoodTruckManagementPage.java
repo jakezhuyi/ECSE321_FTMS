@@ -903,22 +903,23 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		try {
 			ftmc.removeEmployee(employees3.get(selectedEmployee3));
+			JFrame frame = new JFrame("You're Fired!");
+			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			JLabel label = new JLabel();
+			String text = "<html><center><big>" + employees3.get(selectedEmployee3).getName() + ", You're Fired!</big></center><br/><img src=\"http://www.jobscience.com/wp-content/uploads/2013/08/Donald-Trump-Youre-Fired.jpg\" alt=\"Mountain View\" style=\"width:304px;height:228px\"></html>";
+			label.setText(text);
+			
+			
+			frame.getContentPane().add(label);
+			
+			frame.pack();
+			frame.setVisible(true);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
 		
 		
-		JFrame frame = new JFrame("You're Fired!");
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		JLabel label = new JLabel();
-		String text = "<html><center><big>" + employees3.get(selectedEmployee3).getName() + ", You're Fired!</big></center><br/><img src=\"http://www.jobscience.com/wp-content/uploads/2013/08/Donald-Trump-Youre-Fired.jpg\" alt=\"Mountain View\" style=\"width:304px;height:228px\"></html>";
-		label.setText(text);
-		
-		
-		frame.getContentPane().add(label);
-		
-		frame.pack();
-		frame.setVisible(true);
+
 		
 		refreshData();
 		

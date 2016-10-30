@@ -27,124 +27,98 @@
       </schedules>
     </employee>
     <employee id="21">
-      <name>Joe</name>
-      <role>Driver</role>
-      <schedules id="22">
-        <schedule id="23">
-          <workDay id="24">2016-10-26</workDay>
-          <startTime id="25">16:58:13</startTime>
-          <endTime id="26">21:58:00</endTime>
-        </schedule>
-        <schedule id="27">
-          <workDay id="28">2016-10-25</workDay>
-          <startTime id="29">15:11:52</startTime>
-          <endTime id="30">16:11:00</endTime>
-        </schedule>
-        <schedule id="31">
-          <workDay id="32">2016-10-27</workDay>
-          <startTime id="33">21:00:00</startTime>
-          <endTime id="34">23:59:00</endTime>
-        </schedule>
-        <schedule id="35">
-          <workDay id="36">2016-10-28</workDay>
-          <startTime id="37">15:36:00</startTime>
-          <endTime id="38">17:36:00</endTime>
-        </schedule>
-      </schedules>
-    </employee>
-    <employee id="39">
       <name>Tom</name>
       <role>Skank</role>
-      <schedules id="40"/>
+      <schedules id="22"/>
     </employee>
   </employees>
-  <equipment id="41">
-    <equipment id="42">
+  <equipment id="23">
+    <equipment id="24">
       <name>Grill</name>
       <supply>3</supply>
     </equipment>
-    <equipment id="43">
+    <equipment id="25">
       <name>Frier</name>
       <supply>2</supply>
     </equipment>
-    <equipment id="44">
+    <equipment id="26">
       <name>Pan</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="45">
+    <equipment id="27">
       <name>Dish</name>
       <supply>5</supply>
     </equipment>
-    <equipment id="46">
+    <equipment id="28">
       <name>Plate</name>
       <supply>8</supply>
     </equipment>
-    <equipment id="47">
+    <equipment id="29">
       <name>Ice cream machine</name>
       <supply>1</supply>
     </equipment>
-    <equipment id="48">
+    <equipment id="30">
       <name>Toaster</name>
       <supply>3</supply>
     </equipment>
   </equipment>
-  <foodSupplies id="49">
-    <supply id="50">
+  <foodSupplies id="31">
+    <supply id="32">
       <name>Tomato</name>
       <amount>5</amount>
     </supply>
-    <supply id="51">
+    <supply id="33">
       <name>Hot dog</name>
       <amount>9</amount>
     </supply>
-    <supply id="52">
+    <supply id="34">
       <name>Jello</name>
       <amount>2</amount>
     </supply>
-    <supply id="53">
+    <supply id="35">
       <name>Wine</name>
       <amount>43</amount>
     </supply>
-    <supply id="54">
+    <supply id="36">
       <name>Champagne</name>
       <amount>36</amount>
     </supply>
-    <supply id="55">
+    <supply id="37">
       <name>Pepperoni</name>
       <amount>4</amount>
     </supply>
-    <supply id="56">
+    <supply id="38">
       <name>Pineapple</name>
       <amount>7</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="57"/>
-  <menuItems id="58">
-    <item id="59">
+  <transactionOrders id="39"/>
+  <menuItems id="40">
+    <item id="41">
       <name>Burger</name>
       <amountSold>6</amountSold>
     </item>
-    <item id="60">
+    <item id="42">
       <name>Salad</name>
       <amountSold>51</amountSold>
     </item>
-    <item id="61">
+    <item id="43">
       <name>Pizza</name>
       <amountSold>35</amountSold>
     </item>
-    <item id="62">
+    <item id="44">
       <name>French fries</name>
       <amountSold>23505</amountSold>
     </item>
-    <item id="63">
+    <item id="45">
       <name>Yams</name>
       <amountSold>64</amountSold>
     </item>
-    <item id="64">
+    <item id="46">
       <name>Oysters</name>
       <amountSold>60</amountSold>
     </item>
-    <item id="65">
+    <item id="47">
       <name>Crab</name>
       <amountSold>8046</amountSold>
     </item>
