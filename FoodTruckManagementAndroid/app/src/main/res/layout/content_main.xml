@@ -16,47 +16,34 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
-
             android:orientation="horizontal"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
-
-            <TextView
+            <Button
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="#FF0000"
-                android:id="@+id/error_name"
-                android:hint="@string/error_name"/>
-
+                android:text="@string/supplyMenu_button"
+                android:layout_gravity="end"
+                android:onClick="supplyMenu"/>
         </LinearLayout>
 
-
-        <EditText
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:id="@+id/foodSupply_name"
-            android:hint="@string/foodSupply_hint"
-            />
-
-        <EditText
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:id="@+id/foodSupplyAmount_name"
-            android:hint="@string/foodSupplyAmount_hint"
-            />
-
-
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/addSupply_button"
-            android:layout_gravity="end"
-            android:onClick="addFoodSupply"/>
-
+            android:layout_width="match_parent">
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/EmployeeMenu_button"
+                android:layout_gravity="end"
+                android:onClick="employeeMenu"/>
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package ecse321.mcgill.ca.foodtruckmanagementandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,7 @@ import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckMan
 public class MainActivity extends AppCompatActivity {
 
     public FoodTruckManager ftm;
-    public String error = null;
+    private String error = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         ftm = FoodTruckManager.getInstance();
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,58 +44,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        refreshData();
     }
 
-    private void refreshData(){
-
-        TextView tv = (TextView) findViewById(R.id.foodSupply_name);
-        TextView tv2 = (TextView) findViewById(R.id.foodSupplyAmount_name);
-        displayError(tv2);
-        displayError(tv);
-
-
+    public void employeeMenu(View v){
+        startActivity(new Intent(MainActivity.this, EmployeeMenu.class));
+    }
+    public void supplyMenu(View v){
+        startActivity(new Intent(MainActivity.this, SupplyMenu.class));
     }
 
-    private void displayError(TextView tv){
-        TextView e = (TextView) findViewById(R.id.error_name);
-        tv.setText("");
-        if (error != null){
-            //message_error
-            e.setText(error);
-
-        }else {
-            e.setText("");
-        }
-    }
-
-    public void addFoodSupply(View v){
-
-        TextView tv = (TextView) findViewById(R.id.foodSupply_name);
-        TextView tv2 = (TextView) findViewById(R.id.foodSupplyAmount_name);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
-        int amount = 0;
-
-        try{
-            amount = Integer.parseInt(tv2.getText().toString());
-        }catch (NumberFormatException e){
-            amount = 0;
-        }
-        error = null;
-
-        try {
-
-            ftc.addFoodSupply(tv.getText().toString(), amount);
-
-        }catch (InvalidInputException e){
-            //todo handle error
-            error = e.getMessage();
-        }
-
-        refreshData();
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -117,5 +74,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void setTime(int id, int h, int m) {
+        TextView tv = (TextView) findViewById(id);
+        tv.setText(String.format("%02d:%02d", h, m));
+    }
+    public void setDate(int id, int d, int m, int y) {
+        TextView tv = (TextView) findViewById(id);
+        tv.setText(String.format("%02d-%02d-%04d", d, m + 1, y));
     }
 }

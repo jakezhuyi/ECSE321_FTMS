@@ -1,8 +1,28 @@
 <resources>
-    <string name="app_name">FoodTruckManagementAndroid</string>
+    <string name="app_name">Food Truck Management</string>
     <string name="action_settings">Settings</string>
     <string name="error_name" />
     <string name="foodSupply_hint">Food Name?</string>
     <string name="foodSupplyAmount_hint">Amount?</string>
     <string name="addSupply_button">Add Supply</string>
+    <string name="removeSupply_button">Remove Supply</string>
+    <string name="equipmentSupply_hint">Equipment Name?</string>
+    <string name="equipmentSupplyAmount_hint">Amount</string>
+    <string name="supplyMenu_Label"><u>Supply Menu:</u></string>
+    <string name="employeeName_hint">Employee Name?</string>
+    <string name="employeeRole_hint">Role?</string>
+    <string name="employeeMenu_Label"><u>Employee Menu:</u></string>
+    <string name="hireEmployee_button">HIRE EMPLOYEE</string>
+    <string name="title_activity_employee_menu">Employee Menu</string>
+    <string name="EmployeeMenu_button">Employee Menu</string>
+    <string name="title_activity_supply_menu">Supply Menu</string>
+    <string name="supplyMenu_button">Supply Menu</string>
+    <string name="new_date_label">Date?</string>
+    <string name="newevent_date_first">01-10-2016</string>
+    <string name="newstartTime_date_label">Start Time?</string>
+    <string name="newstartTime_date_first">12:00</string>
+    <string name="newendTime_date_label">End Time?</string>
+    <string name="newendTime_date_first">12:00</string>
+    <string name="newevent_button">Assign Schedule</string>
+    <string name="employeespinner_label">Employee Name</string>
 </resources>
