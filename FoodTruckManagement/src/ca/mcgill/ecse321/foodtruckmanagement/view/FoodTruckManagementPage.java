@@ -296,7 +296,7 @@ public class FoodTruckManagementPage extends JFrame {
 			SqlDateModel model = new SqlDateModel();
 			Properties p = new Properties();
 			p.put("text.today", "Today");
-			p.put("text.month", "Month");
+			p.put("text.month", "month");
 			p.put("text.year", "year");
 			JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 			scheduleDatePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
@@ -907,7 +907,21 @@ public class FoodTruckManagementPage extends JFrame {
 			error = e.getMessage();
 		}
 		
+		
+		JFrame frame = new JFrame("You're Fired!");
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		JLabel label = new JLabel();
+		String text = "<html><center><big>" + employees3.get(selectedEmployee3).getName() + ", You're Fired!</big></center><br/><img src=\"http://www.jobscience.com/wp-content/uploads/2013/08/Donald-Trump-Youre-Fired.jpg\" alt=\"Mountain View\" style=\"width:304px;height:228px\"></html>";
+		label.setText(text);
+		
+		
+		frame.getContentPane().add(label);
+		
+		frame.pack();
+		frame.setVisible(true);
+		
 		refreshData();
+		
 	}
 	
 

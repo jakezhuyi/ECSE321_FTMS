@@ -14,6 +14,7 @@ public class DateLabelFormatter extends AbstractFormatter {
 	public Object stringToValue(String text) throws ParseException { 
 		return dateFormatter.parseObject(text);
 	}
+	
 	@Override
 	public String valueToString(Object value) throws ParseException { 
 		if (value != null) {
