@@ -5,6 +5,7 @@ require_once (__DIR__.'/../persistence/PersistenceFoodTruckManager.php');
 require_once (__DIR__.'/../model/FoodSupply.php');
 require_once (__DIR__.'/../model/Equipment.php');
 require_once (__DIR__.'/../model/Employee.php');
+require_once (__DIR__.'/../model/Schedule.php');
 
 class Controller
 {
@@ -234,6 +235,55 @@ class Controller
 		$ftm->addEmployee($new_employee);
 		$pm->writeDataToStore($ftm);
 		
+	}
+	
+	public function setSchedule($employee_name, $event_date, $starttime, $endtime)
+	{
+		$name = InputValidator::validate_input($employee_name);
+		$date = InputValidator::validate_input($event_date);
+		$stime = InputValidator::validate_input($starttime);
+		$etime = InputValidator::validate_input($endtime);
+	
+		//echo $name;
+		$error = null;
+		if($name == null || strlen($name) == 0) $error .= "@Employee name cannot be empty! ";
+		if($date == null || strlen($date) == 0 || !strtotime($date)) $error .= "@2Date must be specified correctly (YYYY-MM-DD)! ";
+		if($stime == null || strlen($stime) == 0 || !strtotime($stime)) $error .= "@3Start time must be specified correctly (HH:MM)! ";
+		if($etime == null || strlen($etime) == 0 || !strtotime($etime)) $error .= "@4End time must be specified correctly (HH:MM)! ";
+		if($etime != null && $stime != null && strlen($stime) !=0 && strlen($etime) !=0  && strtotime($etime) < strtotime($stime))
+			$error .= "@4Event end time cannot be before event start time!";
+	
+		//$error = trim($error);
+		if(!empty($error)) throw new Exception(trim($error));
+	
+		// Load all of the data
+		$pm = new PersistenceFoodTruckManager();
+		$ftm = $pm->loadDataFromStore();
+		
+		foreach ( $ftm->getEmployees () as $employee)
+		{
+			if(strcmp($employee->getName(), $employee_name) == 0)
+			{
+				foreach($employee->getSchedules() as $schedule)
+				{
+					if(strcmp($schedule->getWorkDay(), $event_date) == 0)
+					{
+						$schedule->setStartTime(date('H:i', strtotime($stime)));
+						$schedule->setEndTime(date('H:i', strtotime($etime)));
+						$pm->writeDataToStore($ftm);
+						return;
+					}
+				}
+				// set schedule
+				$event = new Schedule(date('Y-m-d', strtotime($date)), date('H:i', strtotime($stime)), date('H:i', strtotime($etime)));
+				$employee->addSchedule($event);
+			}
+		}
+	
+	
+		// Write all of the data
+		$pm->writeDataToStore($ftm);
+	
 	}
 }
 ?>

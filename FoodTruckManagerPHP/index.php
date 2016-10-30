@@ -86,6 +86,52 @@
 			</span></p>
 			<p><input type="submit" value="Add Employee"/></p>
 		</form>
+		
+		<form action="addschedule.php" method="post">
+			<p>Employee Name? <input type="text" name="employee_name" />
+			<span class="error">
+			<?php
+			if (isset($_SESSION['errorName']) && !empty($_SESSION['errorName']))
+			{
+				echo " * " . $_SESSION['errorName'];
+			}
+			?>
+			</span></p>
+			
+			<p>Date? <input type="text" name="event_date" />
+			<span class="error">
+			<?php
+			// echo "hello";
+			// echo "errorEventDate = " . $_SESSION['errorEventDate'];
+			// echo "errorEventDate empty = " . empty($_SESSION['errorEventDate']);
+			if (isset($_SESSION['errorEventDate'])&& !empty($_SESSION['errorEventDate']))
+			{
+				echo " * " . $_SESSION['errorEventDate'];
+			}
+			?>
+			</span></p>
+			
+			<p>Start Time? <input type="text" name="starttime" />
+			<span class="error">
+			<?php
+			if (isset($_SESSION['errorEventStartTime']) && !empty($_SESSION['errorEventStartTime']))
+			{
+				echo " * " . $_SESSION["errorEventStartTime"];
+			}
+			?>
+			</span></p>
+			
+			<p>End Time? <input type="text" name="endtime" />
+			<span class="error">
+			<?php
+			if (isset($_SESSION['errorEventEndTime']) && !empty($_SESSION['errorEventEndTime']))
+			{
+				echo " * " . $_SESSION["errorEventEndTime"];
+			}
+			?>
+			</span></p>
+			<p><input type="submit" value="Add Schedule"/></p>
+		</form>	
 	</body>
 </html>
 
