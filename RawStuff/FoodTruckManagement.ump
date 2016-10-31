@@ -1,0 +1,85 @@
+namespace ca.mcgill.ecse321.foodtruckmanagement.model;
+
+class Employee{
+
+name;
+String role;
+1 ->* Schedule;
+}
+
+class Schedule{
+
+Date workDay;
+Time startTime;
+Time endTime;
+}
+
+class Equipment{
+name;
+int supply;
+
+}
+
+class FoodSupply{
+name;
+int amount;
+}
+
+class MenuItem{
+
+name;
+int amountSold;
+
+}
+
+class TransactionOrder{
+
+* ->1 MenuItem;
+}
+
+class FoodTruckManager{
+
+singleton;
+1 ->* Employee;
+1 ->* Equipment;
+1 ->* FoodSupply;
+1 ->* TransactionOrder;
+1 ->* MenuItem;  
+}//$?[End_of_model]$?
+
+class Employee
+{
+  position 50 30 109 45;
+}
+
+class Schedule
+{
+  position 50 130 109 45;
+}
+
+class Equipment
+{
+  position 50 230 109 45;
+}
+
+class FoodSupply
+{
+  position 50 330 109 45;
+}
+
+class MenuItem
+{
+  position 248 336 130 75;
+}
+
+class TransactionOrder
+{
+  position 264 236 124 45;
+}
+
+class FoodTruckManager
+{
+  position 250 130 109 45;
+  position.association FoodTruckManager__TransactionOrder 34,45 30,45;
+  position.association FoodTruckManager__MenuItem 18,45 104,0;
+}
