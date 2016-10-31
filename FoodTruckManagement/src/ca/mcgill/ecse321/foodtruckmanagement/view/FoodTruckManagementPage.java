@@ -919,8 +919,6 @@ public class FoodTruckManagementPage extends JFrame {
 		}
 		
 		
-
-		
 		refreshData();
 		
 	}
