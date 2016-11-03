@@ -148,13 +148,24 @@
                 android:onClick="showTimePickerDialog"/>
 
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/newevent_button"
             android:layout_gravity="end"
-            android:onClick="assignSchedule"/>
+            android:onClick="assignSchedule" />
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/fireEmployee_button"
+                android:layout_marginLeft="70dp"
+                android:layout_gravity="end"
+                android:onClick="removeEmployee" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

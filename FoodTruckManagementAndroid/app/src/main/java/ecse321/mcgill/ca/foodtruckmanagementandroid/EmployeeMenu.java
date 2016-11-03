@@ -28,7 +28,8 @@ import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckMan
 public class EmployeeMenu extends AppCompatActivity{
     private FoodTruckManager ftm;
     private String error = null;
-    public HashMap<Integer, Employee> employees;
+    private HashMap<Integer, Employee> employees;
+    public static boolean check = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,13 @@ public class EmployeeMenu extends AppCompatActivity{
         setContentView(R.layout.activity_employee_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (check) {
+            PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator + "foodtruckmanagement.xml");
+            System.out.println(getFilesDir().getAbsolutePath() + File.pathSeparator + "foodtruckmanagement.xml");
+            PersistenceFoodTruckManagement.loadFoodTruckManagementModel();
 
-        PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
-        System.out.println( getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
-        PersistenceFoodTruckManagement.loadFoodTruckManagementModel();
-
-        ftm = FoodTruckManager.getInstance();
-
+            check = false;
+        }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +52,22 @@ public class EmployeeMenu extends AppCompatActivity{
                         .setAction("Action", null).show();
             }
         });
+        ftm = FoodTruckManager.getInstance();
         refreshData();
-        refreshSpinner();
     }
 
-    private void refreshSpinner(){
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+       check = false;
+    }
+
+    private void refreshData(){
+        TextView tv;
+        tv = (TextView) findViewById(R.id.employee_name);
+        tv.setText("");
+        tv = (TextView) findViewById(R.id.employee_role);
+        displayError(tv);
 
         // Initialize the data in the employee spinner
         Spinner spinner = (Spinner) findViewById(R.id.employeespinner);
@@ -66,19 +78,13 @@ public class EmployeeMenu extends AppCompatActivity{
         this.employees = new HashMap<Integer, Employee>();
         int i = 0;
         for (Iterator<Employee> employees = ftm.getEmployees().iterator();
-             employees.hasNext(); i++) {
+             employees.hasNext();i++) {
             Employee e = employees.next();
             employeeAdapter.add(e.getName());
             this.employees.put(i, e);
         }
+
         spinner.setAdapter(employeeAdapter);
-    }
-    private void refreshData(){
-        TextView tv;
-        tv = (TextView) findViewById(R.id.employee_name);
-        tv.setText("");
-        tv = (TextView) findViewById(R.id.employee_role);
-        displayError(tv);
 
     }
 
@@ -103,7 +109,21 @@ public class EmployeeMenu extends AppCompatActivity{
             error = e.getMessage();
         }
         refreshData();
-        refreshSpinner();
+    }
+
+    public void removeEmployee(View v){
+        Spinner eSpinner=(Spinner) findViewById(R.id.employeespinner);
+        FoodTruckManagementController ftc = new FoodTruckManagementController();
+
+        try {
+            ftc.removeEmployee(employees.get(eSpinner.getSelectedItemPosition()));
+        } catch (InvalidInputException e) {
+
+            error = e.getMessage();
+        }
+        // update visuals
+
+        refreshData();
     }
 
     public void assignSchedule(View v) throws ParseException {
@@ -192,4 +212,6 @@ public class EmployeeMenu extends AppCompatActivity{
         TextView tv = (TextView) findViewById(id);
         tv.setText(String.format("%02d:%02d", h, m));
     }
+
+
 }

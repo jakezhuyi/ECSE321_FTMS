@@ -20,8 +20,8 @@ import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckMan
 
 public class MainActivity extends AppCompatActivity {
 
-    public FoodTruckManager ftm;
     private String error = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
-        System.out.println(getFilesDir().getAbsolutePath() + "foodtruckmanagement.xml");
-        PersistenceFoodTruckManagement.loadFoodTruckManagementModel();
-
-        ftm = FoodTruckManager.getInstance();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     public void setTime(int id, int h, int m) {
         TextView tv = (TextView) findViewById(id);
         tv.setText(String.format("%02d:%02d", h, m));

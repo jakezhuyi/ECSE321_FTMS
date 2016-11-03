@@ -52,6 +52,7 @@ public class SupplyMenu extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.equipmentSupplyAmount_name);
         tv.setText("");
         displayError(tv);
+
     }
 
     private void displayError(TextView tv){

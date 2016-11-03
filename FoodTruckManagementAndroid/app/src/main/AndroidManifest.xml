@@ -21,7 +21,7 @@
         <activity
             android:name=".EmployeeMenu"
             android:label="@string/title_activity_employee_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SupplyMenu"
             android:label="@string/title_activity_supply_menu"
