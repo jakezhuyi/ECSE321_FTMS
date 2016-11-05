@@ -87,6 +87,19 @@
 			<p><input type="submit" value="Add Employee"/></p>
 		</form>
 		
+		<form action="removeemployee.php" method="post">
+			<p>Name <input type="text" name="name" />
+			<span class="error">
+			<?php
+			if (isset($_SESSION['errorRemoveEmployee']) && !empty($_SESSION['errorRemoveEmployee'])) {
+				echo " * " . $_SESSION["errorRemoveEmployee"];
+			}
+			?>
+			</span></p>
+			<p><input type="submit" value="DONALD TRUMP: 'YOU'RE FIRED'"/></p>
+		</form>
+		
+		
 		<form action="addschedule.php" method="post">
 			<p>Employee Name? <input type="text" name="employee_name" />
 			<span class="error">
@@ -131,6 +144,8 @@
 			?>
 			</span></p>
 			<p><input type="submit" value="Add Schedule"/></p>
+			
+			
 		</form>	
 	</body>
 </html>

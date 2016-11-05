@@ -237,6 +237,32 @@ class Controller
 		
 	}
 	
+	public function fireEmployee($em_name)
+	{
+		$pm = new PersistenceFoodTruckManager();
+		$ftm = $pm->loadDataFromStore();
+		
+		$error = "";
+		$employees = $ftm->getEmployees();
+		
+		if($em_name == null)
+		{ 
+			throw new Exception("Employee needs to be selected for firing.");
+		}
+
+		foreach ( $ftm->getEmployees () as $employee )
+		{
+			if (strcmp ( $employee->getName(), $em_name ) == 0)
+			{
+				$ftm->removeEmployee($employee);
+				$pm->writeDataToStore($ftm);
+				return;
+			}
+		}
+		
+		throw new Exception("Employee does not exist.");
+	}
+	
 	public function setSchedule($employee_name, $event_date, $starttime, $endtime)
 	{
 		$name = InputValidator::validate_input($employee_name);
