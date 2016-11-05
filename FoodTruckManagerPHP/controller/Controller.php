@@ -40,7 +40,7 @@ class Controller
 			// 3. check if the food item exists
 			// if it does change the amount
 			// if it does not, set the amount
-			foreach ( $ftm->getEquipment () as $food )
+			foreach ( $ftm->getFoodSupplies () as $food )
 			{
 				if (strcmp ( $food->getName(), $food_name ) == 0)
 				{
@@ -149,7 +149,7 @@ class Controller
 					$matched = TRUE;
 					$old_amount = $equipment->getSupply();
 					$equipment_num += $old_amount;
-					$food->setAmount($equipment_num);
+					$equipment->setAmount($equipment_num);
 					break;
 				}
 			}

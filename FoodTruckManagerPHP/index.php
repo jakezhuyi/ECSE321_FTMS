@@ -144,9 +144,15 @@
 			?>
 			</span></p>
 			<p><input type="submit" value="Add Schedule"/></p>
-			
-			
 		</form>	
+		
+		<form action="viewsupply.php" method="post">
+			<p><input type="submit" value="View Supply"/></p>
+		</form>
+		
+		<form action="viewequipment.php" method="post">
+			<p><input type="submit" value="View Equipment"/></p>
+		</form>
 	</body>
 </html>
 
