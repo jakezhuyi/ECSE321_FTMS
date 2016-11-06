@@ -16,7 +16,7 @@ import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
 import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckManagement;
 
 public class SupplyMenu extends AppCompatActivity {
-    public FoodTruckManager ftm;
+    //public FoodTruckManager ftm;
     private String error = null;
 
     @Override
@@ -26,11 +26,11 @@ public class SupplyMenu extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
+        /*PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
         System.out.println(getFilesDir().getAbsolutePath() + "foodtruckmanagement.xml");
         PersistenceFoodTruckManagement.loadFoodTruckManagementModel();
 
-        ftm = FoodTruckManager.getInstance();
+        ftm = FoodTruckManager.getInstance();*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

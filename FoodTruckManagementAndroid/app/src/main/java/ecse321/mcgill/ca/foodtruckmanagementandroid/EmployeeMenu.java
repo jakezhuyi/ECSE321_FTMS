@@ -26,10 +26,10 @@ import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
 import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckManagement;
 
 public class EmployeeMenu extends AppCompatActivity{
-    private FoodTruckManager ftm;
+    //private FoodTruckManager ftm;
     private String error = null;
     private HashMap<Integer, Employee> employees;
-    public static boolean check = true;
+    //public static boolean check = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +37,13 @@ public class EmployeeMenu extends AppCompatActivity{
         setContentView(R.layout.activity_employee_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (check) {
+        /*if (check) {
             PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator + "foodtruckmanagement.xml");
             System.out.println(getFilesDir().getAbsolutePath() + File.pathSeparator + "foodtruckmanagement.xml");
             PersistenceFoodTruckManagement.loadFoodTruckManagementModel();
 
             check = false;
-        }
+        }*/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,14 +52,8 @@ public class EmployeeMenu extends AppCompatActivity{
                         .setAction("Action", null).show();
             }
         });
-        ftm = FoodTruckManager.getInstance();
+        //ftm = FoodTruckManager.getInstance();
         refreshData();
-    }
-
-    @Override
-    protected void onRestart(){
-        super.onRestart();
-       check = false;
     }
 
     private void refreshData(){
@@ -77,7 +71,7 @@ public class EmployeeMenu extends AppCompatActivity{
                 android.R.layout.simple_spinner_dropdown_item);
         this.employees = new HashMap<Integer, Employee>();
         int i = 0;
-        for (Iterator<Employee> employees = ftm.getEmployees().iterator();
+        for (Iterator<Employee> employees = MainActivity.ftm.getEmployees().iterator();
              employees.hasNext();i++) {
             Employee e = employees.next();
             employeeAdapter.add(e.getName());
