@@ -511,10 +511,15 @@ public class FoodTruckManagementController {
 			isError = true;
 			error = "Menu item cannot be empty! ";
 		} 
-		if(amount <= 0)
+		if(amount == 0)
 		{
 			isError = true;
 			error = error + "Menu item amount cannot be empty!";
+		}
+		else if(amount < 0)
+		{
+			isError = true;
+			error = error + "Menu item amount cannot be negative!";
 		}
 		
 		if(!isError)

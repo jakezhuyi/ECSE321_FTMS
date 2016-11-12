@@ -95,34 +95,38 @@
       <name>Banana</name>
       <amount>34</amount>
     </supply>
+    <supply id="40">
+      <name>Water</name>
+      <amount>32</amount>
+    </supply>
   </foodSupplies>
-  <transactionOrders id="40"/>
-  <menuItems id="41">
-    <item id="42">
+  <transactionOrders id="41"/>
+  <menuItems id="42">
+    <item id="43">
       <name>Burger</name>
       <amountSold>6</amountSold>
     </item>
-    <item id="43">
+    <item id="44">
       <name>Salad</name>
       <amountSold>51</amountSold>
     </item>
-    <item id="44">
+    <item id="45">
       <name>Pizza</name>
       <amountSold>35</amountSold>
     </item>
-    <item id="45">
+    <item id="46">
       <name>French fries</name>
       <amountSold>23505</amountSold>
     </item>
-    <item id="46">
+    <item id="47">
       <name>Yams</name>
       <amountSold>64</amountSold>
     </item>
-    <item id="47">
+    <item id="48">
       <name>Oysters</name>
       <amountSold>60</amountSold>
     </item>
-    <item id="48">
+    <item id="49">
       <name>Crab</name>
       <amountSold>8046</amountSold>
     </item>
