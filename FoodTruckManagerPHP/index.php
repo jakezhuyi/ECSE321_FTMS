@@ -153,6 +153,10 @@
 		<form action="viewequipment.php" method="post">
 			<p><input type="submit" value="View Equipment"/></p>
 		</form>
+		
+		<form action="viewschedules.php" method="post">
+			<p><input type="submit" value="View Schedules"/></p>
+		</form>
 	</body>
 </html>
 
