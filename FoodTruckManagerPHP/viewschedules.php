@@ -9,7 +9,7 @@ $ftm = $pm->loadDataFromStore();
 foreach ( $ftm->getEmployees () as $employee )
 {
 	$times = "";
-	foreach ($employee->getSchedule() as $schedule)
+	foreach ($employee->getSchedules() as $schedule)
 	{
 		$times = $schedule->getWorkday() . " from " . $schedule->getStartTime() . " to " .$schedule->getEndTime();
 	}

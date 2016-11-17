@@ -96,7 +96,7 @@
 			}
 			?>
 			</span></p>
-			<p><input type="submit" value="DONALD TRUMP: 'YOU'RE FIRED'"/></p>
+			<p><input type="submit" value="Remove Employee'"/></p>
 		</form>
 		
 		
