@@ -30,7 +30,11 @@
             android:name=".Supply"
             android:label="@string/title_activity_supply"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EquipmentSupplyView"></activity>
+        <activity android:name=".EquipmentSupplyView" />
+        <activity
+            android:name=".EmployeeListView"
+            android:label="@string/title_activity_employee_list_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

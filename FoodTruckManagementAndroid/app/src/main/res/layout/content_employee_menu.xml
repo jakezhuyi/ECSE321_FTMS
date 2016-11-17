@@ -166,6 +166,16 @@
                 android:layout_gravity="end"
                 android:onClick="removeEmployee" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="viewEmployeeList"
+                android:text="View Employee List"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

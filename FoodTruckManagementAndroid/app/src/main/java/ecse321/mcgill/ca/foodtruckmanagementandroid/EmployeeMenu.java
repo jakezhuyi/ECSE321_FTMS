@@ -119,6 +119,9 @@ public class EmployeeMenu extends AppCompatActivity{
 
         refreshData();
     }
+    public void viewEmployeeList(View v){
+        startActivity(new Intent(EmployeeMenu.this, EmployeeListView.class));
+    }
 
     public void assignSchedule(View v) throws ParseException {
         Spinner eSpinner=(Spinner) findViewById(R.id.employeespinner);
