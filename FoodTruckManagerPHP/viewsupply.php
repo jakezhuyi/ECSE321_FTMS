@@ -8,7 +8,7 @@ $ftm = $pm->loadDataFromStore();
 
 foreach ( $ftm->getFoodSupplies () as $food )
 {
-	echo 'There are ' . $food->getAmount() . ' ' . $food->getName() . "<br>";
+	echo $food->getName() . ": " . $food->getAmount()  .  "<br>";
 }
 
 ?>

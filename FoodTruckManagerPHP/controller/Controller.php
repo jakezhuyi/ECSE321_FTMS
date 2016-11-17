@@ -149,7 +149,7 @@ class Controller
 					$matched = TRUE;
 					$old_amount = $equipment->getSupply();
 					$equipment_num += $old_amount;
-					$equipment->setAmount($equipment_num);
+					$equipment->setSupply($equipment_num);
 					break;
 				}
 			}
