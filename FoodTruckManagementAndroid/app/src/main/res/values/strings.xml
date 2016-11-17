@@ -26,4 +26,7 @@
     <string name="newevent_button">Assign Schedule</string>
     <string name="employeespinner_label">Employee Name</string>
     <string name="fireEmployee_button">Fire Employee</string>
+    <string name="ViewSupply_button">View Supply</string>
+    <string name="title_activity_supply">Supply</string>
+    <string name="ViewEquipment_button">View Equipment</string>
 </resources>
