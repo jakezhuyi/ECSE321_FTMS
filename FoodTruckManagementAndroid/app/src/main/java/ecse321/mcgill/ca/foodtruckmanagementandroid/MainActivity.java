@@ -56,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, SupplyMenu.class));
     }
 
+    public void viewSupply(View v){
+        startActivity(new Intent(MainActivity.this, Supply.class));
+    }
+
+    public void viewEquipment(View c){
+        startActivity(new Intent(MainActivity.this, EquipmentSupplyView.class));
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
