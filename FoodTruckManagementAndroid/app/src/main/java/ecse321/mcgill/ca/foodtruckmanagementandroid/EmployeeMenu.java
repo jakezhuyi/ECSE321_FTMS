@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -118,6 +119,36 @@ public class EmployeeMenu extends AppCompatActivity{
         // update visuals
 
         refreshData();
+    }
+    public void viewEmployeeScedule(View v){
+        Spinner eSpinner=(Spinner) findViewById(R.id.employeespinner);
+        ListView listView = (ListView) findViewById(R.id.EmployeeScheduleViewer_list);
+        if (MainActivity.ftm.getEmployees().size() != 0){
+            String [] array = new String[MainActivity.ftm.getEmployee(eSpinner.getSelectedItemPosition()).getSchedules().size()];
+
+            for (int i = 0; i < MainActivity.ftm.getEmployee(eSpinner.getSelectedItemPosition()).getSchedules().size();i++){
+              String day = "Day:                  " + MainActivity.ftm.getEmployee(eSpinner.getSelectedItemPosition()).getSchedule(i).getWorkDay().toString() +
+                        "\nStart Time:      " + MainActivity.ftm.getEmployee(eSpinner.getSelectedItemPosition()).getSchedule(i).getStartTime().toString()
+                        +"\nEnd Time:        " + MainActivity.ftm.getEmployee(eSpinner.getSelectedItemPosition()).getSchedule(i).getEndTime().toString();
+                array[i] = day;
+            }
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                    this,
+                android.R.layout.simple_list_item_1,
+                array);
+
+            listView.setAdapter(arrayAdapter);
+        } else {
+            String [] array = new String[1];
+            array[0] = "No employee selected";
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    array);
+
+            listView.setAdapter(arrayAdapter);
+        }
+
     }
     public void viewEmployeeList(View v){
         startActivity(new Intent(EmployeeMenu.this, EmployeeListView.class));

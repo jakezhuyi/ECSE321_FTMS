@@ -44,29 +44,7 @@
                 android:layout_gravity="end"
                 android:onClick="employeeMenu"/>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-               android:layout_height="wrap_content"
-              android:layout_width="wrap_content"
-              android:text="@string/ViewSupply_button"
-              android:layout_gravity="end"
-              android:onClick="viewSupply"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/ViewEquipment_button"
-                android:layout_gravity="end"
-                android:onClick="viewEquipment"/>
 
-        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

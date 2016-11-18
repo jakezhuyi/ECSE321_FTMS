@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewSupply(View v){
+
         startActivity(new Intent(MainActivity.this, Supply.class));
     }
 

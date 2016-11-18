@@ -141,6 +141,14 @@ public class SupplyMenu extends AppCompatActivity {
         }
         refreshData();
     }
+    public void viewSupply(View v){
+
+        startActivity(new Intent(SupplyMenu.this, Supply.class));
+    }
+
+    public void viewEquipment(View c){
+        startActivity(new Intent(SupplyMenu.this, EquipmentSupplyView.class));
+    }
 
 
 

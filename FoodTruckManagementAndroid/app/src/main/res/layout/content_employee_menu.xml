@@ -174,8 +174,19 @@
                 android:layout_height="wrap_content"
                 android:onClick="viewEmployeeList"
                 android:text="View Employee List"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="viewEmployeeScedule"
+                android:text="View Employee Schedule"/>
 
         </LinearLayout>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/EmployeeScheduleViewer_list">
+
+        </ListView>
     </LinearLayout>
 
 </RelativeLayout>
