@@ -16,8 +16,6 @@ try
 }
 catch ( Exception $e )
 {
-	// echo "CATCHED";
-	// echo $e;
 	$errors = explode ( "@", $e->getMessage () );
 	foreach ( $errors as $error )
 	{
@@ -27,7 +25,6 @@ catch ( Exception $e )
 		if (substr ( $error, 0, 1 ) == "3") $_SESSION["errorStartTime"] = substr($error, 1);
 		if (substr ( $error, 0, 1 ) == "4") $_SESSION["errorEndTime"] = substr($error, 1);
 	}
-	// echo "*************errorEventDate: " . $_SESSION["errorEventDate"];
 }
 ?>
 <!DOCTYPE html>

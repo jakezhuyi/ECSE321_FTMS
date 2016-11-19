@@ -10,13 +10,13 @@ try {
 	$_SESSION["errorRemoveEmployee"] = $e->getMessage();
 }
 
-echo "*************errorRemoveEmployee: " . $_SESSION["errorRemoveEmployee"];
+// echo "*************errorRemoveEmployee: " . $_SESSION["errorRemoveEmployee"];
 ?>
 
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="refresh" content="5; url=/FoodTruckManagerPHP/" />
+		<meta http-equiv="refresh" content="0; url=/FoodTruckManagerPHP/" />
 	</head>
 </html>

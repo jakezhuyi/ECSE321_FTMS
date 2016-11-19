@@ -20,6 +20,8 @@ class FoodTruckManager
   private $equipment;
   private $foodSupplies;
   private $transactionOrders;
+  private $menuItems;
+ 
 
   //------------------------
   // CONSTRUCTOR
@@ -31,6 +33,7 @@ class FoodTruckManager
     $this->equipment = array();
     $this->foodSupplies = array();
     $this->transactionOrders = array();
+    $this->menuItems = array();
   }
 
   public static function getInstance()
@@ -209,7 +212,47 @@ class FoodTruckManager
     $index = $wasFound ? $index : -1;
     return $index;
   }
-
+  
+  public function getMenuItem_index($index)
+  {
+  	$aMenuItem = $this->menuItems[$index];
+  	return $aMenuItem;
+  }
+  
+  public function getMenuItems()
+  {
+  	$newMenuItems = $this->menuItems;
+  	return $newMenuItems;
+  }
+  
+  public function numberOfMenuItems()
+  {
+  	$number = count($this->menuItems);
+  	return $number;
+  }
+  
+  public function hasMenuItems()
+  {
+  	$has = $this->numberOfMenuItems() > 0;
+  	return $has;
+  }
+  
+  public function indexOfMenuItem($aMenuItem)
+  {
+  	$wasFound = false;
+  	$index = 0;
+  	foreach($this->menuItems as $menuItem)
+  	{
+  		if ($menuItem->equals($aMenuItem))
+  		{
+  			$wasFound = true;
+  			break;
+  		}
+  		$index += 1;
+  	}
+  	$index = $wasFound ? $index : -1;
+  	return $index;
+  }
   public static function minimumNumberOfEmployees()
   {
     return 0;
@@ -453,6 +496,7 @@ class FoodTruckManager
     $this->equipment = array();
     $this->foodSupplies = array();
     $this->transactionOrders = array();
+    $this->menuItems = array();
   }
 
 }

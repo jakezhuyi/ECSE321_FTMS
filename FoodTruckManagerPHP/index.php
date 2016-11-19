@@ -146,6 +146,35 @@
 			<p><input type="submit" value="Add Schedule"/></p>
 		</form>	
 		
+		<form action="addmenuitem.php" method="post">
+			<p>Name <input type="text" name="menuitem" />
+			<span class="error">
+			<?php
+			if (isset($_SESSION['errorMenuItem']) && !empty($_SESSION['errorMenuItem'])) {
+				echo " * " . $_SESSION["errorMenuItem"];
+			}
+			?>
+			</span></p>
+			<p><input type="submit" value="Add Menu Item"/></p>
+		</form>
+		
+		<?php
+			echo "ORDER HERE"
+		?>
+		
+		<form action="order.php" method="post">
+			<p>Name <input type="text" name="order" />
+			<p>Amount <input type="text" name="amount" />
+			<span class="error">
+			<?php
+			if (isset($_SESSION['errorOrder']) && !empty($_SESSION['errorOrder'])) {
+				echo " * " . $_SESSION["errorOrder"];
+			}
+			?>
+			</span></p>
+			<p><input type="submit" value="ORDER"/></p>
+		</form>
+		
 		<form action="viewsupply.php" method="post">
 			<p><input type="submit" value="View Supply"/></p>
 		</form>

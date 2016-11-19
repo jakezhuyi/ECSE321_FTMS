@@ -4,10 +4,10 @@ require_once (__DIR__.'/controller/Controller.php');
 session_start ();
 $c = new Controller ();
 try {
-	$c->addEquipment( $_POST ['equipment_name'], $_POST['equipment_num']);
-	$_SESSION["errorEquipment"] = "";
+	$c->order( $_POST ['order'], $_POST ['amount']);
+	$_SESSION["errorOrder"] = "";
 } catch ( Exception $e ) {
-	$_SESSION["errorEquipment"] = $e->getMessage();
+	$_SESSION["errorOrder"] = $e->getMessage();
 }
 ?>
 

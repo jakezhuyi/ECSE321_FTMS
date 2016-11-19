@@ -6,6 +6,8 @@ require_once (__DIR__.'/../model/FoodSupply.php');
 require_once (__DIR__.'/../model/Equipment.php');
 require_once (__DIR__.'/../model/Employee.php');
 require_once (__DIR__.'/../model/Schedule.php');
+require_once (__DIR__.'/../model/MenuItem.php');
+require_once (__DIR__.'/../model/TransactionOrder.php');
 
 class Controller
 {
@@ -311,5 +313,58 @@ class Controller
 		$pm->writeDataToStore($ftm);
 	
 	}
+	
+	public function addMenuItem($menu_name)
+	{
+		
+		$pm = new PersistenceFoodTruckManager();
+		$ftm = $pm->loadDataFromStore();
+	
+		$name = InputValidator::validate_input($menu_name);
+	
+		if($name == null || strlen($name) == 0)
+		{
+			throw new Exception("Name cannot be empty!");
+		}
+	
+		$new_menu_item = new MenuItem($name, 0);
+		$ftm->addEmployee($new_menu_item);
+		$pm->writeDataToStore($ftm);
+	
+	}
+	
+	public function order($order_name, $order_num)
+	{
+		$name = InputValidator::validate_input($order_name);
+		if($name == null || strlen($name) == 0)
+		{
+			throw new Exception("Name name cannot be empty!");
+		}
+		
+		else if($order_num <= 0)
+		{
+			throw new Exception("Amount cannot be less than or equal to zero!");
+		}
+		
+		else
+		{
+			
+			$pm = new PersistenceFoodTruckManager();
+			$ftm = $pm->loadDataFromStore();
+		
+			foreach ( $ftm->getMenuItems () as $menuItem )
+			{
+				if (strcmp ( $menuItem->getName(), $order_name ) == 0)
+				{
+					$menuItem->setAmountSold($menuItem.getAmountSold() + $menu_num);
+					$pm->writeDataToStore($ftm);
+					return;
+				}
+			}
+			throw new Exception("Menu Item does not exist");
+			
+		}
+	}
+	
 }
 ?>
