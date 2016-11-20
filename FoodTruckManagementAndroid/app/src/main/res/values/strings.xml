@@ -31,4 +31,14 @@
     <string name="ViewEquipment_button">View Equipment</string>
     <string name="title_activity_employee_list_view">EmployeeListView</string>
     <string name="title_activity_employee_schedule_viewer">EmployeeScheduleViewer</string>
+    <string name="title_activity_food_menu">FoodMenu</string>
+    <string name="MenuItems_Label">Menu Items</string>
+    <string name="MenuItem_hint">Menu Item?</string>
+    <string name="MenuiItemMenu_button">Menu Item Menu</string>
+    <string name="AddMenuIte_button">Add Menu Item</string>
+    <string name="menuspinner_label">Menu Item</string>
+    <string name="ClaimOrder_Label">Claim Order</string>
+    <string name="MenuItemAmount_hint">Amount?</string>
+    <string name="claimOrder_button">Claim Order</string>
+    <string name="ViewPopReport_button">View Popularity Report</string>
 </resources>

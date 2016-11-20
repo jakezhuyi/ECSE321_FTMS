@@ -38,6 +38,10 @@
         <activity
             android:name=".EmployeeScheduleViewer"
             android:label="@string/title_activity_employee_schedule_viewer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoodMenu"
+            android:label="@string/title_activity_food_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
