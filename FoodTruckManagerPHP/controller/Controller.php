@@ -356,7 +356,7 @@ class Controller
 			{
 				if (strcmp ( $menuItem->getName(), $order_name ) == 0)
 				{
-					$menuItem->setAmountSold($menuItem.getAmountSold() + $menu_num);
+					$menuItem->setAmountSold($menuItem->getAmountSold() + $menu_num);
 					$pm->writeDataToStore($ftm);
 					return;
 				}
