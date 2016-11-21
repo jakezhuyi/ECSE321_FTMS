@@ -27,11 +27,11 @@
     <string name="employeespinner_label">Employee Name</string>
     <string name="fireEmployee_button">Fire Employee</string>
     <string name="ViewSupply_button">View Supply</string>
-    <string name="title_activity_supply">Supply</string>
+    <string name="title_activity_supply">Supply Menu</string>
     <string name="ViewEquipment_button">View Equipment</string>
-    <string name="title_activity_employee_list_view">EmployeeListView</string>
-    <string name="title_activity_employee_schedule_viewer">EmployeeScheduleViewer</string>
-    <string name="title_activity_food_menu">FoodMenu</string>
+    <string name="title_activity_employee_list_view">Employee List</string>
+    <string name="title_activity_employee_schedule_viewer">Employee Schedule </string>
+    <string name="title_activity_food_menu">Food Menu</string>
     <string name="MenuItems_Label">Menu Items</string>
     <string name="MenuItem_hint">Menu Item?</string>
     <string name="MenuiItemMenu_button">Menu Item Menu</string>

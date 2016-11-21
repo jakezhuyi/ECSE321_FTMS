@@ -31,6 +31,10 @@ public class Supply extends AppCompatActivity {
             String supplyname = "Item:       " + MainActivity.ftm.getFoodSupply(i).getName() + "\nAmount: " + MainActivity.ftm.getFoodSupply(i).getAmount();
             array[i] = supplyname;
         }
+        if (MainActivity.ftm.getFoodSupplies().size() == 0){
+            array = new String[1];
+            array [0] = "No Items To display";
+        }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,

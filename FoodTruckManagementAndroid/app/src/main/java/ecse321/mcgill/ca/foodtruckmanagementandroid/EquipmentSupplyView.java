@@ -17,6 +17,10 @@ public class EquipmentSupplyView extends AppCompatActivity {
             String supplyname = "Item:       " + MainActivity.ftm.getEquipment(i).getName() + "\nAmount: " + MainActivity.ftm.getEquipment(i).getAmount();
             array[i] = supplyname;
         }
+        if (MainActivity.ftm.getEquipment().size() == 0){
+            array = new String[1];
+            array [0] = "No Items To display";
+        }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,

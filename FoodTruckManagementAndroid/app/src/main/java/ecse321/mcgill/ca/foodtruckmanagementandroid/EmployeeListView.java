@@ -26,6 +26,10 @@ public class EmployeeListView extends AppCompatActivity {
                     "\nRole:      " + MainActivity.ftm.getEmployee(i).getRole();
             array[i] = employee;
         }
+        if (MainActivity.ftm.getEmployees().size() == 0){
+            array = new String[1];
+            array [0] = "No Employees To display";
+        }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
