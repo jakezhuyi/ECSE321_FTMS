@@ -354,9 +354,9 @@ class Controller
 		
 			foreach ( $ftm->getMenuItems () as $menuItem )
 			{
-				if (strcmp ( $menuItem->getName(), $order_name ) == 0)
+				if (strcmp ( $menuItem->getName(), $name ) == 0)
 				{
-					$menuItem->setAmountSold($menuItem->getAmountSold() + $menu_num);
+					$menuItem->setAmountSold($menuItem->getAmountSold() + $order_num);
 					$pm->writeDataToStore($ftm);
 					return;
 				}
