@@ -1,12 +1,24 @@
 <manager id="1">
-  <employees id="2"/>
-  <equipment id="3"/>
-  <foodSupplies id="4">
-    <supply id="5">
+  <employees id="2">
+    <employee id="3">
+      <name>Marty</name>
+      <role>Chef</role>
+      <schedules id="4">
+        <schedule id="5">
+          <workDay id="6">2016-11-24</workDay>
+          <startTime id="7">14:00:00</startTime>
+          <endTime id="8">21:00:00</endTime>
+        </schedule>
+      </schedules>
+    </employee>
+  </employees>
+  <equipment id="9"/>
+  <foodSupplies id="10">
+    <supply id="11">
       <name>Tomatoe</name>
       <amount>1</amount>
     </supply>
   </foodSupplies>
-  <transactionOrders id="6"/>
-  <menuItems id="7"/>
+  <transactionOrders id="12"/>
+  <menuItems id="13"/>
 </manager>
