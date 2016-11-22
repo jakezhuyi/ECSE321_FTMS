@@ -25,8 +25,12 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
-import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementController;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.EmployeeController;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.EquipmentSupplyController;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodSupplyController;
 import ca.mcgill.ecse321.foodtruckmanagement.controller.InvalidInputException;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.MenuItemController;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.SupplyController;
 import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
 import ca.mcgill.ecse321.foodtruckmanagement.model.MenuItem;
@@ -639,7 +643,7 @@ public class FoodTruckManagementPage extends JFrame {
 	
 	private void addSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		//call controller
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		SupplyController ftmc = new FoodSupplyController();
 		error = null;
 		
 		String name = supplyNameTextField.getText();
@@ -654,7 +658,7 @@ public class FoodTruckManagementPage extends JFrame {
 		} finally {
 		
 			try {
-				ftmc.addFoodSupply(name, amount);
+				ftmc.addSupply(name, amount);
 			} catch (InvalidInputException e) {
 				error = e.getMessage();
 			} 
@@ -665,7 +669,7 @@ public class FoodTruckManagementPage extends JFrame {
 	}
 	
 	private void removeSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		SupplyController ftmc = new FoodSupplyController();
 		error = null;
 		
 		String name = supplyNameTextField.getText();
@@ -678,7 +682,7 @@ public class FoodTruckManagementPage extends JFrame {
 		} finally {
 		
 			try {
-				ftmc.removeFoodSupply(name, amount);
+				ftmc.removeSupply(name, amount);
 			} catch (InvalidInputException e) {
 				error = e.getMessage();
 			} 
@@ -690,7 +694,7 @@ public class FoodTruckManagementPage extends JFrame {
 	
 	private void addEquipmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		//call controller
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		SupplyController ftmc = new EquipmentSupplyController();
 		error = null;
 		
 		String name = equipmentNameTextField.getText();
@@ -705,7 +709,7 @@ public class FoodTruckManagementPage extends JFrame {
 		} finally {
 		
 			try {
-				ftmc.addEquipment(name, amount);
+				ftmc.addSupply(name, amount);
 			} catch (InvalidInputException e) {
 				error = e.getMessage();
 			} 
@@ -716,7 +720,7 @@ public class FoodTruckManagementPage extends JFrame {
 	}
 	
 	private void removeEquipmentButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		SupplyController ftmc = new EquipmentSupplyController();
 		error = null;
 		
 		String name = equipmentNameTextField.getText();
@@ -729,7 +733,7 @@ public class FoodTruckManagementPage extends JFrame {
 		} finally {
 		
 			try {
-				ftmc.removeEquipment(name, amount);
+				ftmc.removeSupply(name, amount);
 			} catch (InvalidInputException e) {
 				error = e.getMessage();
 			} 
@@ -739,66 +743,8 @@ public class FoodTruckManagementPage extends JFrame {
 		
 	}
 	
-	private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
-		error = null;
-		String name = employeeNameTextField.getText();
-		String role = employeeRoleTextField.getText();
-		
-		try {
-			ftmc.addEmployee(name, role);
-		} catch (InvalidInputException e) {
-			error = e.getMessage();
-		}
-		
-		refreshData();
-				
-	}
-	
-	private void addMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		//call controller
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
-		error = null;
-		
-		String name = menuItemTextField.getText();
-		
-			try {
-				ftmc.addMenuItem(name);
-			} catch (InvalidInputException e) {
-				error = e.getMessage();
-			} 
-			refreshData();
-	}
-	
-	private void claimOrderButtonActionPerformed(java.awt.event.ActionEvent evt){
-		//call controller
-				FoodTruckManagementController ftmc = new FoodTruckManagementController();
-				error = null;
-				
-				MenuItem claimedMenuItem = menuItems.get(selectedMenuItem);
-				int amount = 0;
-				
-				try {
-					amount = Integer.parseInt(claimedMenuItemAmountTextField.getText());
-				} catch (Exception e) {
-					amount = 0;
-				
-				} finally {
-				
-					try {
-						ftmc.claimOrder(claimedMenuItem,amount);
-					} catch (InvalidInputException e) {
-						error = e.getMessage();
-					} 
-					
-					refreshData();
-				}
-		
-		
-	}
-	
 	private void viewSupplyButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		SupplyController ftmc = new EquipmentSupplyController();
 		
 		String label = ftmc.viewSupply();
 		JLabel supplyList = new JLabel();
@@ -816,8 +762,51 @@ public class FoodTruckManagementPage extends JFrame {
 		frame.setVisible(true);
 	}
 	
+	
+	private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		EmployeeController ftmc = new EmployeeController();
+		error = null;
+		String name = employeeNameTextField.getText();
+		String role = employeeRoleTextField.getText();
+		
+		try {
+			ftmc.addEmployee(name, role);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		refreshData();
+				
+	}
+	
+	private void removeEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = null;
+		EmployeeController ftmc = new EmployeeController();
+		
+		try {
+			ftmc.removeEmployee(employees3.get(selectedEmployee3));
+			JFrame frame = new JFrame("You're Fired!");
+			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			JLabel label = new JLabel();
+			String text = "<html><center><big>" + employees3.get(selectedEmployee3).getName() + ", You're Fired!</big></center><br/><img src=\"http://www.jobscience.com/wp-content/uploads/2013/08/Donald-Trump-Youre-Fired.jpg\" alt=\"Mountain View\" style=\"width:304px;height:228px\"></html>";
+			label.setText(text);
+			
+			
+			frame.getContentPane().add(label);
+			
+			frame.pack();
+			frame.setVisible(true);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		
+		refreshData();
+		
+	}
+	
 	private void viewEmployeesButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		EmployeeController ftmc = new EmployeeController();
 		
 		String label = ftmc.viewEmployees();
 		JLabel employeeList = new JLabel();
@@ -846,7 +835,7 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		
 		//call the controller
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		EmployeeController ftmc = new EmployeeController();
 		try {
 			ftmc.assignSchedule(employees.get(selectedEmployee),(java.sql.Date) scheduleDatePicker.getModel().getValue(), startTime, endTime);
 		} catch (InvalidInputException e) {
@@ -858,10 +847,11 @@ public class FoodTruckManagementPage extends JFrame {
 		refreshData();
 	}
 	
+
 	private void viewScheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		error = null;
 		
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		EmployeeController ftmc = new EmployeeController();
 		try {
 			String label = ftmc.viewSchedule(employees2.get(selectedEmployee2));
 			JLabel weeklySchedule = new JLabel();
@@ -878,9 +868,53 @@ public class FoodTruckManagementPage extends JFrame {
 		
 		refreshData();
 	}
+	
+	private void addMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		//call controller
+		MenuItemController ftmc = new MenuItemController();
+		error = null;
+		
+		String name = menuItemTextField.getText();
+		
+			try {
+				ftmc.addMenuItem(name);
+			} catch (InvalidInputException e) {
+				error = e.getMessage();
+			} 
+			refreshData();
+	}
+	
+	private void claimOrderButtonActionPerformed(java.awt.event.ActionEvent evt){
+		//call controller
+				MenuItemController ftmc = new MenuItemController();
+				error = null;
+				
+				MenuItem claimedMenuItem = menuItems.get(selectedMenuItem);
+				int amount = 0;
+				
+				try {
+					amount = Integer.parseInt(claimedMenuItemAmountTextField.getText());
+				} catch (Exception e) {
+					amount = 0;
+				
+				} finally {
+				
+					try {
+						ftmc.claimOrder(claimedMenuItem,amount);
+					} catch (InvalidInputException e) {
+						error = e.getMessage();
+					} 
+					
+					refreshData();
+				}
+		
+		
+	}
+	
+
 
 	private void viewPopularityReportButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
+		MenuItemController ftmc = new MenuItemController();
 		
 		String label = ftmc.viewPopularityReport();
 		JLabel popularityReportLabel = new JLabel();
@@ -897,31 +931,7 @@ public class FoodTruckManagementPage extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	private void removeEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		error = null;
-		FoodTruckManagementController ftmc = new FoodTruckManagementController();
-		
-		try {
-			ftmc.removeEmployee(employees3.get(selectedEmployee3));
-			JFrame frame = new JFrame("You're Fired!");
-			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-			JLabel label = new JLabel();
-			String text = "<html><center><big>" + employees3.get(selectedEmployee3).getName() + ", You're Fired!</big></center><br/><img src=\"http://www.jobscience.com/wp-content/uploads/2013/08/Donald-Trump-Youre-Fired.jpg\" alt=\"Mountain View\" style=\"width:304px;height:228px\"></html>";
-			label.setText(text);
-			
-			
-			frame.getContentPane().add(label);
-			
-			frame.pack();
-			frame.setVisible(true);
-		} catch (InvalidInputException e) {
-			error = e.getMessage();
-		}
-		
-		
-		refreshData();
-		
-	}
+
 	
 
 }
