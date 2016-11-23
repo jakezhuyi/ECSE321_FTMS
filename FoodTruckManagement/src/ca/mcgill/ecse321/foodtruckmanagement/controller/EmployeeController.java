@@ -20,7 +20,7 @@ public class EmployeeController {
 	{
 		String error = "";
 		boolean isError = false;
-		name = name.trim();
+		
 		
 		if (name == null || name.length() == 0)
 		{
@@ -38,6 +38,8 @@ public class EmployeeController {
 		{
 			throw new InvalidInputException(error);
 		}
+		
+		name = name.trim();
 		
 		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		role = role.substring(0, 1).toUpperCase() + role.substring(1).toLowerCase();
