@@ -10,7 +10,10 @@ public class FoodSupplyController extends SupplyController {
 	public void addSupply(String name, int amount) throws InvalidInputException{
 		String error = "";
 		boolean isError = false;
-		name = name.trim();
+		
+		try{
+			name = name.trim();
+		}catch(NullPointerException e){}
 
 		if(name == null || name.length() == 0)
 		{
@@ -51,7 +54,10 @@ public class FoodSupplyController extends SupplyController {
 	public void removeSupply(String name, int amount) throws InvalidInputException{
 		String error = "";
 		boolean isError = false;
-		name = name.trim();
+		
+		try{
+			name = name.trim();
+		}catch(NullPointerException e){}
 		
 		//Check whether the name field is empty
 		if(name == null || name.length() == 0)

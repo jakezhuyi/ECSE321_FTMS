@@ -15,7 +15,10 @@ public class MenuItemController {
 	{
 		String error = "";
 		boolean isError = false;
-		name = name.trim();
+		
+		try{
+			name = name.trim();
+		}catch(NullPointerException e){}
 
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		

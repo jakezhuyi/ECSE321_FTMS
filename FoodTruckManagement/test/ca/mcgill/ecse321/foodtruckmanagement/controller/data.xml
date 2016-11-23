@@ -1,0 +1,12 @@
+<ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager id="1">
+  <employees id="2"/>
+  <equipment id="3"/>
+  <foodSupplies id="4"/>
+  <transactionOrders id="5"/>
+  <menuItems id="6">
+    <menuitem id="7">
+      <name>Burger</name>
+      <amountSold>0</amountSold>
+    </menuitem>
+  </menuItems>
+</ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager>

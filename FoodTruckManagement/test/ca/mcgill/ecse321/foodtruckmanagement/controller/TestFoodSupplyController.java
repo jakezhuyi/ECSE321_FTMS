@@ -154,12 +154,12 @@ public class TestFoodSupplyController {
 			fail();
 		}
 		
-		assertEquals(0, ftm.getFoodSupplies().size());
+		assertEquals(0, ftm.getFoodSupply(0).getAmount());
 		
 		FoodTruckManager ftm2 = (FoodTruckManager) PersistenceXStream.loadFromXMLwithXStream();
 		
 		//Check in memory
-		assertEquals(0, ftm2.getFoodSupplies().size());
+		assertEquals(0, ftm2.getFoodSupply(0).getAmount());
 	}
 
 	

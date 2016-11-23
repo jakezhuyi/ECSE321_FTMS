@@ -178,7 +178,7 @@ public class TestMenuItemController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Menu item name cannot be empty! Menu item amount cannot be empty!", error);
+		assertEquals("Menu item cannot be empty! Menu item amount cannot be empty!", error);
 	}
 	
 	@Test
@@ -206,7 +206,7 @@ public class TestMenuItemController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Menu item amount cannot be empty!", error);
+		assertEquals("Menu item amount cannot be negative!", error);
 		
 		
 	}

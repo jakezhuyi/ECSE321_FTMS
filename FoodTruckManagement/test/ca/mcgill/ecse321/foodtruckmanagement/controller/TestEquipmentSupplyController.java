@@ -72,7 +72,7 @@ public class TestEquipmentSupplyController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Supply name cannot be empty! Supply amount must be an integer greater than zero! ", error);
+		assertEquals("Equipment name cannot be empty! Equipment amount must be an integer greater than zero! ", error);
 		
 		//check model in memory
 		assertEquals(0, ftm.getEquipment().size());
@@ -95,7 +95,7 @@ public class TestEquipmentSupplyController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Supply name cannot be empty! Supply amount must be an integer greater than zero! ", error);
+		assertEquals("Equipment name cannot be empty! Equipment amount must be an integer greater than zero! ", error);
 		
 		//check model in memory
 		assertEquals(0, ftm.getEquipment().size());
@@ -119,7 +119,7 @@ public class TestEquipmentSupplyController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Supply amount must be an integer greater than zero! ", error);
+		assertEquals("Equipment amount must be an integer greater than zero! ", error);
 		
 		//check model in memory
 		assertEquals(0, ftm.getEquipment().size());
@@ -152,12 +152,12 @@ public class TestEquipmentSupplyController {
 			fail();
 		}
 		
-		assertEquals(0, ftm.getEquipment().size());
+		assertEquals(0, ftm.getEquipment(0).getAmount());
 		
 		FoodTruckManager ftm2 = (FoodTruckManager) PersistenceXStream.loadFromXMLwithXStream();
 		
 		//Check in memory
-		assertEquals(0, ftm2.getEquipment().size());
+		assertEquals(0, ftm2.getEquipment(0).getAmount());
 	}
 
 	
@@ -178,7 +178,7 @@ public class TestEquipmentSupplyController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Supply name cannot be empty! Supply amount must be an integer greater than zero! ", error);
+		assertEquals("Equipment name cannot be empty! Equipment amount must be an integer greater than zero! ", error);
 	}
 	
 	@Test
@@ -198,7 +198,7 @@ public class TestEquipmentSupplyController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Supply name cannot be empty! Supply amount must be an integer greater than zero! ", error);
+		assertEquals("Equipment name cannot be empty! Equipment amount must be an integer greater than zero! ", error);
 
 	}
 	
@@ -231,7 +231,7 @@ public class TestEquipmentSupplyController {
 		}
 		
 		//check error **Pretty sure the extra space at the end isnt needed but its used in the supply controller
-		assertEquals("Supply amount must be an integer greater than zero! ", error);
+		assertEquals("Equipment amount must be an integer greater than zero! ", error);
 		
 		//check model in memory
 		assertEquals(1, ftm.getEquipment().size());
