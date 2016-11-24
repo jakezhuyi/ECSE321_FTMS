@@ -85,10 +85,10 @@ public class EmployeeController {
 			//Make sure the date is before today's date and not today's date
 			Calendar c = Calendar.getInstance();
 			Date currentDate = new Date(c.getTimeInMillis());
-			
+
 			//Check if the date is before today's date
 				if(!currentDate.toString().equals(date.toString()))
-					error = error + "Work date cannot be before today's date!";
+					error = error + "Work date cannot be before today's date! ";
 				
 			//If it is today's date check that the start time is not before the current time	
 				else if (startTime != null && c.getTimeInMillis() > startTime.getTime())

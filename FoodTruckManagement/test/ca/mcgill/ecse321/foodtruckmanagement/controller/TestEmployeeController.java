@@ -189,7 +189,7 @@ public class TestEmployeeController {
 		Time startTime = new Time(c.getTimeInMillis());
 		
 		//Make the end time 1 hour after start time
-		c.add(Calendar.HOUR, 1);
+		c.add(Calendar.HOUR_OF_DAY, 1);
 		Time endTime = new Time(c.getTimeInMillis());
 		
 		EmployeeController ec = new EmployeeController();
@@ -207,6 +207,162 @@ public class TestEmployeeController {
 		
 	}
 	
+	@Test
+	public void testAssignScheduleNull() {
+		FoodTruckManager ftm = FoodTruckManager.getInstance();
+		assertEquals(0, ftm.getEmployees().size());
+		
+		Employee employee = null; 
+		Date date = null;
+		Time startTime = null;
+		Time endTime = null;
+		
+		String error = null;
+		EmployeeController ec = new EmployeeController();
+		try {
+			ec.assignSchedule(employee, date, startTime, endTime);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("Employee needs to be selected for assigning a schedule! Work date cannot be empty! Shift start time cannot be empty! Shift end time cannot be empty! ", error);
+		assertEquals(0, ftm.getEmployees().size());
+	}
+	
+	@Test
+	public void testAssignScheduleEmployeeDoesNotExist() {
+		FoodTruckManager ftm = FoodTruckManager.getInstance();
+		assertEquals(0, ftm.getEmployees().size());
+		
+		String nameE = "Jeff"; String roleE = "Chef";
+		Employee employee = new Employee(nameE, roleE);
+		
+		Calendar c = Calendar.getInstance();
+		
+		//Make the schedule date the day after today
+		c.add(Calendar.DATE, 1);
+		Date scheduleDate = new Date(c.getTimeInMillis());
+		Time startTime = new Time(c.getTimeInMillis());
+		
+		//Make the end time 1 hour after start time
+		c.add(Calendar.HOUR_OF_DAY, 1);
+		Time endTime = new Time(c.getTimeInMillis());
+		
+		String error = null;
+		EmployeeController ec = new EmployeeController();
+		try {
+			ec.assignSchedule(employee, scheduleDate, startTime, endTime);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("Employee does not exist! ", error);
+		assertEquals(0, ftm.getEmployees().size());		
+	}
+	
+	@Test
+	public void testAssignScheduleEndTimeBeforeStartTime() {
+		FoodTruckManager ftm = FoodTruckManager.getInstance();
+		assertEquals(0, ftm.getEmployees().size());
+		
+		String nameE = "Jeff"; String roleE = "Chef";
+		Employee employee = new Employee(nameE, roleE);
+		ftm.addEmployee(employee);
+		checkResultEmployee(nameE, roleE, ftm);
+		
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, 1);
+		Date schedDate = new Date(c.getTimeInMillis());
+		Time startTime = new Time(c.getTimeInMillis());
+		c.add(Calendar.HOUR_OF_DAY, -1);
+		Time endTime = new Time(c.getTimeInMillis());
+		
+		String error = null;
+		EmployeeController ec = new EmployeeController();
+		try {
+			ec.assignSchedule(employee, schedDate, startTime, endTime);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("Shift end time cannot be before shift start time! ", error);
+		assertEquals(1, ftm.getEmployees().size());
+		assertEquals(0, ftm.getEmployee(0).getSchedules().size());
+	}
+	
+	@Test
+	public void testAssignScheduleDateBeforeCurrentDate() {
+		FoodTruckManager ftm = FoodTruckManager.getInstance();
+		assertEquals(0, ftm.getEmployees().size());
+		
+		String nameE = "Jeff"; String roleE = "Chef";
+		Employee employee = new Employee(nameE, roleE);
+		ftm.addEmployee(employee);
+		checkResultEmployee(nameE, roleE, ftm);
+	
+		assertEquals(0, ftm.getEmployee(0).getSchedules().size());
+		
+		Calendar c = Calendar.getInstance();
+		
+		//Make the schedule date the day before today
+		c.add(Calendar.DATE, -1);
+		Date scheduleDate = new Date(c.getTimeInMillis());
+		Time startTime = new Time(c.getTimeInMillis());
+		
+		c.add(Calendar.HOUR_OF_DAY, 1);
+		Time endTime = new Time(c.getTimeInMillis());
+		
+		String error = null;
+		
+		EmployeeController ec = new EmployeeController();
+		try {
+			ec.assignSchedule(employee, scheduleDate, startTime, endTime);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("Work date cannot be before today's date! ", error);
+		assertEquals(1, ftm.getEmployees().size());
+		assertEquals(0, ftm.getEmployee(0).getSchedules().size());
+	}
+	
+	@Test
+	public void testAssignScheduleStartTimeBeforeCurrentTime() {
+		FoodTruckManager ftm = FoodTruckManager.getInstance();
+		assertEquals(0, ftm.getEmployees().size());
+		
+		String nameE = "Jeff"; String roleE = "Chef";
+		Employee employee = new Employee(nameE, roleE);
+		ftm.addEmployee(employee);
+		checkResultEmployee(nameE, roleE, ftm);
+	
+		assertEquals(0, ftm.getEmployee(0).getSchedules().size());
+		
+		//Date is today
+		Calendar c = Calendar.getInstance();
+		Date scheduleDate = new Date(c.getTimeInMillis());
+
+		//Make start time before current time
+		c.add(Calendar.MINUTE, -1);
+		Time startTime = new Time(c.getTimeInMillis());
+		
+		c.add(Calendar.HOUR_OF_DAY, 1);
+		Time endTime = new Time(c.getTimeInMillis());
+		
+		String error = null;
+		
+		EmployeeController ec = new EmployeeController();
+		try {
+			ec.assignSchedule(employee, scheduleDate, startTime, endTime);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("Shift start time cannot be before current time! ", error);
+		assertEquals(1, ftm.getEmployees().size());
+		assertEquals(0, ftm.getEmployee(0).getSchedules().size());
+	}
+	
 	private void checkResultEmployee (String name, String role, FoodTruckManager ftm) {
 		assertEquals(1, ftm.getEmployees().size());
 		assertEquals(name, ftm.getEmployee(0).getName());
@@ -216,8 +372,8 @@ public class TestEmployeeController {
 	private void checkResultSchedule (Date schedDate, Time startTime, Time endTime, FoodTruckManager ftm) {
 		assertEquals(1, ftm.getEmployees().size());
 		assertEquals(1, ftm.getEmployee(0).getSchedules().size());
-		//assertEquals(schedDate, ftm.getEmployee(0).getSchedule(0).getWorkDay());
-		//assertEquals(startTime, ftm.getEmployee(0).getSchedule(0).getStartTime());
-		//assertEquals(endTime, ftm.getEmployee(0).getSchedule(0).getEndTime());
+		assertEquals(schedDate.toString(), ftm.getEmployee(0).getSchedule(0).getWorkDay().toString());
+		assertEquals(startTime.toString(), ftm.getEmployee(0).getSchedule(0).getStartTime().toString());
+		assertEquals(endTime.toString(), ftm.getEmployee(0).getSchedule(0).getEndTime().toString());
 	}
 }
