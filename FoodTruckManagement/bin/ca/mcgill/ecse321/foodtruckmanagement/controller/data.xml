@@ -3,11 +3,17 @@
     <employee id="3">
       <name>Jeff</name>
       <role>Chef</role>
-      <schedules id="4"/>
+      <schedules id="4">
+        <schedule id="5">
+          <workDay id="6">2016-11-23</workDay>
+          <startTime id="7">19:53:03</startTime>
+          <endTime id="8">20:53:03</endTime>
+        </schedule>
+      </schedules>
     </employee>
   </employees>
-  <equipment id="5"/>
-  <foodSupplies id="6"/>
-  <transactionOrders id="7"/>
-  <menuItems id="8"/>
+  <equipment id="9"/>
+  <foodSupplies id="10"/>
+  <transactionOrders id="11"/>
+  <menuItems id="12"/>
 </ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager>

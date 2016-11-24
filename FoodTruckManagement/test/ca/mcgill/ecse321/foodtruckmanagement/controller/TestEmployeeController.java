@@ -340,10 +340,10 @@ public class TestEmployeeController {
 		
 		//Date is today
 		Calendar c = Calendar.getInstance();
+		c.add(Calendar.MINUTE, -1);
 		Date scheduleDate = new Date(c.getTimeInMillis());
 
 		//Make start time before current time
-		c.add(Calendar.MINUTE, -1);
 		Time startTime = new Time(c.getTimeInMillis());
 		
 		c.add(Calendar.HOUR_OF_DAY, 1);
