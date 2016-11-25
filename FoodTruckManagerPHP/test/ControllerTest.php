@@ -110,7 +110,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		catch (Exception $e)
 		{
 			// check that no error occurred
-			$error = $e->getMessage();
+			$this->fail();
 		}
 		
 		$this->rm = $this->pm->loadDataFromStore();
@@ -124,7 +124,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		catch (Exception $e)
 		{
 			// check that no error occurred
-			$error = $e->getMessage();
+			$this->fail();
 		}
 		
 		$this->rm = $this->pm->loadDataFromStore();
@@ -223,6 +223,73 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("Equipment cannot be less than or equal to zero!", $error);
 	}
 	
-
+	public function testMenuItem()
+	{
+		$this->assertEquals(0, count($this->rm->getMenuItems()));
+	
+		$name = "Burger";
+	
+		try
+		{
+			$this->c->addMenuItem($name);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$this->fail();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals(1, count($this->rm->getMenuItems()));
+		$this->assertEquals($name, $this->rm->getMenuItem_index(0)->getName());
+	
+	
+	}
+	
+	public function testMenuItemNull()
+	{
+		$this->assertEquals(0, count($this->rm->getMenuItems()));
+	
+		$name = "";
+	
+		try
+		{
+			$this->c->addMenuItem($name);
+		}
+	
+		catch (Exception $e)
+		{
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Name cannot be empty!", $error);
+	
+	}
+	
+	public function testMenuItemSpaces()
+	{
+		$this->assertEquals(0, count($this->rm->getMenuItems()));
+	
+		$name = " ";
+	
+		try
+		{
+			$this->c->addMenuItem($name);
+		}
+	
+		catch (Exception $e)
+		{
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Name cannot be empty!", $error);
+	
+	}
 }
 ?>

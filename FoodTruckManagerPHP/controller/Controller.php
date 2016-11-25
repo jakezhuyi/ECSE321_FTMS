@@ -328,7 +328,7 @@ class Controller
 		}
 	
 		$new_menu_item = new MenuItem($name, 0);
-		$ftm->addEmployee($new_menu_item);
+		$ftm->addMenuItem($new_menu_item);
 		$pm->writeDataToStore($ftm);
 	
 	}

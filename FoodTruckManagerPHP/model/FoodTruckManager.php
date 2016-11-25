@@ -485,6 +485,65 @@ class FoodTruckManager
     return $wasAdded;
   }
 
+
+  public static function minimumNumberOfMenuItems()
+  {
+  	return 0;
+  }
+  
+  public function addMenuItem($aMenuItem)
+  {
+  	$wasAdded = false;
+  	if ($this->indexOfMenuItem($aMenuItem) !== -1) { return false; }
+  	$this->menuItems[] = $aMenuItem;
+  	$wasAdded = true;
+  	return $wasAdded;
+  }
+  
+  public function removeMenuItem($aMenuItem)
+  {
+  	$wasRemoved = false;
+  	if ($this->indexOfMenuItem($aMenuItem) != -1)
+  	{
+  		unset($this->menuItems[$this->indexOfMenuItem($aMenuItem)]);
+  		$this->menuItems = array_values($this->menuItems);
+  		$wasRemoved = true;
+  	}
+  	return $wasRemoved;
+  }
+  
+  public function addMenuItemAt($aMenuItem, $index)
+  {
+  	$wasAdded = false;
+  	if($this->addMenuItem($aMenuItem))
+  	{
+  		if($index < 0 ) { $index = 0; }
+  		if($index > $this->numberOfMenuItems()) { $index = $this->numberOfMenuItems() - 1; }
+  		array_splice($this->menuItems, $this->indexOfMenuItem($aMenuItem), 1);
+  		array_splice($this->menuItems, $index, 0, array($aMenuItem));
+  		$wasAdded = true;
+  	}
+  	return $wasAdded;
+  }
+  
+  public function addOrMoveMenuItemAt($aMenuItem, $index)
+  {
+  	$wasAdded = false;
+  	if($this->indexOfMenuItem($aMenuItem) !== -1)
+  	{
+  		if($index < 0 ) { $index = 0; }
+  		if($index > $this->numberOfMenuItems()) { $index = $this->numberOfMenuItems() - 1; }
+  		array_splice($this->menuItems, $this->indexOfMenuItem($aMenuItem), 1);
+  		array_splice($this->menuItems, $index, 0, array($aMenuItem));
+  		$wasAdded = true;
+  	}
+  	else
+  	{
+  		$wasAdded = $this->addMenuItemAt($aMenuItem, $index);
+  	}
+  	return $wasAdded;
+  }
+  
   public function equals($compareTo)
   {
     return $this == $compareTo;
