@@ -80,20 +80,6 @@ public class EmployeeController {
 			error = error + "Employee does not exist! ";
 		if (date == null)
 			error = error + "Work date cannot be empty! ";
-		else if (Calendar.getInstance().getTime().compareTo(date) > 0) 
-		{
-			//Make sure the date is before today's date and not today's date
-			Calendar c = Calendar.getInstance();
-			Date currentDate = new Date(c.getTimeInMillis());
-
-			//Check if the date is before today's date
-				if(!currentDate.toString().equals(date.toString()))
-					error = error + "Work date cannot be before today's date! ";
-				
-			//If it is today's date check that the start time is not before the current time	
-				else if (startTime != null && c.getTimeInMillis() > startTime.getTime())
-					error = error + "Shift start time cannot be before current time! ";
-		}
 		if (startTime == null)
 			error = error + "Shift start time cannot be empty! ";
 		if (endTime == null)
