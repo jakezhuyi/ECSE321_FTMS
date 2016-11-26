@@ -11,10 +11,9 @@ import android.widget.TextView;
 
 import java.io.File;
 
-import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementController;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.EquipmentSupplyController;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodSupplyController;
 import ca.mcgill.ecse321.foodtruckmanagement.controller.InvalidInputException;
-import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
-import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckManagement;
 
 public class SupplyMenu extends AppCompatActivity {
     //public FoodTruckManager ftm;
@@ -70,7 +69,7 @@ public class SupplyMenu extends AppCompatActivity {
     public void addFoodSupply(View v){
         TextView tv = (TextView) findViewById(R.id.foodSupply_name);
         TextView tv2 = (TextView) findViewById(R.id.foodSupplyAmount_name);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        FoodSupplyController ftc = new FoodSupplyController();
         int amount = 0;
         try{
             amount = Integer.parseInt(tv2.getText().toString());
@@ -79,7 +78,7 @@ public class SupplyMenu extends AppCompatActivity {
         }
         error = null;
         try {
-            ftc.addFoodSupply(tv.getText().toString(), amount);
+            ftc.addSupply(tv.getText().toString(), amount);
         }catch (InvalidInputException e){
             error = e.getMessage();
         }
@@ -89,7 +88,7 @@ public class SupplyMenu extends AppCompatActivity {
     public void removeFoodSupply(View v){
         TextView tv = (TextView) findViewById(R.id.foodSupply_name);
         TextView tv2 = (TextView) findViewById(R.id.foodSupplyAmount_name);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        FoodSupplyController ftc = new FoodSupplyController();
         int amount = 0;
         try{
             amount = Integer.parseInt(tv2.getText().toString());
@@ -98,7 +97,7 @@ public class SupplyMenu extends AppCompatActivity {
         }
         error = null;
         try {
-            ftc.removeFoodSupply(tv.getText().toString(), amount);
+            ftc.removeSupply(tv.getText().toString(), amount);
         }catch (InvalidInputException e){
             error = e.getMessage();
         }
@@ -107,7 +106,7 @@ public class SupplyMenu extends AppCompatActivity {
     public void addEquipment(View v){
         TextView tv = (TextView) findViewById(R.id.equipmentSupply_name);
         TextView tv2 = (TextView) findViewById(R.id.equipmentSupplyAmount_name);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        EquipmentSupplyController ftc = new EquipmentSupplyController();
         int amount = 0;
         try{
             amount = Integer.parseInt(tv2.getText().toString());
@@ -116,7 +115,7 @@ public class SupplyMenu extends AppCompatActivity {
         }
         error = null;
         try {
-            ftc.addEquipment(tv.getText().toString(), amount);
+            ftc.addSupply(tv.getText().toString(), amount);
         }catch (InvalidInputException e){
             error = e.getMessage();
         }
@@ -126,7 +125,7 @@ public class SupplyMenu extends AppCompatActivity {
     public void removeEquipment(View v){
         TextView tv = (TextView) findViewById(R.id.equipmentSupply_name);
         TextView tv2 = (TextView) findViewById(R.id.equipmentSupplyAmount_name);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        EquipmentSupplyController ftc = new EquipmentSupplyController();
         int amount = 0;
         try{
             amount = Integer.parseInt(tv2.getText().toString());
@@ -135,7 +134,7 @@ public class SupplyMenu extends AppCompatActivity {
         }
         error = null;
         try {
-            ftc.removeEquipment(tv.getText().toString(), amount);
+            ftc.removeSupply(tv.getText().toString(), amount);
         }catch (InvalidInputException e){
             error = e.getMessage();
         }

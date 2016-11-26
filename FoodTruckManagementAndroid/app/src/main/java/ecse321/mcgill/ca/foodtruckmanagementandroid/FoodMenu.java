@@ -14,8 +14,8 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementController;
 import ca.mcgill.ecse321.foodtruckmanagement.controller.InvalidInputException;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.MenuItemController;
 import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
 import ca.mcgill.ecse321.foodtruckmanagement.model.MenuItem;
 
@@ -75,7 +75,7 @@ public class FoodMenu extends AppCompatActivity {
     }
     public void addMenuItem(View v){
         TextView tv = (TextView) findViewById(R.id.MenuItem);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        MenuItemController ftc = new MenuItemController();
         error = null;
         try {
             ftc.addMenuItem(tv.getText().toString());
@@ -87,7 +87,7 @@ public class FoodMenu extends AppCompatActivity {
 
     public void claimOrder(View v){
         Spinner eSpinner=(Spinner) findViewById(R.id.menuspinner);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        MenuItemController ftc = new MenuItemController();
         TextView tv = (TextView) findViewById(R.id.MenuItemAmount);
         int amount = 0;
         try{

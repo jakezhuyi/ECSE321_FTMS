@@ -12,9 +12,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.io.File;
-
-import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementController;
-import ca.mcgill.ecse321.foodtruckmanagement.controller.InvalidInputException;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
 import ca.mcgill.ecse321.foodtruckmanagement.persistence.PersistenceFoodTruckManagement;
 

@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import ca.mcgill.ecse321.foodtruckmanagement.controller.FoodTruckManagementController;
+import ca.mcgill.ecse321.foodtruckmanagement.controller.EmployeeController;
 import ca.mcgill.ecse321.foodtruckmanagement.controller.InvalidInputException;
 import ca.mcgill.ecse321.foodtruckmanagement.model.Employee;
 import ca.mcgill.ecse321.foodtruckmanagement.model.FoodTruckManager;
@@ -87,7 +87,7 @@ public class EmployeeMenu extends AppCompatActivity{
     public void addEmployee(View v){
         TextView tv = (TextView) findViewById(R.id.employee_name);
         TextView tv2 = (TextView) findViewById(R.id.employee_role);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        EmployeeController ftc = new EmployeeController();
         error = null;
         try {
             ftc.addEmployee(tv.getText().toString(), tv2.getText().toString());
@@ -99,7 +99,7 @@ public class EmployeeMenu extends AppCompatActivity{
 
     public void removeEmployee(View v){
         Spinner eSpinner=(Spinner) findViewById(R.id.employeespinner);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        EmployeeController ftc = new EmployeeController();
 
         try {
             ftc.removeEmployee(employees.get(eSpinner.getSelectedItemPosition()));
@@ -151,7 +151,7 @@ public class EmployeeMenu extends AppCompatActivity{
         TextView eventDate = (TextView) findViewById(R.id.newevent_date);
         TextView startTime = (TextView) findViewById(R.id.newstartTime_date);
         TextView endTime = (TextView) findViewById(R.id.newendTime_date);
-        FoodTruckManagementController ftc = new FoodTruckManagementController();
+        EmployeeController ftc = new EmployeeController();
 
         String date =  Integer.toString(getDateFromLabel(eventDate.getText().toString()).getInt("year", 2))+ "-" +
                 String.format("%02d",(getDateFromLabel(eventDate.getText().toString()).getInt("month", 1) + 1))  + "-" +

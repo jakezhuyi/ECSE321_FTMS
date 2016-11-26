@@ -21,7 +21,7 @@ private static String filename = "foodtruckmanagemnt.xml";
 	
 	private static void initializeXStream() {
 
-		PersistenceXStream.setFilename( /*filename +*/ "foodtruckmanagement.xml");
+		PersistenceXStream.setFilename( /*filename + */"foodtruckmanagement.xml");
 		PersistenceXStream.setAlias("employee", Employee.class);
 		PersistenceXStream.setAlias("equipment", Equipment.class);
 		PersistenceXStream.setAlias("supply", FoodSupply.class);
