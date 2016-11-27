@@ -108,6 +108,7 @@ public class MenuItemController {
 			int[] decreasingOrder = new int[numItems];
 			int nextMostSoldIndex = 0;
 			int transferIndex = 0;
+			
 		
 			//Fill decreasingOrder array with numbers ranging from 0 to numItems-1 representing every index
 			for(int i = 0; i < numItems; i++)
