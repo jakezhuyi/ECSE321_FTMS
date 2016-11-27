@@ -2,12 +2,13 @@
 <html>
 	<head>
 		<meta charset = "UTF-8">
-		<title>Event Registration</title>
+		<title>Food Truck Management</title>
 		<style>
 			.error {color: #FF0000;}
 		</style>
 	</head>
 	<body>
+	<h1>Food Truck Management</h1>
 		<?php 
 		require_once 'model/FoodSupply.php';
 		require_once 'model/Equipment.php';
