@@ -106,17 +106,23 @@ public class FoodMenu extends AppCompatActivity {
         refreshData();
     }
     public void popReport(View v){
+        String [] array = new String[1];
+        String mostPopular = "";
+        int amountSold = 0;
         if (MainActivity.ftm.getMenuItems().size() == 0){
-            return;
-        }
-        String [] array = new String[MainActivity.ftm.getMenuItems().size()];
-        for (int i = 0; i < MainActivity.ftm.getMenuItems().size();i++){
-            String supplyname = "Item:       " + MainActivity.ftm.getMenuItem(i).getName() + "\nAmount: "
-                    + MainActivity.ftm.getMenuItem(i).getAmountSold();
-            array[i] = supplyname;
+            array[0] = "No menu items entered";
+        }else{
+            for (int i = 0; i < MainActivity.ftm.getMenuItems().size();i++){
+                if (amountSold < MainActivity.ftm.getMenuItem(i).getAmountSold()){
+                    amountSold = MainActivity.ftm.getMenuItem(i).getAmountSold();
+                    mostPopular = MainActivity.ftm.getMenuItem(i).getName();
+                }
+            }
+            String supplyname = "Item:       " + mostPopular + "\nAmount: "
+                    + amountSold;
+            array[0] = supplyname;
         }
         ListView listView = (ListView) findViewById(R.id.FoodItemMenu_list);
-
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
