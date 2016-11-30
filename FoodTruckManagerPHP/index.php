@@ -187,6 +187,10 @@
 		<form action="viewschedules.php" method="post">
 			<p><input type="submit" value="View Schedules"/></p>
 		</form>
+		
+		<form action="viewpopularityreport.php" method="post">
+			<p><input type="submit" value="View Report"/></p>
+		</form>
 	</body>
 </html>
 
