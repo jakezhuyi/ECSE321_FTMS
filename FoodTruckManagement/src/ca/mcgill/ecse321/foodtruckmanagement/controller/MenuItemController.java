@@ -103,6 +103,8 @@ public class MenuItemController {
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
+		try
+		{
 		//Sort menu items by number sold in decreasing order
 			int numItems = fm.numberOfMenuItems();
 			int[] decreasingOrder = new int[numItems];
@@ -145,6 +147,9 @@ public class MenuItemController {
 			}
 			
 			popularityReport = popularityReport + "</html>";
+		}catch(Exception e)
+		{	
+		}
 		return popularityReport;
 	}
 	
