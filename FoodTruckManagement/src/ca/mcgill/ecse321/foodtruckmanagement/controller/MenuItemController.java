@@ -22,11 +22,14 @@ public class MenuItemController {
 
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
+		//Check whether name is empty or null. If so, throw error.
 		if(name == null || name.length() == 0)
 		{
 			error = "Menu item name cannot be empty!";
 			isError = true;
 		} else {
+			
+		//Check whether the menu item exists in the system. If so, throw error
 		for(int i = 0; i < fm.numberOfMenuItems(); i++)
 		{
 			if(fm.getMenuItem(i).getName().toUpperCase().equals(name.toUpperCase()))
@@ -60,11 +63,13 @@ public class MenuItemController {
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
+		//Check whether name is null or empty. If so, throw error.
 		if(menuItem == null || menuItem.length() == 0)
 		{
 			isError = true;
 			error = "Menu item cannot be empty! ";
 		} 
+		//Check whether amount is <= 0. If so, throw error.
 		if(amount == 0)
 		{
 			isError = true;
@@ -78,6 +83,8 @@ public class MenuItemController {
 		
 		if(!isError)
 		{
+		//Loop through all menu items in the system and check if it already exists.
+		//If so, add to the amount sold property. If not, throw error.
 		for(int i = 0; i < fm.numberOfMenuItems(); i++)
 		{
 			if(fm.getMenuItem(i).getName().toUpperCase().equals(menuItem.toUpperCase()))

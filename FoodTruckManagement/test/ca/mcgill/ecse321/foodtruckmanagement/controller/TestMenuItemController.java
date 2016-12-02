@@ -163,6 +163,47 @@ public class TestMenuItemController {
 	}
 
 	@Test
+	public void testAddToClaimedOrder()
+	{
+		FoodTruckManager ftm = FoodTruckManager.getInstance();
+		assertEquals(0,ftm.getMenuItems().size());
+		
+		String name = "Burger";
+		int amount = 1;
+		
+		MenuItemController mic = new MenuItemController();
+		try {
+			mic.addMenuItem(name);
+		} catch (InvalidInputException e) {
+			//check that no error occured
+			fail();
+		}
+		
+		try {
+			mic.claimOrder(ftm.getMenuItem(0),amount);
+		} catch (InvalidInputException e) {
+			//check that no error occured
+			fail();
+		}
+		
+		//Add 1 to existing claimed order
+		try {
+			mic.claimOrder(ftm.getMenuItem(0),amount);
+		} catch (InvalidInputException e) {
+			//check that no error occured
+			fail();
+		}
+		
+		assertEquals(2, ftm.getMenuItem(0).getAmountSold());
+		
+		//Check model
+		FoodTruckManager ftm2 = (FoodTruckManager) PersistenceXStream.loadFromXMLwithXStream();
+		
+		assertEquals(2, ftm2.getMenuItem(0).getAmountSold());
+		
+	}
+	
+	@Test
 	public void testClaimOrderNull() {
 		FoodTruckManager ftm = FoodTruckManager.getInstance();
 		assertEquals(0,ftm.getMenuItems().size());
