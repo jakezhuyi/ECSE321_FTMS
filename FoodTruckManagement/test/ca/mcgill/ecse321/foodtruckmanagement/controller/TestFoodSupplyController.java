@@ -58,6 +58,37 @@ public class TestFoodSupplyController {
 		assertEquals(amount,ftm2.getFoodSupply(0).getAmount());
 	}
 
+	@Test
+	public void testAddTooFoodSupply() {
+		FoodTruckManager ftm = FoodTruckManager.getInstance();
+		assertEquals(0,ftm.getFoodSupplies().size());
+		
+		String name = "Tomatoe";
+		int amount = 1;
+		
+		SupplyController sc = new FoodSupplyController();
+		try {
+			sc.addSupply(name,amount);
+		} catch (InvalidInputException e) {
+			//check that no error occurred
+			fail();
+		}
+		
+		//add 1 to existing supply
+		try {
+			sc.addSupply(name,amount);
+		} catch (InvalidInputException e) {
+			//check that no error occurred
+			fail();
+		}
+		
+		assertEquals(2,ftm.getFoodSupply(0).getAmount());
+		
+		//Check model
+		FoodTruckManager ftm2 = (FoodTruckManager) PersistenceXStream.loadFromXMLwithXStream();
+
+		assertEquals(2,ftm2.getFoodSupply(0).getAmount());
+	}
 	
 	@Test
 	public void testAddFoodSupplyNull() {

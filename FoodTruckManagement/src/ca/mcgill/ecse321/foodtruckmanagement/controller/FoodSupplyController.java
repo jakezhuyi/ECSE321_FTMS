@@ -14,12 +14,14 @@ public class FoodSupplyController extends SupplyController {
 		try{
 			name = name.trim();
 		}catch(NullPointerException e){}
-
+		
+		//Check whether the name is empty or null. If so, throw error.
 		if(name == null || name.length() == 0)
 		{
 			error = "Supply name cannot be empty! ";
 			isError = true;
 		}
+		//Check whether the amount is <= 0. If so, throw error
 		if(amount <= 0)
 		{
 			error = error + "Supply amount must be an integer greater than zero! ";
@@ -33,6 +35,8 @@ public class FoodSupplyController extends SupplyController {
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
+		//Loop through all food supply in the system and see if it exists. If so
+		//add to the existing supply. If not, create a new food supply object.
 		for(int i = 0; i < fm.numberOfFoodSupplies(); i++)
 		{
 			if(fm.getFoodSupply(i).getName().toUpperCase().equals(name.toUpperCase()))

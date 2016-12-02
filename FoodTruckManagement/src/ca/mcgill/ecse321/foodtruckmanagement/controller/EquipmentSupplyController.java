@@ -15,11 +15,13 @@ public class EquipmentSupplyController extends SupplyController {
 			name = name.trim();
 		}catch(NullPointerException e){}
 		
+		//Check whether name is null or empty. If so, throw error.
 		if(name == null || name.length() == 0)
 		{
 			error = "Equipment name cannot be empty! ";
 			isError = true;
 		}
+		//Check whether amount is <= 0. If so, throw error
 		if(amount <= 0)
 		{
 			error = error + "Equipment amount must be an integer greater than zero! ";
@@ -33,6 +35,8 @@ public class EquipmentSupplyController extends SupplyController {
 		
 		FoodTruckManager fm = FoodTruckManager.getInstance();
 		
+		//Loop through equipment supply in the system and see if it already exists.
+		//If so, add to the existing amount, and if not, create a new equipment object
 		for(int i = 0; i < fm.numberOfEquipment(); i++)
 		{
 			if(fm.getEquipment(i).getName().toUpperCase().equals(name.toUpperCase()))
