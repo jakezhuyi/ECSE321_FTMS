@@ -279,8 +279,8 @@ class Controller
 		if($stime == null || strlen($stime) == 0 || !strtotime($stime)) $error .= "@3Start time must be specified correctly (HH:MM)! ";
 		if($etime == null || strlen($etime) == 0 || !strtotime($etime)) $error .= "@4End time must be specified correctly (HH:MM)! ";
 		if($etime != null && $stime != null && strlen($stime) !=0 && strlen($etime) !=0  && strtotime($etime) < strtotime($stime))
-			$error .= "@4Event end time cannot be before event start time!";
-	
+			$error .= "@4End time cannot be before start time!";
+		
 		//$error = trim($error);
 		if(!empty($error)) throw new Exception(trim($error));
 	

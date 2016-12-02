@@ -96,6 +96,29 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("Food Supply cannot be less than or equal to zero!", $error);	
 	}
 	
+	public function testCreateFoodSupplyNegative()
+	{
+		$this->assertEquals(0, count($this->rm->getFoodSupplies()));
+	
+		$name = "Tomato";
+		$amount = -1;
+	
+		try
+		{
+			$this->c->createFoodSupply($name,$amount);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Food Supply cannot be less than or equal to zero!", $error);
+	}
+	
 	public function testEmployee()
 	{
 		$this->assertEquals(0, count($this->rm->getEmployees()));
@@ -154,6 +177,74 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("Name/Role cannot be empty!", $error);
 	}
 	
+	public function testNoNameEmployeeSpaces()
+	{
+		$this->assertEquals(0, count($this->rm->getEmployees()));
+	
+		$name = " ";
+		$role = "Cook";
+	
+		try
+		{
+			$this->c->createEmployee($name,$role);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Name/Role cannot be empty!", $error);
+	}
+	
+	public function testNoRoleEmployee()
+	{
+		$this->assertEquals(0, count($this->rm->getEmployees()));
+	
+		$name = "John";
+		$role = "";
+	
+		try
+		{
+			$this->c->createEmployee($name,$role);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Name/Role cannot be empty!", $error);
+	}
+	
+	public function testNoRoleSpacesEmployee()
+	{
+		$this->assertEquals(0, count($this->rm->getEmployees()));
+	
+		$name = "John";
+		$role = " ";
+	
+		try
+		{
+			$this->c->createEmployee($name,$role);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Name/Role cannot be empty!", $error);
+	}
 	public function testEquipment()
 	{
 		$this->assertEquals(0, count($this->rm->getEquipment()));
@@ -223,6 +314,76 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("Equipment cannot be less than or equal to zero!", $error);
 	}
 	
+	
+	public function testCreateEquipmentZero()
+	{
+		$this->assertEquals(0, count($this->rm->getFoodSupplies()));
+	
+		$name = "Tomato";
+		$amount = -1;
+	
+		try
+		{
+			$this->c->addEquipment($name,$amount);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Equipment cannot be less than or equal to zero!", $error);
+	}
+	
+	public function testCreateEquipmentNull()
+	{
+		$this->assertEquals(0, count($this->rm->getFoodSupplies()));
+	
+		$name = "";
+		$amount = 1;
+	
+		try
+		{
+			$this->c->addEquipment($name,$amount);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Equipment name cannot be empty!", $error);
+	}
+	
+	
+	public function testCreateEquipmentSpaces()
+	{
+		$this->assertEquals(0, count($this->rm->getFoodSupplies()));
+	
+		$name = " ";
+		$amount = 1;
+	
+		try
+		{
+			$this->c->addEquipment($name,$amount);
+		}
+	
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$error = $e->getMessage();
+		}
+	
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals("Equipment name cannot be empty!", $error);
+	}
 	public function testMenuItem()
 	{
 		$this->assertEquals(0, count($this->rm->getMenuItems()));
@@ -290,6 +451,49 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		$this->rm = $this->pm->loadDataFromStore();
 		$this->assertEquals("Name cannot be empty!", $error);
 	
+	}
+	
+	public function testSchedule()
+	{
+		$this->assertEquals(0, count($this->rm->getEmployees()));
+		
+		$name = "Frank";
+		$role = "Cook";
+		
+		try
+		{
+			$this->c->createEmployee($name,$role);
+		}
+		catch (Exception $e)
+		{
+			// check that no error occurred
+			$this->fail();
+		}
+		
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals($name, $this->rm->getEmployee_index(0)->getName());
+		$this->assertEquals($role, $this->rm->getEmployee_index(0)->getRole());
+		
+		
+		$name = "Frank";
+		$date = "2016-10-16";
+		$starttime = "09:00";
+		$endtime = "10:30";
+		 
+		try {
+			$this->c->setSchedule($name, $date, $starttime, $endtime);
+		} catch (Exception $e) {
+
+			$this->fail();
+		}
+		 
+		// check file contents
+		$this->rm = $this->pm->loadDataFromStore();
+		$this->assertEquals(1, count($this->rm->getEmployees()));
+		$this->assertEquals($name, $this->rm->getEmployee_index(0)->getName());
+		$this->assertEquals($date, $this->rm->getEmployee_index(0)->getSchedule_index(0)->getWorkDay());
+		$this->assertEquals($starttime, $this->rm->getEmployee_index(0)->getSchedule_index(0)->getStartTime());
+		$this->assertEquals($endtime, $this->rm->getEmployee_index(0)->getSchedule_index(0)->getEndTime());
 	}
 }
 ?>
