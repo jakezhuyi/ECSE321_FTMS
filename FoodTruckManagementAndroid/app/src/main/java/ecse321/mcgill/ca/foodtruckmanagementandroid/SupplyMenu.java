@@ -25,13 +25,6 @@ public class SupplyMenu extends AppCompatActivity {
         setContentView(R.layout.activity_supply_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator +"foodtruckmanagement.xml");
-        System.out.println(getFilesDir().getAbsolutePath() + "foodtruckmanagement.xml");
-        PersistenceFoodTruckManagement.loadFoodTruckManagementModel();
-
-        ftm = FoodTruckManager.getInstance();*/
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +58,7 @@ public class SupplyMenu extends AppCompatActivity {
             e.setText("");
         }
     }
-
+    // tries to add food supply. if no errors it adds the supply
     public void addFoodSupply(View v){
         TextView tv = (TextView) findViewById(R.id.foodSupply_name);
         TextView tv2 = (TextView) findViewById(R.id.foodSupplyAmount_name);
@@ -84,7 +77,7 @@ public class SupplyMenu extends AppCompatActivity {
         }
         refreshData();
     }
-
+    // same as add food supply but this removes it
     public void removeFoodSupply(View v){
         TextView tv = (TextView) findViewById(R.id.foodSupply_name);
         TextView tv2 = (TextView) findViewById(R.id.foodSupplyAmount_name);
@@ -103,6 +96,7 @@ public class SupplyMenu extends AppCompatActivity {
         }
         refreshData();
     }
+    //same as add foodSupply but with equipment
     public void addEquipment(View v){
         TextView tv = (TextView) findViewById(R.id.equipmentSupply_name);
         TextView tv2 = (TextView) findViewById(R.id.equipmentSupplyAmount_name);
@@ -140,6 +134,7 @@ public class SupplyMenu extends AppCompatActivity {
         }
         refreshData();
     }
+    //Starts new activity to show supply in a listview
     public void viewSupply(View v){
 
         startActivity(new Intent(SupplyMenu.this, Supply.class));

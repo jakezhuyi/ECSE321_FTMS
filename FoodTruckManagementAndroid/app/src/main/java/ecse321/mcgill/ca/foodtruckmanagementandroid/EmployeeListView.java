@@ -10,7 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class EmployeeListView extends AppCompatActivity {
-
+    //Creates a list view by saving the contents off the
+    // FoodTruckManager employee data to an array
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,7 @@ public class EmployeeListView extends AppCompatActivity {
                     "\nRole:      " + MainActivity.ftm.getEmployee(i).getRole();
             array[i] = employee;
         }
+        //If no employee is in the ftm return error
         if (MainActivity.ftm.getEmployees().size() == 0){
             array = new String[1];
             array [0] = "No Employees To display";

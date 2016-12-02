@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
 
     private String error = null;
     public static boolean check = true;
+    //FoodTruckManager is public to avoid double loading
+    //spinners when switching activities
     public static FoodTruckManager ftm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        //loading from persistence
         if (check) {
             PersistenceFoodTruckManagement.setFilename(getFilesDir().getAbsolutePath() + File.pathSeparator + "foodtruckmanagement.xml");
             System.out.println(getFilesDir().getAbsolutePath() + File.pathSeparator + "foodtruckmanagement.xml");
@@ -36,16 +36,8 @@ public class MainActivity extends AppCompatActivity {
             check = false;
         }
         ftm = FoodTruckManager.getInstance();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
-
+    //Switching between activitiy menus
     public void employeeMenu(View v){
         startActivity(new Intent(MainActivity.this, EmployeeMenu.class));
     }
@@ -53,42 +45,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, SupplyMenu.class));
     }
 
-    public void MenuItemMenu(View v){
+    public void MenuItemMenu(View v) {
 
         startActivity(new Intent(MainActivity.this, FoodMenu.class));
-    }
-
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void setTime(int id, int h, int m) {
-        TextView tv = (TextView) findViewById(id);
-        tv.setText(String.format("%02d:%02d", h, m));
-    }
-    public void setDate(int id, int d, int m, int y) {
-        TextView tv = (TextView) findViewById(id);
-        tv.setText(String.format("%02d-%02d-%04d", d, m + 1, y));
     }
 }

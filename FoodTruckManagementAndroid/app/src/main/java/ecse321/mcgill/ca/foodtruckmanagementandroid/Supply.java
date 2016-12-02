@@ -18,6 +18,8 @@ import ca.mcgill.ecse321.foodtruckmanagement.model.FoodSupply;
 import static android.R.id.list;
 
 public class Supply extends AppCompatActivity {
+    //View to display the food supply
+    //Data us gotten from the ftm and displayed in a listview
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class Supply extends AppCompatActivity {
             String supplyname = "Item:       " + MainActivity.ftm.getFoodSupply(i).getName() + "\nAmount: " + MainActivity.ftm.getFoodSupply(i).getAmount();
             array[i] = supplyname;
         }
+        //if no supply return error
         if (MainActivity.ftm.getFoodSupplies().size() == 0){
             array = new String[1];
             array [0] = "No Items To display";

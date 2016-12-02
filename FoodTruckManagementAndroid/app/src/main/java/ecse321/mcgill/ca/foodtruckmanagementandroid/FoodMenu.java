@@ -40,6 +40,7 @@ public class FoodMenu extends AppCompatActivity {
         });
         refreshData();
     }
+    //Reset all fields
     private void refreshData(){
         TextView tv = (TextView) findViewById(R.id.MenuItem);
         tv.setText("");
@@ -62,7 +63,7 @@ public class FoodMenu extends AppCompatActivity {
 
         spinner.setAdapter(menuItemAdapter);
     }
-
+    //Give error message to the user
     private void displayError(TextView tv){
         TextView e = (TextView) findViewById(R.id.error_name);
         tv.setText("");
@@ -73,6 +74,7 @@ public class FoodMenu extends AppCompatActivity {
             e.setText("");
         }
     }
+    //Try to add menu item if not return error
     public void addMenuItem(View v){
         TextView tv = (TextView) findViewById(R.id.MenuItem);
         MenuItemController ftc = new MenuItemController();
@@ -84,7 +86,8 @@ public class FoodMenu extends AppCompatActivity {
         }
         refreshData();
     }
-
+    // Claim order gets menu item from spinner and amount from
+    // user input. If not correct input, return an error
     public void claimOrder(View v){
         Spinner eSpinner=(Spinner) findViewById(R.id.menuspinner);
         MenuItemController ftc = new MenuItemController();
@@ -105,6 +108,7 @@ public class FoodMenu extends AppCompatActivity {
 
         refreshData();
     }
+    //Simply gets most popular item
     public void popReport(View v){
         String [] array = new String[1];
         String mostPopular = "";

@@ -6,7 +6,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class EquipmentSupplyView extends AppCompatActivity {
-
+    //View for the supply using a list view
+    // Saves the values of the supply from the ftm
+    //to an array and adds them to the listview
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +19,7 @@ public class EquipmentSupplyView extends AppCompatActivity {
             String supplyname = "Item:       " + MainActivity.ftm.getEquipment(i).getName() + "\nAmount: " + MainActivity.ftm.getEquipment(i).getAmount();
             array[i] = supplyname;
         }
+        //If no menu items, return error
         if (MainActivity.ftm.getEquipment().size() == 0){
             array = new String[1];
             array [0] = "No Items To display";
