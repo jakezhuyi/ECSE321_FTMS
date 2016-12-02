@@ -16,6 +16,9 @@ class Controller
 	
 	}
 	
+	/*
+	 * adds a certain number of food supply
+	 */
 	public function createFoodSupply($food_name, $food_num)
 	{
 		
@@ -66,6 +69,10 @@ class Controller
 		}
 	}
 	
+	/*
+	 * removes a certain number of food supply
+	 * you cannot remove more than you currently have
+	 */
 	public function removeFoodSupply($food_name, $food_num)
 	{
 	
@@ -118,6 +125,10 @@ class Controller
 			$pm->writeDataToStore($ftm);
 		}
 	}
+	
+	/*
+	 * adds a specific number of equipment
+	 */
 	public function addEquipment($equipment_name, $equipment_num)
 	{
 	
@@ -168,6 +179,10 @@ class Controller
 		}
 	}
 	
+	/*
+	 * Searches for the equipment name and removes the amount of equipment.
+	 * You cannot remove more than you currently have
+	 */
 	public function removeEquipment($equipment_name, $equipment_num)
 	{
 	
@@ -220,6 +235,11 @@ class Controller
 			$pm->writeDataToStore($ftm);
 		}
 	}
+	
+	/*
+	 * If name and role are not empty, an employee is created
+	 */
+	
 	public function createEmployee($em_name, $em_role)
 	{
 		$pm = new PersistenceFoodTruckManager();
@@ -239,6 +259,10 @@ class Controller
 		
 	}
 	
+	/*
+	 * tries to find an employee to fire
+	 * if employee is not found, an exception is thrown.
+	 */
 	public function fireEmployee($em_name)
 	{
 		$pm = new PersistenceFoodTruckManager();
@@ -265,6 +289,11 @@ class Controller
 		throw new Exception("Employee does not exist.");
 	}
 	
+	/*
+	 * set schedule of employee
+	 * date must be in YYYY-mm-dd format
+	 * time should be in 24 hour time
+	 */
 	public function setSchedule($employee_name, $event_date, $starttime, $endtime)
 	{
 		$name = InputValidator::validate_input($employee_name);
@@ -272,7 +301,6 @@ class Controller
 		$stime = InputValidator::validate_input($starttime);
 		$etime = InputValidator::validate_input($endtime);
 	
-		//echo $name;
 		$error = null;
 		if($name == null || strlen($name) == 0) $error .= "@Employee name cannot be empty! ";
 		if($date == null || strlen($date) == 0 || !strtotime($date)) $error .= "@2Date must be specified correctly (YYYY-MM-DD)! ";
@@ -281,7 +309,6 @@ class Controller
 		if($etime != null && $stime != null && strlen($stime) !=0 && strlen($etime) !=0  && strtotime($etime) < strtotime($stime))
 			$error .= "@4End time cannot be before start time!";
 		
-		//$error = trim($error);
 		if(!empty($error)) throw new Exception(trim($error));
 	
 		// Load all of the data
@@ -314,6 +341,9 @@ class Controller
 	
 	}
 	
+	/*
+	 * adds menu items
+	 */
 	public function addMenuItem($menu_name)
 	{
 		
@@ -333,6 +363,10 @@ class Controller
 	
 	}
 	
+	/*
+	 * makes an order
+	 * menu item must exist to make the order
+	 */
 	public function order($order_name, $order_num)
 	{
 		$name = InputValidator::validate_input($order_name);

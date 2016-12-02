@@ -12,8 +12,8 @@ foreach ( $ftm->getMenuItems () as $item )
 {
 	if ($item->getAmountSold () > $largestNum)
 	{ 
-		$largest = $item;
-		$largestNum = $item->getAmountSold;
+		$largest = $item->getName();
+		$largestNum = $item->getAmountSold();
 	}
 }
 
