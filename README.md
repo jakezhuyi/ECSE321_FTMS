@@ -1,6 +1,6 @@
 # TEAM-12 Term Project Submission
 
-Project files for Ecse-321 term project
+Project files for Ecse-321 term project : Please Read the FinalApplicationDocument (The optional document)
 All the project files for the Food Truck Management term project can be found in their respected folder specified below. 
 
 	Desktop Application: FoodTruckManagement folder
