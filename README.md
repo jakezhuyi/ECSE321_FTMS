@@ -32,7 +32,7 @@ How to run the Code:
 
   The code for the PHP application is stored in the FoodTruckManagementPHP folder.
   
-  The setup for the PHP application is simple. If XAMPP and Apache are already downloaded, the application can easily be accessed. Begin  by stating XAMPP and follow the same steps as shown in the tutorial sessions. Do the same for Apache. Once that is done, you can open   the browser of your choice and type in:
+  The setup for the PHP application is simple. If XAMPP and Apache are already downloaded, the application can easily be accessed. Begin by starting XAMPP and follow the same steps as shown in the tutorial sessions. Then click on Manage Servers, click Apache Web Server and finally click Start. Then move the whole project directory into the htdocs directory. Once that is done, you can open the browser of your choice and type in:
   http://localhost/FoodTruckManagerPHP/index.php
 
   If you have followed these steps, you will have access to the PHP version of the application and you can begin to successfully manage your food truck business and reach new heights. 
